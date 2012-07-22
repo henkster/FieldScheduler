@@ -104,6 +104,7 @@
     <Compile Include="Models\FieldViewModel.cs" />
     <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\LogOnModel.cs" />
+    <Compile Include="Models\SlotCreationViewModel.cs" />
     <Compile Include="Models\SlotViewModel.cs" />
     <Compile Include="Models\UserEditViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
@@ -256,6 +257,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ClubTeam\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Slot\Create.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

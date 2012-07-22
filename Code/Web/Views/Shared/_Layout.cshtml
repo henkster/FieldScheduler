@@ -30,6 +30,12 @@
             </nav>*@
         </header>
         <section id="main">
+            <div>
+                @Html.ValidationSummary()
+            </div>
+            <div>
+                @TempData["message"]
+            </div>
             @RenderBody()
         </section>
         <footer>

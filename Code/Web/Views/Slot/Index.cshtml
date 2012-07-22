@@ -11,6 +11,7 @@
     <tr>
         <th>Location</th>
         <th>Date</th>
+        <th>Day of Week</th>
         <th>Start</th>
         <th>End</th>
         <th>Allowed Activities</th>
@@ -20,9 +21,11 @@
         <tr>
             <td>@slot.Location</td>
             <td>@slot.Date</td>
+            <td>@slot.DayOfWeek</td>
             <td>@slot.StartTime</td>
             <td>@slot.EndTime</td>
             <td>@slot.AllowedActivitiesFormatted</td>
         </tr>
     }
 </table>
+@Html.ActionLink("Add Slots", "Create", "Slot")

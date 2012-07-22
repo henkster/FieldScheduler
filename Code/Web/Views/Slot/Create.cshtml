@@ -1,0 +1,14 @@
+﻿@model Web.Models.SlotCreationViewModel
+
+@{
+    ViewBag.Title = "Add Available Slots";
+}
+
+<h2>Add Available Slots</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="Create" />
+}

@@ -17,7 +17,6 @@ namespace Data
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Slot>().Ignore(s => s.EndTime);
             modelBuilder.Entity<Field>().Ignore(f => f.Size);
             
             base.OnModelCreating(modelBuilder);

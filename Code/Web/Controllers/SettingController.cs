@@ -38,6 +38,11 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Mode()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Mode(string mode)
         {
@@ -54,11 +59,6 @@ namespace Web.Controllers
             ViewData["system-mode"] = mode;
 
             return RedirectToAction("Mode");
-        }
-
-        public ActionResult Mode()
-        {
-            return View();
         }
     }
 }

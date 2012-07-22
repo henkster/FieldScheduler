@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using AutoMapper;
 using Domain;
 
@@ -8,6 +9,7 @@ namespace Web.Models
     public class SlotViewModel
     {
         public DateTime StartDateTime { get; set; }
+        public DateTime EndDateTime { get; set; }
         public SlotDuration Duration { get; set; }
         public Field Field { get; set; }
 
@@ -23,12 +25,17 @@ namespace Web.Models
 
         public string EndTime
         {
-            get { return StartDateTime.AddMinutes((int) Duration).ToShortTimeString(); }
+            get { return EndDateTime.ToShortTimeString(); }
         }
 
         public string Location
         {
             get { return Field.Description; }
+        }
+
+        public DayOfWeek DayOfWeek
+        {
+            get { return StartDateTime.DayOfWeek; }
         }
 
         public string AllowedActivitiesFormatted

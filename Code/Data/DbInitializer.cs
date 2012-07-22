@@ -76,33 +76,41 @@ namespace Data
 
             context.Fields.Add(field2);
 
-            context.Slots.Add(new Slot
-                                  {
-                                      StartDateTime = new DateTime(2012, 8, 26, 11, 30, 00),
-                                      Duration = SlotDuration.Ninety,
-                                      Field = field1
-                                  });
+            var slotStart = new DateTime(2012, 8, 26, 11, 30, 00);
 
             context.Slots.Add(new Slot
                                   {
-                                      StartDateTime = new DateTime(2012, 8, 26, 13, 00, 00),
-                                      Duration = SlotDuration.Ninety,
+                                      StartDateTime = slotStart,
+                                      EndDateTime = slotStart.AddMinutes((int)SlotDuration.Ninety),
                                       Field = field1
                                   });
+
+            slotStart = new DateTime(2012, 8, 26, 13, 00, 00);
+
+            context.Slots.Add(new Slot
+                                  {
+                                      StartDateTime = slotStart,
+                                      EndDateTime = slotStart.AddMinutes((int)SlotDuration.Ninety),
+                                      Field = field1
+                                  });
+
+            slotStart = new DateTime(2012, 8, 26, 14, 30, 00);
 
             var slot = new Slot
                            {
-                               StartDateTime = new DateTime(2012, 8, 26, 14, 30, 00),
-                               Duration = SlotDuration.Ninety,
+                               StartDateTime = slotStart,
+                               EndDateTime = slotStart.AddMinutes((int)SlotDuration.Ninety),
                                Field = field1
                            };
 
             context.Slots.Add(slot);
 
+            slotStart = new DateTime(2012, 8, 26, 16, 00, 00);
+
             context.Slots.Add(new Slot
                                   {
-                                      StartDateTime = new DateTime(2012, 8, 26, 16, 00, 00),
-                                      Duration = SlotDuration.Ninety,
+                                      StartDateTime = slotStart,
+                                      EndDateTime = slotStart.AddMinutes((int)SlotDuration.Ninety),
                                       Field = field1
                                   });
 
