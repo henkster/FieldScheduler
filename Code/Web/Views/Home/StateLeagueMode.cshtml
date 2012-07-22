@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model string
 
 @{
     ViewBag.Title = "State League Mode";
@@ -7,4 +7,6 @@
 
 <h2>State League Mode</h2>
 
-<p>The system is currently only available for setting up State League games.  We will notify you as soon as it is available for friendlies and training.</p>
+<div>
+    @Html.Raw(Model)
+</div>

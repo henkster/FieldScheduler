@@ -141,6 +141,29 @@ namespace Data
 "
                                      });
 
+            context.Settings.Add(new Setting
+                                     {
+                                         Key = "setup-mode-message",
+                                         Description = "System Setup Mode Message",
+                                         Value = "<p>The system is being set up.  We will notify you as soon as it comes online.</p>"
+                                     });
+
+            context.Settings.Add(new Setting
+                                     {
+                                         Key = "maintenance-mode-message",
+                                         Description = "System Maintenance Mode Message",
+                                         Value =
+                                             "<p>The system is in maintenance mode.  We will notify you as soon as it comes online.</p>"
+                                     });
+
+            context.Settings.Add(new Setting
+                                     {
+                                         Key = "state-league-mode-message",
+                                         Description = "System State League Mode Message",
+                                         Value =
+                                             "<p>The system is currently only available for setting up State League games.  We will notify you as soon as it is available for friendlies and training.</p>"
+                                     });
+
             base.Seed(context);
         }
     }

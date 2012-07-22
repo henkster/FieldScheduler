@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using Domain;
 
 namespace Web.Controllers
 {
@@ -6,24 +8,30 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Welcome to the Tennesee Soccer Club Managers Field Scheduler.";
+            Setting setting = Context.Settings.Single(s => s.Key == "home-page-message");
 
-            return View();
+            return View((object)setting.Value);
         }
 
         public ActionResult SetupMode()
         {
-            return View();
+            Setting setting = Context.Settings.Single(s => s.Key == "setup-mode-message");
+
+            return View((object)setting.Value);
         }
 
         public ActionResult MaintenanceMode()
         {
-            return View();
+            Setting setting = Context.Settings.Single(s => s.Key == "maintenance-mode-message");
+
+            return View((object)setting.Value);
         }
 
         public ActionResult StateLeagueMode()
         {
-            return View();
+            Setting setting = Context.Settings.Single(s => s.Key == "state-league-mode-message");
+
+            return View((object)setting.Value);
         }
     }
 }

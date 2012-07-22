@@ -1,15 +1,11 @@
-﻿@{
+﻿@model string
+
+@{
     ViewBag.Title = "Tennessee SC Scheduler";
 }
 
-<h2>@ViewBag.Message</h2>
+<h2>Welcome to the Tennesee Soccer Club Managers Field Scheduler.</h2>
+
 <div>
-    <p>We can start playing Games at the Complex on 3/8/2012</p>
-    <p><span style="font-size: medium; "><span style="color: rgb(255, 0, 0); "><em><strong>No Games can Be Played at the REC Center. Schedule Rec Center Fields for Training only<br>
-    <br>
-    Rec Center Fields Closed 2/25 and 3/3 From 11AM - 12PM<br>
-    </strong></em></span></span></p>
-    <p><span style="font-size: medium; "><span style="color: rgb(255, 0, 0); "><em><strong>Rec Center Fields will Be Closed Mar 31st For annual Easter Egg Hunt and Maybe Closed Apr 7th if Easter Egg unt is Rained Out.</strong></em></span></span></p>
-    <p>Ref Assignor Randy Pavlovich Email is <a href="mailto:referee@tennesseesoccerclub.org?subject=TSC%20Scheduled%20Games">referee@tnfc.org</a></p>
-    <p>Please email <a href="http://www.tennesseesoccerclub.org/page/show/533586-board-of-directors" target="_blank">Bill Bailey, VP of Operations</a> with any suggestions you may have to improve this process.</p>
+    @Html.Raw(Model)
 </div>

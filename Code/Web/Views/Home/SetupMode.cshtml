@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model string
 
 @{
     ViewBag.Title = "Setup Mode";
@@ -7,4 +7,6 @@
 
 <h2>Setup Mode</h2>
 
-<p>The system is being set up.  We will notify you as soon as it comes online.</p>
+<div>
+    @Html.Raw(Model)
+</div>

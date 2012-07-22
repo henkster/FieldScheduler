@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model string
 
 @{
     ViewBag.Title = "Maintenance Mode";
@@ -7,4 +7,6 @@
 
 <h2>Maintenance Mode</h2>
 
-<p>The system is in maintenance mode.  We will notify you as soon as it comes online.</p>
+<div>
+    @Html.Raw(Model)
+</div>

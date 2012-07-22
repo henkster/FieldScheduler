@@ -1,14 +1,15 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using Web.Helpers;
 
 namespace Web.Controllers
 {
     [AdminOnly]
-    public class TeamController : ApplicationController
+    public class ClubTeamController : ApplicationController
     {
         public ActionResult Index()
         {
-            throw new System.NotImplementedException();
+            return View(Context.ClubTeams.ToList());
         }
     }
 }

@@ -1,0 +1,17 @@
+﻿@using Domain
+@model IEnumerable<ClubTeam>
+
+@{
+    ViewBag.Title = "TSC Teams";
+}
+
+<h2>TSC Teams</h2>
+
+<table>
+    @foreach(ClubTeam team in Model)
+    {
+        <tr>
+            <td>@team.Name</td>
+        </tr>
+    }
+</table>

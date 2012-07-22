@@ -21,6 +21,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Edit(SettingEditViewModel vm)
         {
             if (!ModelState.IsValid)
