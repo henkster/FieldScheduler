@@ -1,0 +1,21 @@
+﻿@using Web.Helpers.ExtensionMethods
+<div id="standard-menu">
+    <ul>
+              <li>@Html.ActionLink("My games", "Summary", "Game")</li>
+              <li>@Html.ActionLink("Schedule new game", "Schedule", "Game")</li>
+          </ul>
+</div>    
+@if(Html.IsTrue("show-admin"))
+{
+    <div id="admin-menu">
+        <span>Manage:</span>
+        <ul>
+            <li>@Html.ActionLink("Users", "Index", "User")</li>
+            <li>@Html.ActionLink("TSC Teams", "Index", "Team")</li>
+            <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
+            <li>@Html.ActionLink("Fields", "Index", "Field")</li>
+            <li>@Html.ActionLink("Slots", "Index", "Slot")</li>
+            <li>@Html.ActionLink("System Settings", "Index", "Setting")</li>
+        </ul>
+    </div>
+}

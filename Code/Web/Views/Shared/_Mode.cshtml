@@ -1,0 +1,8 @@
+﻿@using Web.Helpers.ExtensionMethods
+
+@if (!Html.IsTrue("show-admin"))
+{
+    return;
+}
+
+<span>Current mode: <span id="current-mode">@ViewData["system-mode"]</span></span> <span>[ @Html.ActionLink("change", "Mode", "Setting") ]</span>

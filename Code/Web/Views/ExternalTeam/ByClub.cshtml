@@ -1,0 +1,18 @@
+﻿@using Domain
+@model List<ExternalTeam>
+
+@{
+    ViewBag.Title = "Teams";
+}
+
+<h2>Teams</h2>
+
+<table>
+    @foreach(ExternalTeam team in Model)
+    {
+        <tr>
+            <td>@team.Name</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Club", new {id = team.Id}, null)</td>
+        </tr>
+    }
+</table>

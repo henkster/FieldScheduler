@@ -1,0 +1,8 @@
+<Modules>
+  <Module PersistentId="74324BD2-E75B-4B89-BD33-A6A80AD263BE" ModuleId="Web" />
+  <Module PersistentId="46491C02-510B-428C-A3F7-ED7282B8477C" ModuleId="Domain" />
+  <Module PersistentId="052071CE-E744-44EF-AC20-2BD3F0EB4FC1" ModuleId="Domain.Tests" />
+  <Module PersistentId="620D71F0-65BB-4F45-AAAA-4A770323D021" ModuleId="Data" />
+  <Module PersistentId="866E29FF-0ED1-4A39-B3B3-CE1FD1F5071C" ModuleId="iwannabetnfc" />
+  <Module PersistentId="946AAFFE-1E62-4738-8435-CB32B5D3CA5C" ModuleId="Services" />
+</Modules>

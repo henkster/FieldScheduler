@@ -1,0 +1,20 @@
+﻿@using Web.Models
+@model IEnumerable<FieldViewModel>
+
+@{
+    ViewBag.Title = "Fields";
+}
+
+<h2>Fields</h2>
+
+<table>
+    @foreach(FieldViewModel field in Model)
+    {
+        <tr>
+            <td>@field.Description</td>
+            <td>@field.SizeFormatted</td>
+            <td>@field.HasLights</td>
+            <td>@field.AreRefereesRequired</td>
+        </tr>
+    }
+</table>

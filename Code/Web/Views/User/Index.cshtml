@@ -1,0 +1,22 @@
+﻿@using Web.Models
+@model IEnumerable<UserViewModel>
+
+@{
+    ViewBag.Title = "User Management - List";
+}
+
+<h2>User Management - List</h2>
+
+<table>
+    @foreach(UserViewModel user in Model)
+    {
+        <tr>
+            <td>@user.Name</td>
+            <td>@user.Active</td>
+            <td>@user.Admin</td>
+            <td>@Html.ActionLink("Edit", "Edit", "User", new {id = user.Id}, null)</td>
+        </tr>
+    }
+</table>
+
+@Html.ActionLink("Create New", "Create", "User")

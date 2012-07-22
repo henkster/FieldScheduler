@@ -1,0 +1,21 @@
+﻿@model Web.Models.UserEditViewModel
+
+@{
+    ViewBag.Title = "User Edit";
+}
+
+<h2>User Edit</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="Update" />
+}
+
+@using (Html.BeginForm("Delete", "User"))
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    @Html.HiddenFor(m => m.Id)
+    <input type="submit" value="Delete" />
+}

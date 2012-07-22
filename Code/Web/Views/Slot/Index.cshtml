@@ -1,0 +1,21 @@
+﻿@using Web.Models
+@model System.Collections.Generic.IEnumerable<Web.Models.SlotViewModel>
+
+@{
+    ViewBag.Title = "Slots";
+}
+
+<h2>Slots</h2>
+
+<table>
+    @foreach (SlotViewModel slot in Model)
+    {
+        <tr>
+            <td>@slot.Location</td>
+            <td>@slot.Date</td>
+            <td>@slot.StartTime</td>
+            <td>@slot.EndTime</td>
+            <td>@slot.AllowedActivitiesFormatted</td>
+        </tr>
+    }
+</table>

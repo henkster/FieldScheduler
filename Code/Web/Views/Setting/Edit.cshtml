@@ -1,0 +1,14 @@
+﻿@model Web.Models.SettingEditViewModel
+
+@{
+    ViewBag.Title = "System Edit Edit";
+}
+
+<h2>System Edit Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="Update" />
+}

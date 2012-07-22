@@ -1,0 +1,42 @@
+﻿@{
+    Layout = "~/Views/Shared/_MenuedLayout.cshtml";
+}
+
+<h2>Change System Mode</h2>
+
+<p>Current model is @ViewData["system-mode"].</p>
+
+<p style="text-align:center">
+@if (ViewData["system-mode"].ToString() != "public")
+{
+    using (Html.BeginForm("Mode", "Setting"))
+    {
+        @Html.Hidden("mode", "public")
+        <input type="submit" value="public"/>
+    }
+}
+@if (ViewData["system-mode"].ToString() != "state")
+{
+    using (Html.BeginForm("Mode", "Setting"))
+    {
+        @Html.Hidden("mode", "state")
+        <input type="submit" value="state"/>
+    }
+}
+@if (ViewData["system-mode"].ToString() != "maintenance")
+{
+    using (Html.BeginForm("Mode", "Setting"))
+    {
+        @Html.Hidden("mode", "maintenance")
+        <input type="submit" value="maintenance"/>
+    }
+}
+@if (ViewData["system-mode"].ToString() != "setup")
+{
+    using (Html.BeginForm("Mode", "Setting"))
+    {
+        @Html.Hidden("mode", "setup")
+        <input type="submit" value="setup"/>
+    }
+}
+</p>

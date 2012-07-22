@@ -1,0 +1,14 @@
+﻿@model Web.Models.UserEditViewModel
+
+@{
+    ViewBag.Title = "New User";
+}
+
+<h2>New User</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.EditorForModel()
+
+    <input type="submit" value="Update" />
+}

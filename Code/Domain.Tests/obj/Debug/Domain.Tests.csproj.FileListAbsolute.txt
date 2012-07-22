@@ -1,0 +1,12 @@
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Domain.Tests.dll
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Domain.Tests.pdb
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Domain.dll
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Moq.dll
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\nunit.framework.dll
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Domain.pdb
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Moq.pdb
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\Moq.xml
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\bin\Debug\nunit.framework.xml
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\obj\Debug\Domain.Tests.dll
+C:\dev\_Personal\Scheduler\Code\Domain.Tests\obj\Debug\Domain.Tests.pdb
