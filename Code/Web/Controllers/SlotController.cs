@@ -12,7 +12,7 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(SlotViewModel.LoadList(Context.Slots.ToList()));
+            return View(SlotViewModel.LoadList(Context.Slots.OrderBy(s => s.StartDateTime).ToList()));
         }
 
         public ActionResult Create()

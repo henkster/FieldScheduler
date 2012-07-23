@@ -2,7 +2,6 @@
 using System.Web.Routing;
 using AutoMapper;
 using Domain;
-using Web.Controllers;
 using Web.Models;
 
 namespace Web
@@ -20,6 +19,35 @@ namespace Web
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
+
+            routes.MapRoute(
+                "Game Activity",
+                "Game/Schedule",
+                new { controller = "Game", action = "Activity" });
+
+            routes.MapRoute(
+                "Game Size",
+                "Game/Schedule/{activity}",
+                new { controller = "Game", action = "Size" },
+                new { activity = "^friendly|training|state-league$"});
+
+            routes.MapRoute(
+                "Game Date",
+                "Game/Schedule/{activity}/{size}",
+                new {controller = "Game", action = "Date"},
+                new {activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$" });
+
+            routes.MapRoute(
+                "Game Slot",
+                "Game/Schedule/{activity}/{size}/{date}",
+                new {controller = "Game", action = "Slot"},
+                new {activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$", date = @"\d{8}"});
+
+            routes.MapRoute(
+                "Game Slot Select",
+                "Game/Schedule/{activity}/{size}/{date}/{slotId}",
+                new { controller = "Game", action = "Select" },
+                new { activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$", date = @"\d{8}", slotId = @"\d+" });
 
             routes.MapRoute(
                 "Default", // Route name

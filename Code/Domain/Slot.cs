@@ -9,5 +9,12 @@ namespace Domain
         public DateTime EndDateTime { get; set; }
 
         public virtual Field Field { get; set; }
+
+        public virtual Game Game { get; set; }
+
+        public bool IsAvailable
+        {
+            get { return Game == null; }
+        }
     }
 }

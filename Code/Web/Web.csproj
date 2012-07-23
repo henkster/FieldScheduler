@@ -88,6 +88,10 @@
     <Compile Include="Controllers\ClubController.cs" />
     <Compile Include="Controllers\ExternalTeamController.cs" />
     <Compile Include="Controllers\FieldController.cs" />
+    <Compile Include="Models\GameScheduleModels\GameSlotSelectViewModel.cs" />
+    <Compile Include="Models\GameScheduleModels\GameDateSelectViewModel.cs" />
+    <Compile Include="Models\GameScheduleModels\GameSizeSelectViewModel.cs" />
+    <Compile Include="Models\GameScheduleModels\SlotSummaryViewModel.cs" />
     <Compile Include="Models\SettingEditViewModel.cs" />
     <Compile Include="Controllers\SlotController.cs" />
     <Compile Include="Controllers\SettingController.cs" />
@@ -266,6 +270,18 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Game\Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Activity.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Size.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Date.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Game\Slot.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
