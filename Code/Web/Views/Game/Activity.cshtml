@@ -1,0 +1,11 @@
+﻿@{
+    ViewBag.Title = "Schedule Game - Type";
+}
+
+<h2>Schedule Game - Type</h2>
+
+<div>
+    @Html.ActionLink("Friendly", "Size", "Game", new { activity = "friendly"}, null)
+    @Html.ActionLink("State League", "Size", "Game", new { activity = "state-league" }, null)
+    @Html.ActionLink("Training", "Size", "Game", new { activity = "training" }, null)
+</div>

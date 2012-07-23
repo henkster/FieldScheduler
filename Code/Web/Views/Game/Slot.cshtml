@@ -1,0 +1,37 @@
+﻿@using Web.Models.GameScheduleModels
+@model GameSlotSelectViewModel
+
+@{
+    ViewBag.Title = "Schedule Game - Field/Time";
+}
+
+<h2>Schedule Game - Field/Time</h2>
+
+<ul>
+    <li>Game type: @Model.Activity @Html.ActionLink("Change", "Activity", "Game")</li>
+    <li>Field size: @Model.Size @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
+    <li>Date: @Model.Date @Html.ActionLink("Change", "Date", "Game", new { activity = Model.Activity, size = Model.Size }, null)</li>
+</ul>
+
+<div>
+    <span>Available Slots</span>
+    <ul>
+        @foreach (SlotSummaryViewModel slot in Model.Slots.Where(s => s.IsAvailable))
+        {
+            <li>
+                @Html.ActionLink(slot.Description, "Select", "Game", new { activity = Model.Activity, size = Model.Size, date = Model.Date, slotId = slot.Id}, null)
+            </li>
+        }
+    </ul>
+</div>
+<div>
+    <span>Scheduled Slots</span>
+    <ul>
+        @foreach (SlotSummaryViewModel slot in Model.Slots.Where(s => !s.IsAvailable))
+        {
+            <li>
+                @slot.Description - @slot.ScheduledByName
+            </li>
+        }
+    </ul>
+</div>

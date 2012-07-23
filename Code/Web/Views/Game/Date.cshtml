@@ -1,0 +1,21 @@
+﻿@model Web.Models.GameScheduleModels.GameDateSelectViewModel
+
+@{
+    ViewBag.Title = "Schedule Game - Dates";
+}
+
+<h2>Schedule Game - Dates</h2>
+
+<ul>
+    <li>Game type: @Model.Activity @Html.ActionLink("Change", "Activity", "Game")</li>
+    <li>Field size: @Model.Size @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
+</ul>
+
+<ul>
+    @foreach (DateTime slotDate in Model.SlotDates)
+    {
+        <li>
+            @Html.ActionLink(slotDate.ToShortDateString(), "Slot", "Game", new { activity = Model.Activity, size = Model.Size, date = slotDate.ToString("MMddyyyy")}, null)
+        </li>
+    }
+</ul>
