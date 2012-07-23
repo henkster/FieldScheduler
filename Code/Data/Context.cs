@@ -30,5 +30,6 @@ namespace Data
         public DbSet<ClubTeam> ClubTeams { get; set; }
         public DbSet<ExternalTeam> ExternalTeams { get; set; }
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Division> Divisions { get; set; }
     }
 }

@@ -39,17 +39,21 @@ namespace Data
 
             context.Clubs.Add(club);
 
+            var division1 = new Division(12, "Boys");
+
             var team2 = new ExternalTeam
                             {
                                 Club = club,
-                                Name = "HFC 01 Black"
+                                Name = "HFC 01 Black",
+                                Division = division1
                             };
 
             context.ExternalTeams.Add(team2);
 
             var team1 = new ClubTeam
                             {
-                                Name = "01 Boys Premier South"
+                                Name = "01 Boys Premier South",
+                                Division = division1
                             };
 
             context.ClubTeams.Add(team1);
@@ -181,7 +185,35 @@ namespace Data
                                              "<p>The system is currently only available for setting up State League games.  We will notify you as soon as it is available for friendlies and training.</p>"
                                      });
 
+            CreateDivisions(context, division1);
+
             base.Seed(context);
+        }
+
+        private void CreateDivisions(Context context, Division division)
+        {
+            context.Divisions.Add(new Division(8, "Boys"));
+            context.Divisions.Add(new Division(8, "Girls"));
+            context.Divisions.Add(new Division(9, "Boys"));
+            context.Divisions.Add(new Division(9, "Girls"));
+            context.Divisions.Add(new Division(10, "Boys"));
+            context.Divisions.Add(new Division(10, "Girls"));
+            context.Divisions.Add(new Division(11, "Boys"));
+            context.Divisions.Add(new Division(11, "Girls"));
+            context.Divisions.Add(division);
+            context.Divisions.Add(new Division(12, "Girls"));
+            context.Divisions.Add(new Division(13, "Boys"));
+            context.Divisions.Add(new Division(13, "Girls"));
+            context.Divisions.Add(new Division(14, "Boys"));
+            context.Divisions.Add(new Division(14, "Girls"));
+            context.Divisions.Add(new Division(15, "Boys"));
+            context.Divisions.Add(new Division(15, "Girls"));
+            context.Divisions.Add(new Division(16, "Boys"));
+            context.Divisions.Add(new Division(16, "Girls"));
+            context.Divisions.Add(new Division(17, "Boys"));
+            context.Divisions.Add(new Division(17, "Girls"));
+            context.Divisions.Add(new Division(18, "Boys"));
+            context.Divisions.Add(new Division(18, "Girls"));
         }
     }
 }

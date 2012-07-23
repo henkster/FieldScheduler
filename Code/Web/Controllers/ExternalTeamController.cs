@@ -9,5 +9,10 @@ namespace Web.Controllers
         {
             return View(Context.ExternalTeams.Where(t => t.Club.Id == id).ToList());
         }
+
+        public ActionResult Create(string activity, string size, string date, int slotId)
+        {
+            return RedirectToAction("Select", "Game", new {activity, size, date, slotId});
+        }
     }
 }

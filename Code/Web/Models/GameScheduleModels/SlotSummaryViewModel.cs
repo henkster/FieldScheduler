@@ -13,10 +13,7 @@ namespace Web.Models.GameScheduleModels
 
         public static SlotSummaryViewModel Load(Slot slot)
         {
-            string description = string.Format("{0} - {1}-{2}",
-                                               slot.Field.Description,
-                                               slot.StartDateTime.ToShortTimeString(),
-                                               slot.EndDateTime.ToShortTimeString());
+            string description = CreateDescription(slot);
 
             bool isAvailable = slot.IsAvailable;
 
@@ -31,6 +28,14 @@ namespace Web.Models.GameScheduleModels
                                 };
 
             return viewModel;
+        }
+
+        public static string CreateDescription(Slot slot)
+        {
+            return string.Format("{0} - {1}-{2}",
+                                 slot.Field.Description,
+                                 slot.StartDateTime.ToShortTimeString(),
+                                 slot.EndDateTime.ToShortTimeString());
         }
 
         public static IEnumerable<SlotSummaryViewModel> LoadList(List<Slot> slots)

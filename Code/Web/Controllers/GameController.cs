@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Objects;
 using System.Linq;
 using System.Web.Mvc;
@@ -64,7 +65,7 @@ namespace Web.Controllers
             if (slot == null)
             {
                 TempData["message"] = "A system issue prevented that slot from being found.";
-                return RedirectToAction("Slot", "Game", new {activity, size, date});
+                return RedirectToAction("Slot", "Game", new { activity, size, date });
             }
 
             if (!slot.IsAvailable)
@@ -73,9 +74,41 @@ namespace Web.Controllers
                 return RedirectToAction("Slot", "Game", new { activity, size, date });
             }
 
+            var division = Context.Divisions.Single(d => d.Age == 8 && d.Gender == "Boys");
+            var teams = new List<Team>();
+            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == division.Id).OrderBy(t => t.Name)) teams.Add(team);
+            
+            return View(new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
+                            {
+                                Activity = activity,
+                                Size = size,
+                                Date = date,
+                                SlotId = slotId,
+                                Description = SlotSummaryViewModel.CreateDescription(slot)
+                            });
+        }
+
+        [ActionName("Select")]
+        [HttpPost]
+        public ActionResult Schedule(SelectionViewModel vm)
+        {
+            Slot slot = Context.Slots.Find(vm.SlotId);
+
+            if (slot == null)
+            {
+                TempData["message"] = "A system issue prevented that slot from being found.";
+                return RedirectToAction("Slot", "Game", new {vm.Activity, vm.Size, vm.Date});
+            }
+
+            if (!slot.IsAvailable)
+            {
+                TempData["message"] = "That slot is no longer available.";
+                return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
+            }
+
             var game = new Game
                            {
-                               Activity = MapActivity(activity),
+                               Activity = MapActivity(vm.Activity),
                                ScheduledBy = LoggedInUser,
                                ScheduledOn = DateTime.Now,
                                Slot = slot,
@@ -90,7 +123,7 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             TempData["message"] = "Game scheduled!";
-            return RedirectToAction("Slot", "Game", new { activity, size, date });
+            return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
         }
 
         public ActionResult Delete(int id)
