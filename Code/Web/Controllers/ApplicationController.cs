@@ -1,6 +1,7 @@
 ﻿
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 using Data;
 using Domain;
 
@@ -35,6 +36,11 @@ namespace Web.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            if (!LoggedInUser.IsActive)
+            {
+                FormsAuthentication.SignOut();
+                return;
+            }
             ViewData["show-admin"] = LoggedInUser != null && LoggedInUser.IsAdmin;
 
             CheckMode(filterContext);

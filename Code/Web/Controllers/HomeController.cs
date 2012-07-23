@@ -26,12 +26,5 @@ namespace Web.Controllers
 
             return View((object)setting.Value);
         }
-
-        public ActionResult StateLeagueMode()
-        {
-            Setting setting = Context.Settings.Single(s => s.Key == "state-league-mode-message");
-
-            return View((object)setting.Value);
-        }
     }
 }
