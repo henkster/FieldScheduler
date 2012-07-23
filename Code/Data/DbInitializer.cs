@@ -76,6 +76,15 @@ namespace Data
 
             context.Fields.Add(field2);
 
+            context.Fields.Add(new Field
+                             {
+                                 Description = "Downs - 22",
+                                 AreRefereesRequired = true,
+                                 HasLights = true,
+                                 Size = FieldSize.ElevenVsEleven,
+                                 AllowedActivities = Activities.Friendly | Activities.StateLeague
+                             });
+
             var slotStart = new DateTime(2012, 8, 26, 11, 30, 00);
 
             context.Slots.Add(new Slot

@@ -21,7 +21,7 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(SlotCreationViewModel vm)
+        public ActionResult Create(SlotCreateViewModel vm)
         {
             if (!ModelState.IsValid)
             {

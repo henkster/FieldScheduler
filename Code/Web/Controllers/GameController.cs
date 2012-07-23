@@ -30,7 +30,11 @@ namespace Web.Controllers
         [ActionName("Date")]
         public ActionResult Schedule(string activity, string size)
         {
+            var fieldSize = (int)MapFieldSize(size);
+            var activityInt = (int)MapActivity(activity);
+
             var slotDates = (from slot in Context.Slots
+                             where slot.Field.SizeAsInt == fieldSize && ((slot.Field.AllowedActivityAsInt & activityInt) == activityInt )
                             select EntityFunctions.TruncateTime(slot.StartDateTime).Value).Distinct();
 
             return View("Date", new GameDateSelectViewModel(activity, size, slotDates.ToList()));
@@ -43,8 +47,10 @@ namespace Web.Controllers
                                         int.Parse(date.Substring(0, 2)),
                                         int.Parse(date.Substring(2, 2)));
 
+            var fieldSize = (int)MapFieldSize(size);
+
             var slots = from slot in Context.Slots
-                         where EntityFunctions.TruncateTime(slot.StartDateTime) == gameDate
+                        where EntityFunctions.TruncateTime(slot.StartDateTime) == gameDate && slot.Field.SizeAsInt == fieldSize
                          select slot;
 
             return View("Slot", new GameSlotSelectViewModel(activity, size, date, slots.ToList()));
@@ -99,6 +105,20 @@ namespace Web.Controllers
                     return Activities.Training;
             }
             throw new ArgumentOutOfRangeException(string.Format("Activity '{0}' not found.", activity));
+        }
+
+        private FieldSize MapFieldSize(string size)
+        {
+            switch (size)
+            {
+                case "11v11":
+                    return FieldSize.ElevenVsEleven;
+                case "8v8":
+                    return FieldSize.EightVsEight;
+                case "6v6":
+                    return FieldSize.SixVsSix;
+            }
+            throw new ArgumentOutOfRangeException(string.Format("Field size '{0}' not found.", size));
         }
     }
 }

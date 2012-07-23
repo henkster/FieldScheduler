@@ -36,7 +36,7 @@ namespace Web.Controllers
 
         protected override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-            if (!LoggedInUser.IsActive)
+            if (LoggedInUser != null && !LoggedInUser.IsActive)
             {
                 FormsAuthentication.SignOut();
                 return;

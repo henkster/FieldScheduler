@@ -12,5 +12,10 @@ namespace Web.Controllers
         {
             return View(FieldViewModel.LoadList(Context.Fields.ToList()));
         }
+
+        public ActionResult Create()
+        {
+            return View();
+        }
     }
 }
