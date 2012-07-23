@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -6,7 +7,7 @@ namespace Web.Controllers
     {
         public ActionResult Summary()
         {
-            throw new System.NotImplementedException();
+            return View(GameViewModel.LoadList(Context.Games));
         }
 
         public ActionResult Schedule()

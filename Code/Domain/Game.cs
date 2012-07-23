@@ -15,6 +15,8 @@ namespace Domain
         
         [Required]
         public bool AreRefereesNeed { get; set; }
+
+        public bool AreRefereesConfirmed { get; set; }
         
         public string Notes { get; set; }
         
