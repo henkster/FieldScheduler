@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Domain;
 
 namespace Web.Models.GameScheduleModels
@@ -17,9 +18,9 @@ namespace Web.Models.GameScheduleModels
                                                slot.StartDateTime.ToShortTimeString(),
                                                slot.EndDateTime.ToShortTimeString());
 
-            bool isAvailable = slot.Game == null;
+            bool isAvailable = slot.IsAvailable;
 
-            string scheduledByName = !isAvailable ? slot.Game.ScheduledBy.Name : string.Empty;
+            string scheduledByName = !isAvailable ? slot.Games.Single(g => !g.IsCanceled).ScheduledBy.Name : string.Empty;
 
             var viewModel = new SlotSummaryViewModel
                                 {

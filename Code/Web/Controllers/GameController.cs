@@ -12,7 +12,7 @@ namespace Web.Controllers
     {
         public ActionResult Summary()
         {
-            return View(GameViewModel.LoadList(Context.Games.Where(g => g.ScheduledBy.Id == LoggedInUser.Id)));
+            return View(GameViewModel.LoadList(Context.Games.Where(g => g.ScheduledBy.Id == LoggedInUser.Id && !g.CanceledOn.HasValue)));
         }
 
         [ActionName("Activity")]
@@ -85,12 +85,31 @@ namespace Web.Controllers
 
             Context.Games.Add(game);
 
-            Context.GetValidationErrors();
-
+            //slot.Games.Add(game);
+            
             Context.SaveChanges();
 
             TempData["message"] = "Game scheduled!";
             return RedirectToAction("Slot", "Game", new { activity, size, date });
+        }
+
+        public ActionResult Delete(int id)
+        {
+            Game game = Context.Games.Include("Slot").Include("Team1").Include("Team2").SingleOrDefault(g => g.Id == id);
+
+            if (game == null)
+            {
+                TempData["message"] = "The system could not find that game.";
+                return RedirectToAction("Summary");
+            }
+
+            game.CanceledBy = LoggedInUser;
+            game.CanceledOn = DateTime.Now;
+
+            Context.SaveChanges();
+
+            TempData["message"] = "Game successfully canceled!";
+            return RedirectToAction("Summary");
         }
 
         private Activities MapActivity(string activity)

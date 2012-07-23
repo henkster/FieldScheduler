@@ -29,6 +29,8 @@ namespace Domain
         public virtual User CanceledBy { get; set; }
         public DateTime? CanceledOn { get; set; }
 
+        public bool IsCanceled { get { return CanceledOn.HasValue; } }
+
         public Activities Activity
         {
             get { return (Activities)Enum.ToObject(typeof(Activities), ActivityAsInt); }
