@@ -12,7 +12,7 @@ namespace Web.Controllers
     {
         public ActionResult Summary()
         {
-            return View(GameViewModel.LoadList(Context.Games));
+            return View(GameViewModel.LoadList(Context.Games.Where(g => g.ScheduledBy.Id == LoggedInUser.Id)));
         }
 
         [ActionName("Activity")]
