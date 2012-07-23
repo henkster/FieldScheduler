@@ -8,11 +8,18 @@ namespace Web.Models
 {
     public class GameViewModel
     {
+        public int Id { get; set; }
         public Slot Slot { get; set; }
         public Activities Activity { get; set; }
         public DateTime Date { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
+        public Team Team1 { get; set; }
+        public Team Team2 { get; set; }
+        public User ScheduledBy { get; set; }
+
+        public string Age
+        {
+            get { return "??"; }
+        }
 
         [Display(Name = "Are Ref Needed?")]
         public bool AreRefereesNeeded { get; set; }
@@ -37,11 +44,44 @@ namespace Web.Models
             }
         }
 
-        public string TimeRange { get { return string.Format("{0}-{1}", Start, End); } }
+        public string FormattedTime { get { return string.Format("{0}-{1}", Slot.StartDateTime.ToShortTimeString(), Slot.EndDateTime.ToShortTimeString()); } }
+        public string FormattedDate { get { return string.Format("{0}, {1}", Slot.StartDateTime.DayOfWeek, Slot.StartDateTime.ToString("MMMM d")); } }
+
+        public string Size
+        {
+            get
+            {
+                switch (Slot.Field.Size)
+                {
+                    case FieldSize.ElevenVsEleven:
+                        return "11 v 11";
+                    case FieldSize.EightVsEight:
+                        return "8 v 8";
+                    case FieldSize.SixVsSix:
+                        return "6 v 6";
+                }
+                return "Unknown";
+            }
+        }
+
+        public string Team1Name
+        {
+            get { return Team1.Name; }
+        }
+
+        public string Team2Name
+        {
+            get { return Team2.Name; }
+        }
 
         public string Field
         {
             get { return Slot.Field.Description; }
+        }
+
+        public string ScheduledByName
+        {
+            get { return ScheduledBy.Name; }
         }
 
         public static IEnumerable<GameViewModel> LoadList(IEnumerable<Game> games)

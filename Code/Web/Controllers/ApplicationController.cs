@@ -25,6 +25,8 @@ namespace Web.Controllers
                     if (User.Identity.IsAuthenticated)
                     {
                         _loggedInUser = Context.Users.SingleOrDefault(u => u.Username == User.Identity.Name);
+
+                        ViewData["logged-in-name"] = _loggedInUser.Name;
                     }
                 }
                 return _loggedInUser;

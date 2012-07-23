@@ -26,10 +26,10 @@ tr.shading {
     background-color: whitesmoke;
 }
 #title {
-    height: 120px;
+    height: 102px;
     background-color: red;
     text-align: center;
-    padding: 12px;
+    padding-top: 30px;
     position: relative;
 }
 #title span#title-name {

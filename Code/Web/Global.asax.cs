@@ -47,6 +47,7 @@ namespace Web
             Mapper.CreateMap<Slot, SlotViewModel>();
             Mapper.CreateMap<Setting, SettingEditViewModel>();
             Mapper.CreateMap<SettingEditViewModel, Setting>();
+            Mapper.CreateMap<Game, GameViewModel>();
         }
     }
 }

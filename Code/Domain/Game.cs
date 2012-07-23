@@ -6,12 +6,12 @@ namespace Domain
     public class Game : DomainObject<int>
     {
         [Required]
-        public Slot Slot { get; set; }
+        public virtual Slot Slot { get; set; }
         
         [Required]
-        public Team Team1 { get; set; }
+        public virtual Team Team1 { get; set; }
 
-        public Team Team2 { get; set; }
+        public virtual Team Team2 { get; set; }
         
         [Required]
         public bool AreRefereesNeed { get; set; }
@@ -21,12 +21,12 @@ namespace Domain
         public string Notes { get; set; }
         
         [Required]
-        public User ScheduledBy { get; set; }
+        public virtual User ScheduledBy { get; set; }
         
         [Required]
         public DateTime ScheduledOn { get; set; }
         
-        public User CanceledBy { get; set; }
+        public virtual User CanceledBy { get; set; }
         public DateTime? CanceledOn { get; set; }
 
         public Activities Activity
