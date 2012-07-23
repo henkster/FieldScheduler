@@ -32,10 +32,11 @@ tr.shading {
     padding-top: 30px;
     position: relative;
 }
-#title span#title-name {
+#title span#title-name a {
     font-size: 4em;
     color: white;
     font-weight: bold;
+    text-decoration: none;
 }
 #logindisplay {
     position: absolute;
