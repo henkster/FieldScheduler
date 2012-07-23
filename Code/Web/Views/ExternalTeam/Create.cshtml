@@ -1,0 +1,20 @@
+﻿@model Web.Controllers.TeamCreateViewModel
+
+@{
+    ViewBag.Title = "New Team";
+}
+
+<h2>New Team</h2>
+
+@using (Html.BeginForm())
+{
+    <ul>
+        <li>Club: @Html.DropDownListFor(m => m.ClubId, Model.ClubList, new { onchange = "GetTeams()"}) @Html.ActionLink("Add new", "Create", "Club", new {Model.Activity, Model.Size, Model.Date, Model.SlotId}, null)</li>
+        <li>Division: @Html.DropDownListFor(m => m.DivisionId, Model.DivisionList)</li>
+        <li>Name: @Html.TextBoxFor(m => m.NewClubName)</li>
+        <li>Contact name: @Html.TextBoxFor(m => m.ContactName)</li>
+        <li>Contact email: @Html.TextBoxFor(m => m.ContactEmailAddress)</li>
+        <li>Contact phone: @Html.TextBoxFor(m => m.ContactPhoneNumber)</li>
+    </ul>
+    <input type="submit" value="Create" />
+}

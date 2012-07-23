@@ -45,7 +45,10 @@ namespace Data
                             {
                                 Club = club,
                                 Name = "HFC 01 Black",
-                                Division = division1
+                                Division = division1,
+                                ContactName = "Joe Mama",
+                                ContactEmailAddress = "joemama@henkster.com",
+                                ContactPhoneNumber = "6155551212"
                             };
 
             context.ExternalTeams.Add(team2);

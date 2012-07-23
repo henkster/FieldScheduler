@@ -1,6 +1,6 @@
-*/obj
-*/bin
-_ReSharper.*
+obj
+bin
+Code/_ReSharper.Scheduler/WordIndex/.crc
 *.csproj.user
 *.resharper.user
 *.resharper

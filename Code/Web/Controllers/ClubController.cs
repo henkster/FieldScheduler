@@ -16,5 +16,10 @@ namespace Web.Controllers
         {
             throw new System.NotImplementedException();
         }
+
+        public ActionResult Create(string activity, string size, string date, int slotid)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
