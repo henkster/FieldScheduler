@@ -74,16 +74,15 @@ namespace Web.Controllers
                 return RedirectToAction("Slot", "Game", new { activity, size, date });
             }
 
-            var division = Context.Divisions.Single(d => d.Age == 8 && d.Gender == "Boys");
             var teams = new List<Team>();
-            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == division.Id).OrderBy(t => t.Name)) teams.Add(team);
+            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(t => t.Name)) teams.Add(team);
 
             ViewBag.GameSelectionTitle = "Schedule Game - Details";
             ViewBag.GameSelectionButton = "Schedule";
             ViewBag.ReturnTo = Url.Action("Select", "Game", new {activity, size, date, slotId});
             ViewBag.CancelUrl = Url.Action("Slot", "Game", new {activity, size, date});
-               
-            return View(new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
+
+            return View(new SelectionViewModel(teams, teams, Context.Divisions.OrderBy(d => d.Age).ToList())
                             {
                                 Activity = activity,
                                 Size = size,
@@ -117,8 +116,9 @@ namespace Web.Controllers
                                ScheduledBy = LoggedInUser,
                                ScheduledOn = DateTime.Now,
                                Slot = slot,
-                               Team1 = Context.ExternalTeams.Find(vm.Team1),
-                               Team2 = Context.ExternalTeams.Find(vm.Team2)
+                               Team1 = Context.ExternalTeams.Find(vm.Team1Id),
+                               Team2 = Context.ExternalTeams.Find(vm.Team2Id),
+                               Notes = vm.Notes
                            };
 
             Context.Games.Add(game);
@@ -160,16 +160,18 @@ namespace Web.Controllers
                 return RedirectToAction("Summary");
             }
 
-            var division = Context.Divisions.Single(d => d.Age == 8 && d.Gender == "Boys");
-            var teams = new List<Team>();
-            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == division.Id).OrderBy(t => t.Name)) teams.Add(team);
+            var teams1 = new List<Team>();
+            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id ==  game.Team1.Division.Id).OrderBy(t => t.Name)) teams1.Add(team);
+
+            var teams2 = new List<Team>();
+            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == game.Team2.Division.Id).OrderBy(t => t.Name)) teams2.Add(team);
 
             ViewBag.GameSelectionTitle = "Game Edit";
             ViewBag.GameSelectionButton = "Update";
             ViewBag.ReturnTo = Url.Action("Edit", "Game", new { game.Id });
             ViewBag.CancelUrl = Url.Action("Summary");
 
-            return View("Select", new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
+            return View("Select", new SelectionViewModel(teams1, teams2, Context.Divisions.OrderBy(d => d.Age).ToList(), game.Team1, game.Team2, game.Team1.Division, game.Team2.Division)
             {
                 Activity = game.Activity.ToString(),
                 Size = MapSize(game.Slot.Field.Size),
@@ -177,8 +179,11 @@ namespace Web.Controllers
                 SlotId = game.Slot.Id,
                 Description = SlotSummaryViewModel.CreateDescription(game.Slot),
                 Id = game.Id,
-                Team1 = game.Team1.Id,
-                Team2 = game.Team2.Id
+                Team1Id = game.Team1.Id,
+                Team2Id = game.Team2.Id,
+                Division1Id = game.Team1.Division.Id,
+                Division2Id = game.Team2.Division.Id,
+                Notes = game.Notes
             });
         }
 
@@ -209,7 +214,7 @@ namespace Web.Controllers
                 return View("Select", vm);
             }
 
-            Game game = Context.Games.Find(vm.Id);
+            Game game = Context.Games.Include("Slot").SingleOrDefault(g => g.Id == vm.Id);
 
             if (game == null)
             {
@@ -217,11 +222,11 @@ namespace Web.Controllers
                 return RedirectToAction("Summary");
             }
 
-            Team team1 = Context.ExternalTeams.Find(vm.Team1);
-            if (team1 == null) Context.ClubTeams.Find(vm.Team1);
+            Team team1 = Context.ExternalTeams.Find(vm.Team1Id);
+            if (team1 == null) Context.ClubTeams.Find(vm.Team1Id);
 
-            Team team2 = Context.ExternalTeams.Find(vm.Team2);
-            if (team2 == null) Context.ClubTeams.Find(vm.Team2);
+            Team team2 = Context.ExternalTeams.Find(vm.Team2Id);
+            if (team2 == null) Context.ClubTeams.Find(vm.Team2Id);
 
             if (team1 == null || team2 == null)
             {
@@ -231,6 +236,7 @@ namespace Web.Controllers
 
             game.Team1 = team1;
             game.Team2 = team2;
+            game.Notes = vm.Notes;
 
             Context.SaveChanges();
 

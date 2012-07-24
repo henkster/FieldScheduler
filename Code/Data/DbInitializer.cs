@@ -201,24 +201,24 @@ namespace Data
             context.Divisions.Add(new Division(8, "Girls"));
             context.Divisions.Add(new Division(9, "Boys"));
             context.Divisions.Add(new Division(9, "Girls"));
-            context.Divisions.Add(new Division(10, "Boys"));
-            context.Divisions.Add(new Division(10, "Girls"));
-            context.Divisions.Add(new Division(11, "Boys"));
-            context.Divisions.Add(new Division(11, "Girls"));
+            context.Divisions.Add(new Division(10,"Boys"));
+            context.Divisions.Add(new Division(10,"Girls"));
+            context.Divisions.Add(new Division(11,"Boys"));
+            context.Divisions.Add(new Division(11,"Girls"));
             context.Divisions.Add(division);
-            context.Divisions.Add(new Division(12, "Girls"));
-            context.Divisions.Add(new Division(13, "Boys"));
-            context.Divisions.Add(new Division(13, "Girls"));
-            context.Divisions.Add(new Division(14, "Boys"));
-            context.Divisions.Add(new Division(14, "Girls"));
-            context.Divisions.Add(new Division(15, "Boys"));
-            context.Divisions.Add(new Division(15, "Girls"));
-            context.Divisions.Add(new Division(16, "Boys"));
-            context.Divisions.Add(new Division(16, "Girls"));
-            context.Divisions.Add(new Division(17, "Boys"));
-            context.Divisions.Add(new Division(17, "Girls"));
-            context.Divisions.Add(new Division(18, "Boys"));
-            context.Divisions.Add(new Division(18, "Girls"));
+            context.Divisions.Add(new Division(12,"Girls"));
+            context.Divisions.Add(new Division(13,"Boys"));
+            context.Divisions.Add(new Division(13,"Girls"));
+            context.Divisions.Add(new Division(14,"Boys"));
+            context.Divisions.Add(new Division(14,"Girls"));
+            context.Divisions.Add(new Division(15,"Boys"));
+            context.Divisions.Add(new Division(15,"Girls"));
+            context.Divisions.Add(new Division(16,"Boys"));
+            context.Divisions.Add(new Division(16,"Girls"));
+            context.Divisions.Add(new Division(17,"Boys"));
+            context.Divisions.Add(new Division(17,"Girls"));
+            context.Divisions.Add(new Division(18,"Boys"));
+            context.Divisions.Add(new Division(18,"Girls"));
         }
     }
 }

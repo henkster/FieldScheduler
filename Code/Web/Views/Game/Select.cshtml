@@ -16,14 +16,13 @@
         <li>Date: @Model.DateFormatted</li>
         <li>Description: @Model.Description</li>
         <li>
-            @Html.DropDownListFor(m => m.Team1Division, Model.Team1DivisionList, new { onchange = "GetTeams1()"}) @Html.DropDownListFor(m => m.Team1, Model.Team1List)
-            
+            @Html.DropDownListFor(m => m.Division1Id, Model.Division1List, new { onchange = "GetTeams1()" })
+            @Html.DropDownListFor(m => m.Team1Id, Model.Team1List)
             @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
-        
         </li>
         <li>
-            @Html.DropDownListFor(m => m.Team2Division, Model.Team2DivisionList, new { onchange = "GetTeams2()"}) @Html.DropDownListFor(m => m.Team2, Model.Team2List)
-            
+            @Html.DropDownListFor(m => m.Division2Id, Model.Division2List, new { onchange = "GetTeams2()"})
+            @Html.DropDownListFor(m => m.Team2Id, Model.Team2List)
             @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
 
         </li>

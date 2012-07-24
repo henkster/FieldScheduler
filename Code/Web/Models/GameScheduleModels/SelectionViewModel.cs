@@ -6,37 +6,12 @@ namespace Web.Models.GameScheduleModels
 {
     public class SelectionViewModel
     {
-        public SelectionViewModel(IList<Team> teams, IList<Division> divisions, Division selectedDivision)
+        public SelectionViewModel(IList<Team> teams1, IList<Team> teams2, IList<Division> divisions, Team team1 = null, Team team2 = null, Division division1 = null, Division division2 = null)
         {
-            Team1DivisionList = new List<SelectListItem>();
-
-            foreach (Division division in divisions)
-            {
-                var item = new SelectListItem { Text = division.Name, Value = division.Id.ToString(), Selected = division == selectedDivision };
-                Team1DivisionList.Add(item);
-            }
-
-            Team2DivisionList = new List<SelectListItem>();
-
-            foreach (Division division in divisions)
-            {
-                var item = new SelectListItem { Text = division.Name, Value = division.Id.ToString(), Selected = division == selectedDivision };
-                Team2DivisionList.Add(item);
-            }
-
-            Team1List = new List<SelectListItem>();
-            
-            foreach (Team team in teams)
-            {
-                Team1List.Add(new SelectListItem { Text = team.FullName, Value = team.Id.ToString() });
-            }
-
-            Team2List = new List<SelectListItem>();
-
-            foreach (Team team in teams)
-            {
-                Team2List.Add(new SelectListItem { Text = team.FullName, Value = team.Id.ToString() });
-            }
+            Team1List = new SelectList(teams1, "Id", "FullName", team1 != null ? team1.Id.ToString() : string.Empty);
+            Team2List = new SelectList(teams2, "Id", "FullName", team2 != null ? team2.Id.ToString() : string.Empty);
+            Division1List = new SelectList(divisions, "Id", "Name", division1 != null ? division1.Id.ToString() : string.Empty);
+            Division2List = new SelectList(divisions, "Id", "Name", division2 != null ? division2.Id.ToString() : string.Empty);
         }
         public SelectionViewModel() {}
 
@@ -52,21 +27,21 @@ namespace Web.Models.GameScheduleModels
 
         public string DateFormatted
         {
-            get { return string.Format("{0}/{1}/{2}", Date.Substring(2, 2), Date.Substring(0, 2), Date.Substring(4, 4)); }
+            get { return Date.Contains("/") ? Date : string.Format("{0}/{1}/{2}", Date.Substring(2, 2), Date.Substring(0, 2), Date.Substring(4, 4)); }
         }
 
         public string Description { get; set; }
 
-        public int Team1 { get; set; }
-        public int Team2 { get; set; }
+        public int Team1Id { get; set; }
+        public int Team2Id { get; set; }
 
-        public int Team1Division { get; set; }
-        public int Team2Division { get; set; }
+        public int Division1Id { get; set; }
+        public int Division2Id { get; set; }
 
-        public List<SelectListItem> Team1DivisionList { get; set; }
-        public List<SelectListItem> Team2DivisionList { get; set; }
-        public List<SelectListItem> Team1List { get; set; }
-        public List<SelectListItem> Team2List { get; set; }
+        public SelectList Division1List { get; set; }
+        public SelectList Division2List { get; set; }
+        public SelectList Team1List { get; set; }
+        public SelectList Team2List { get; set; }
 
         public string Notes { get; set; }
     }
