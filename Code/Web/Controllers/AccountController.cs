@@ -197,9 +197,25 @@ namespace Web.Controllers
         }
         #endregion
 
-        public ActionResult EmailPassword()
+        public ActionResult EmailAccountInfo()
         {
-            throw new NotImplementedException();
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult EmailAccountInfo(string email)
+        {
+            if (string.IsNullOrEmpty(email))
+            {
+                ModelState.AddModelError("email", "Please provide a valid email address.");
+                return View(email);
+            }
+
+            // TODO Send email
+
+            TempData["message"] = "Account info successfully sent.";
+
+            return View();
         }
     }
 }

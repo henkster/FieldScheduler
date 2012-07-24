@@ -8,6 +8,7 @@ using Web.Models;
 namespace Web.Controllers
 {
     [AdminOnly]
+    [Authorize]
     public class SettingController : ApplicationController
     {
         public ActionResult Index()

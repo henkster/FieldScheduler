@@ -7,6 +7,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class ClubController : ApplicationController
     {
         public ActionResult Index()

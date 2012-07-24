@@ -8,7 +8,14 @@
 
 @using(Html.BeginForm())
 {
-    @Html.EditorForModel()
-
+    <ul>
+        <li>Field: @Html.DropDownListFor(m => m.FieldId, Model.FieldList)</li>
+        <li>Day of Week: @Html.DropDownListFor(m => m.DayOfWeek, new SelectList(Enum.GetValues(typeof(DayOfWeek))))</li>
+        <li>Start Date: @Html.EditorFor(m => m.StartDate)</li>
+        <li>End Date: @Html.EditorFor(m => m.EndDate)</li>
+        <li>Start Time: @Html.EditorFor(m => m.StartTime)</li>
+        <li>End Time: @Html.EditorFor(m => m.EndTime)</li>
+        <li>Minutes per Slot: @Html.DropDownListFor(m => m.MinutesPerSlot, Model.MinutesList)</li>
+    </ul>
     <input type="submit" value="Create" />
 }

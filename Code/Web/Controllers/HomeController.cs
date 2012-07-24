@@ -4,6 +4,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class HomeController : ApplicationController
     {
         public ActionResult Index()

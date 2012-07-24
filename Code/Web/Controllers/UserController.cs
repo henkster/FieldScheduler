@@ -1,6 +1,4 @@
-﻿using System;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AutoMapper;
 using Domain;
@@ -11,6 +9,7 @@ using Web.Models;
 namespace Web.Controllers
 {
     [AdminOnly]
+    [Authorize]
     public class UserController : ApplicationController
     {
         public ActionResult Index()

@@ -8,6 +8,7 @@ using Web.Models;
 namespace Web.Controllers
 {
     [AdminOnly]
+    [Authorize]
     public class SlotController : ApplicationController
     {
         public ActionResult Index()
@@ -17,7 +18,11 @@ namespace Web.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var vm = new SlotCreateViewModel();
+
+            SlotCreateViewModel.InitializeLists(vm, Context.Fields.OrderBy(f => f.Description));
+
+            return View(vm);
         }
 
         [HttpPost]
@@ -25,17 +30,18 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                SlotCreateViewModel.InitializeLists(vm, Context.Fields.OrderBy(f => f.Description));
                 return View(vm);
             }
 
             var field = Context.Fields.Find(vm.FieldId);
 
             new SlotCreator(Context).Create(field,
-                                            vm.DayOfWeek,
-                                            vm.StartDate.Date,
-                                            vm.EndDate.Date,
-                                            vm.StartTime.TimeOfDay,
-                                            vm.EndTime.TimeOfDay,
+                                            vm.DayOfWeek.Value,
+                                            vm.StartDate.Value.Date,
+                                            vm.EndDate.Value.Date,
+                                            vm.StartTime.Value.TimeOfDay,
+                                            vm.EndTime.Value.TimeOfDay,
                                             (SlotDuration)vm.MinutesPerSlot);
 
             @TempData["message"] = "Slots created.";

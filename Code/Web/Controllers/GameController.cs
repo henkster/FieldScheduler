@@ -9,6 +9,7 @@ using Web.Models.GameScheduleModels;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class GameController : ApplicationController
     {
         public ActionResult Summary()

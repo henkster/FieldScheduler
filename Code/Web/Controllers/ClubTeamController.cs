@@ -5,6 +5,7 @@ using Web.Helpers;
 namespace Web.Controllers
 {
     [AdminOnly]
+    [Authorize]
     public class ClubTeamController : ApplicationController
     {
         public ActionResult Index()

@@ -5,6 +5,7 @@ using Domain;
 
 namespace Web.Controllers
 {
+    [Authorize]
     public class TeamController : ApplicationController
     {
         public JsonResult GetByDivision(int division)

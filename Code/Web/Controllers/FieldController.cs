@@ -6,6 +6,7 @@ using Web.Models;
 namespace Web.Controllers
 {
     [AdminOnly]
+    [Authorize]
     public class FieldController : ApplicationController
     {
         public ActionResult Index()

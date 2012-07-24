@@ -1,0 +1,17 @@
+﻿@model string
+
+@{
+    ViewBag.Title = "Email Account Info";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Email Account Info</h2>
+
+<p>Please enter your registered email address below.  Note that your username and password will be sent in clear text.</p>
+
+@using (Html.BeginForm())
+{
+    @Html.TextBox("email")
+
+    <input type="submit" value="Send"/>
+}
