@@ -81,6 +81,7 @@ namespace Web.Controllers
             ViewBag.GameSelectionTitle = "Schedule Game - Details";
             ViewBag.GameSelectionButton = "Schedule";
             ViewBag.ReturnTo = Url.Action("Select", "Game", new {activity, size, date, slotId});
+            ViewBag.CancelUrl = Url.Action("Slot", "Game", new {activity, size, date});
                
             return View(new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
                             {
@@ -165,6 +166,8 @@ namespace Web.Controllers
 
             ViewBag.GameSelectionTitle = "Game Edit";
             ViewBag.GameSelectionButton = "Update";
+            ViewBag.ReturnTo = Url.Action("Edit", "Game", new { game.Id });
+            ViewBag.CancelUrl = Url.Action("Summary");
 
             return View("Select", new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
             {
@@ -200,6 +203,9 @@ namespace Web.Controllers
             {
                 ViewBag.GameSelectionTitle = "Game Edit";
                 ViewBag.GameSelectionButton = "Update";
+                ViewBag.ReturnTo = Url.Action("Edit", "Game", new { vm.Id });
+                ViewBag.CancelUrl = Url.Action("Summary");
+
                 return View("Select", vm);
             }
 

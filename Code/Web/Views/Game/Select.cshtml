@@ -6,7 +6,7 @@
 
 <h2>@ViewBag.GameSelectionTitle</h2>
 
-@Html.ActionLink("Cancel", "Slot", "Game", new { Model.Activity, Model.Size, Model.Date}, null)
+<a href="@ViewBag.CancelUrl">Cancel</a>
 
 @using(Html.BeginForm())
 {
