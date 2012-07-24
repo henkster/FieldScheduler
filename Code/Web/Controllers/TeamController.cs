@@ -12,6 +12,8 @@ namespace Web.Controllers
         {
             var teams = new List<SelectListItem>();
 
+            foreach (ClubTeam team in LoggedInUser.Teams.OrderBy(t => t.Division.Age).ThenBy(t => t.Division.Gender).ThenBy(t => t.Name)) teams.Add(new SelectListItem { Text = team.FullName, Value = team.Id.ToString() });
+
             foreach(var team in Context.ExternalTeams.Where(t => t.Division.Id == division).OrderBy(t => t.Name))
             {
                 teams.Add(new SelectListItem { Text = team.FullName, Value = team.Id.ToString() });
