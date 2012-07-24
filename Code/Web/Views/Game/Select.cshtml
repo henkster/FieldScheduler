@@ -1,10 +1,12 @@
 ﻿@model Web.Models.GameScheduleModels.SelectionViewModel
 
 @{
-    ViewBag.Title = "Schedule Game - Details";
+    ViewBag.Title = ViewBag.GameSelectionTitle;
 }
 
-<h2>Schedule Game - Details</h2>
+<h2>@ViewBag.GameSelectionTitle</h2>
+
+@Html.ActionLink("Cancel", "Slot", "Game", new { Model.Activity, Model.Size, Model.Date}, null)
 
 @using(Html.BeginForm())
 {
@@ -13,8 +15,18 @@
         <li>Field size: @Model.Size</li>
         <li>Date: @Model.DateFormatted</li>
         <li>Description: @Model.Description</li>
-        <li>@Html.DropDownListFor(m => m.Team1Division, Model.Team1DivisionList, new { onchange = "GetTeams1()"}) @Html.DropDownListFor(m => m.Team1, Model.Team1List) @Html.ActionLink("Add new", "Create", "ExternalTeam", new {Model.Activity, Model.Size, Model.Date, Model.SlotId}, null)</li>
-        <li>@Html.DropDownListFor(m => m.Team2Division, Model.Team2DivisionList, new { onchange = "GetTeams2()"}) @Html.DropDownListFor(m => m.Team2, Model.Team2List) @Html.ActionLink("Add new", "Create", "ExternalTeam", new {Model.Activity, Model.Size, Model.Date, Model.SlotId}, null)</li>
+        <li>
+            @Html.DropDownListFor(m => m.Team1Division, Model.Team1DivisionList, new { onchange = "GetTeams1()"}) @Html.DropDownListFor(m => m.Team1, Model.Team1List)
+            
+            @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
+        
+        </li>
+        <li>
+            @Html.DropDownListFor(m => m.Team2Division, Model.Team2DivisionList, new { onchange = "GetTeams2()"}) @Html.DropDownListFor(m => m.Team2, Model.Team2List)
+            
+            @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
+
+        </li>
         <li>@Html.TextAreaFor(m => m.Notes, new { style = "width: 600px" })</li>
     </ul>
     @Html.HiddenFor(m => m.Activity)
@@ -22,35 +34,5 @@
     @Html.HiddenFor(m => m.Date)
     @Html.HiddenFor(m => m.SlotId)
     @Html.HiddenFor(m => m.Description)
-    <input type="submit" value="Schedule" />
+    <input type="submit" value="@ViewBag.GameSelectionButton" /> 
 }
-
-<script type="text/javascript">
-    
-    function GetTeams1() {
-        GetTeams($("#Team1Division"), $("#Team1"));
-    }
-    function GetTeams2() {
-        GetTeams($("#Team2Division"), $("#Team2"));
-    }
- 
-    function GetTeams(ddlSource, ddlTarget) {
-
-        var success = function (results) {
-            $(ddlTarget).html("");
-            var options = "";
-            for (var i = 0; i < results.length; i++) {
-                options += "<option value='" + results[i].Value + "'>" + results[i].Text + "</option>";
-            }
-            $(ddlTarget).html(options);
-        };
- 
-        $.ajax({ url: '/Team/GetByDivision', 
-            type: 'POST', 
-            data: { division : $(ddlSource).val() }, 
-            dataType: 'json',
-            success: success 
-        });
-    }
-
-</script>

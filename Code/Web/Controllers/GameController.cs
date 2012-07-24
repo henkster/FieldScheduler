@@ -77,7 +77,11 @@ namespace Web.Controllers
             var division = Context.Divisions.Single(d => d.Age == 8 && d.Gender == "Boys");
             var teams = new List<Team>();
             foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == division.Id).OrderBy(t => t.Name)) teams.Add(team);
-            
+
+            ViewBag.GameSelectionTitle = "Schedule Game - Details";
+            ViewBag.GameSelectionButton = "Schedule";
+            ViewBag.ReturnTo = Url.Action("Select", "Game", new {activity, size, date, slotId});
+               
             return View(new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
                             {
                                 Activity = activity,
@@ -142,6 +146,88 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             TempData["message"] = "Game successfully canceled!";
+            return RedirectToAction("Summary");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Game game = Context.Games.Find(id);
+
+            if (game == null)
+            {
+                TempData["message"] = "Game cannot be found.";
+                return RedirectToAction("Summary");
+            }
+
+            var division = Context.Divisions.Single(d => d.Age == 8 && d.Gender == "Boys");
+            var teams = new List<Team>();
+            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == division.Id).OrderBy(t => t.Name)) teams.Add(team);
+
+            ViewBag.GameSelectionTitle = "Game Edit";
+            ViewBag.GameSelectionButton = "Update";
+
+            return View("Select", new SelectionViewModel(teams, Context.Divisions.OrderBy(d => d.Age).ToList(), null)
+            {
+                Activity = game.Activity.ToString(),
+                Size = MapSize(game.Slot.Field.Size),
+                Date = game.Slot.StartDateTime.ToShortDateString(),
+                SlotId = game.Slot.Id,
+                Description = SlotSummaryViewModel.CreateDescription(game.Slot),
+                Id = game.Id,
+                Team1 = game.Team1.Id,
+                Team2 = game.Team2.Id
+            });
+        }
+
+        private string MapSize(FieldSize size)
+        {
+            switch (size)
+            {
+                case FieldSize.ElevenVsEleven:
+                    return "11 v 11";
+                case FieldSize.EightVsEight:
+                    return "8 v 8";
+                case FieldSize.SixVsSix:
+                    return "6 v 6";
+            }
+            return "Unknown";
+        }
+
+        [HttpPost]
+        public ActionResult Edit(SelectionViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.GameSelectionTitle = "Game Edit";
+                ViewBag.GameSelectionButton = "Update";
+                return View("Select", vm);
+            }
+
+            Game game = Context.Games.Find(vm.Id);
+
+            if (game == null)
+            {
+                TempData["message"] = "Game cannot be found.";
+                return RedirectToAction("Summary");
+            }
+
+            Team team1 = Context.ExternalTeams.Find(vm.Team1);
+            if (team1 == null) Context.ClubTeams.Find(vm.Team1);
+
+            Team team2 = Context.ExternalTeams.Find(vm.Team2);
+            if (team2 == null) Context.ClubTeams.Find(vm.Team2);
+
+            if (team1 == null || team2 == null)
+            {
+                TempData["message"] = "One of the teams cannot be found.";
+                return RedirectToAction("Summary");
+            }
+
+            game.Team1 = team1;
+            game.Team2 = team2;
+
+            Context.SaveChanges();
+
             return RedirectToAction("Summary");
         }
 

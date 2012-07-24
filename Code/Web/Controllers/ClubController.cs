@@ -19,12 +19,9 @@ namespace Web.Controllers
             throw new System.NotImplementedException();
         }
 
-        public ActionResult Create(string activity, string size, string date, int slotId)
+        public ActionResult Create(string returnTo)
         {
-            var vm = ClubCreateViewModel.LoadFromSelect(activity,
-                                            size,
-                                            date,
-                                            slotId);
+            var vm = new ClubCreateViewModel {ReturnTo = returnTo};
 
             ViewBag.ExistingClubs = FindExistingClubs();
 
@@ -42,7 +39,7 @@ namespace Web.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.ExistingClubs = FindExistingClubs();
-                return View(vm);
+                return RedirectToAction("Create", "ExternalTeam", new { vm.ReturnTo });
             }
 
             Club club = Context.Clubs.SingleOrDefault(c => c.Name == vm.Name);
@@ -50,7 +47,7 @@ namespace Web.Controllers
             if (club != null)
             {
                 TempData["message"] = "Club already exists";
-                return RedirectToAction("Create", "ExternalTeam", new { vm.Activity, vm.Size, vm.Date, vm.SlotId });
+                return RedirectToAction("Create", "ExternalTeam", new {vm.ReturnTo});
             }
 
             var newClub = new Club
@@ -63,7 +60,7 @@ namespace Web.Controllers
 
             Context.SaveChanges();
 
-            return RedirectToAction("Create", "ExternalTeam", new { vm.Activity, vm.Size, vm.Date, vm.SlotId });
+            return RedirectToAction("Create", "ExternalTeam", new { vm.ReturnTo });
         }
     }
 }

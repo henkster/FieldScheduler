@@ -40,6 +40,8 @@ namespace Web.Models.GameScheduleModels
         }
         public SelectionViewModel() {}
 
+        public int Id { get; set; }
+
         public int SlotId { get; set; }
 
         public string Activity { get; set; }

@@ -49,23 +49,15 @@ namespace Web
                 new { controller = "Game", action = "Select" },
                 new { activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$", date = @"\d{8}", slotId = @"\d+" });
 
-            routes.MapRoute(
-                "Game Slot Select - Create Team",
-                "ExternalTeam/Create/{activity}/{size}/{date}/{slotId}",
-                new { controller = "ExternalTeam", action = "Create" },
-                new { activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$", date = @"\d{8}", slotId = @"\d+" });
+            //routes.MapRoute(
+            //    "Create Team",
+            //    "ExternalTeam/Create/{returnTo}",
+            //    new { controller = "ExternalTeam", action = "Create", returnTo = UrlParameter.Optional });
 
-            routes.MapRoute(
-                "Game Slot Select - Create Club",
-                "Club/Create/{activity}/{size}/{date}/{slotId}",
-                new {controller = "Club", action = "Create"},
-                new
-                    {
-                        activity = "^friendly|training|state-league$",
-                        size = "^11v11|8v8|6v6$",
-                        date = @"\d{8}",
-                        slotId = @"\d+"
-                    });
+            //routes.MapRoute(
+            //    "Create Club",
+            //    "Club/Create/{returnTo}",
+            //    new { controller = "Club", action = "Create", returnTo = UrlParameter.Optional });
 
             routes.MapRoute(
                 "Default", // Route name

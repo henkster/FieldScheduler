@@ -1,5 +1,4 @@
-﻿@using System.Collections
-@using Domain
+﻿@using Domain
 @model Web.Models.ClubCreateViewModel
 
 @{
@@ -14,6 +13,7 @@
         <li>Name: @Html.TextBoxFor(m => m.Name)</li>
         <li>Based in (city, state): @Html.TextBoxFor(c => c.CityState)</li>
     </ul>
+    @Html.HiddenFor(c => c.ReturnTo)
     <input type="submit" value="Create" />
 }
 

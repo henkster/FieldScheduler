@@ -7,14 +7,11 @@ namespace Web.Models
 {
     public class TeamCreateViewModel
     {
-        public string Activity { get; set; }
-        public string Size { get; set; }
-        public string Date { get; set; }
-        public int SlotId { get; set; }
         public int ClubId { get; set; }
         public List<SelectListItem> ClubList { get; set; }
         public int DivisionId { get; set; }
         public List<SelectListItem> DivisionList { get; set; }
+        public string ReturnTo { get; set; }
 
         [Required]
         public string NewTeamName { get; set; }
@@ -31,14 +28,10 @@ namespace Web.Models
         [Required]
         public string ContactPhoneNumber { get; set; }
 
-        public static TeamCreateViewModel LoadFromSelect(string activity, string size, string date, int slotId, List<Club> clubs, List<Division> divisions)
+        public static TeamCreateViewModel LoadFromSelect(List<Club> clubs, List<Division> divisions)
         {
             var vm = new TeamCreateViewModel
                          {
-                             Activity = activity,
-                             Size = size,
-                             Date = date,
-                             SlotId = slotId,
                              ClubList = new List<SelectListItem>(),
                              DivisionList = new List<SelectListItem>()
                          };
