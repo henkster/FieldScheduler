@@ -127,8 +127,13 @@ namespace Web.Controllers
                 bool changePasswordSucceeded;
                 try
                 {
-                    MembershipUser currentUser = Membership.GetUser(User.Identity.Name, true /* userIsOnline */);
-                    changePasswordSucceeded = currentUser.ChangePassword(model.OldPassword, model.NewPassword);
+                    if (LoggedInUser != null && LoggedInUser.IsActive && LoggedInUser.Password == model.OldPassword)
+                    {
+                        LoggedInUser.Password = model.NewPassword;
+                        Context.SaveChanges();
+                        changePasswordSucceeded = true;
+                    }
+                    else changePasswordSucceeded = false;
                 }
                 catch (Exception)
                 {

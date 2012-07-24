@@ -74,4 +74,13 @@ tr.shading {
 }
 #standard-menu, #admin-menu {
     padding: 8px;
+
 }
+
+/* begin jquery */
+
+.field-validation-error {
+    color: red;
+}
+
+/* end jquery */
