@@ -1,11 +1,21 @@
 ﻿body {
     background-color: black;
     margin: 0;
-    font-family: Arial, sans-serif;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 14px;
 }
 footer {
     text-align: center;
     clear: both;
+    background-color: #0554A3;
+    color: #f5f5f5;
+    padding: 6px;
+    font-size: .9em;
+    font-style: italic;
+}
+footer a, footer a:visited, footer a:hover {
+    color: #add8e6;
+    font-weight: normal;
 }
 ul {
     margin: 0;
@@ -23,11 +33,37 @@ td, th {
     padding: 3px;
 }
 tr.shading {
-    background-color: whitesmoke;
+    background-color: #f5f5f5;
+}
+a {
+    text-decoration: none;
+    color: #0554A3;
+}
+a:hover {
+    font-weight: bolder;
+}
+a:visited {
+    color: #0554A3;
+}
+#logindisplay a, #logindisplay a:visited, #logindisplay a:hover,
+#system-status a, #system-status a:visited, #system-status a:hover {
+    color: #f5f5f5;
+    font-weight: normal;
+}
+#logindisplay a:hover, #system-status a:hover {
+    color: #BF2026;
+}
+#the-big-table {
+    width: 100%;
+}
+#the-big-table, #the-big-table td, #the-big-table th {
+    border: none;
+    vertical-align: top;
 }
 #title {
     height: 102px;
-    background-color: red;
+    background-image: url(../Images/field-scheduler-header.png);
+    background-color: green;
     text-align: center;
     padding-top: 30px;
     position: relative;
@@ -37,18 +73,27 @@ tr.shading {
     color: white;
     font-weight: bold;
     text-decoration: none;
+    margin-left: -2000px;
+}
+#club-logo {
+    position: absolute;
+    top: -12px;
+    left: 82px;
+}
+#club-logo img {
+    width: 162px;
 }
 #logindisplay {
     position: absolute;
     top: 12px;
     right: 12px;
-    color: pink;
+    color: #f5f5f5;
 }
 #mode {
     position: absolute;
     top: 36px;
     right: 12px;
-    color: tan;
+    color: #d2b48c;
 }
 #mode #current-mode {
     font-weight: bold;
@@ -57,24 +102,46 @@ tr.shading {
     width: 1280px;
     margin-left: auto;
     margin-right: auto;
-    background-color: white;
+    background-color: #133258;
 }
 #left-menu {
-    float: left;
-    width: 250px;
-    padding: 5px;
+    width: 230px;
+    color: #f5f5f5;
+    padding: 26px 0;
+}
+#left-menu li {
+    padding: 3px 10px 3px 25px;
+}
+#admin-menu {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+}
+#admin-menu-header {
+    padding-left: 25px;
+    font-style: italic;
+}
+#left-menu a, #left-menu a:visited {
+    color: #f5f5f5;
+}
+.left-menu-highlight {
+    background-color: #BF2026;
 }
 #working {
     padding: 15px;
-    float: left;
+    padding-left: 25px;
+    background-color: white;
+}
+#non-menued-working {
+    margin-left: auto;
+    margin-right: auto;
     width: 950px;
+    text-align: center;
+    background-color: white;
+    padding: 13px;
 }
 #admin-menu {
-    background-color: tan;
-}
-#standard-menu, #admin-menu {
-    padding: 8px;
-
+    background-color: #0554A3;
 }
 
 /* begin jquery */
@@ -82,5 +149,65 @@ tr.shading {
 .field-validation-error {
     color: red;
 }
+.validation-summary-errors {
+    background-color: red;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+}
 
 /* end jquery */
+
+.buttons {
+    margin: 20px 0;
+}
+
+.buttons a {
+    width: 150px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: tan;
+    border: 1px solid brown;
+    font-weight: bold;
+}
+.buttons a:hover {
+    background-color: lightgray;
+    border-color: darkgray;
+}
+.mode-indicator {
+    font-weight: bold;
+}
+.list-header {
+    padding-top: 10px;
+    font-weight: bold;
+}
+ul.summary-list {
+    margin: 6px 0;
+}
+ul.input-list {
+    padding: 6px 0;
+}
+ul.input-list li {
+    padding: 4px 0;
+}
+input[type=submit] 
+{
+    color: #133258;
+    width: 140px;
+    margin-right: 10px;
+    padding: 6px;
+    background-color: pink;
+    border: 1px solid lightcoral;
+    font-weight: bold;
+    cursor: pointer;
+}
+input[type=submit]:hover {
+    background-color: lightgray;
+    border-color: darkgray;
+}
+.refs-required {
+    font-style: italic;
+}
+#system-status {
+    color: #f5f5f5;
+}

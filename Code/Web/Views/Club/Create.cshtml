@@ -11,7 +11,7 @@
 
 @using (Html.BeginForm())
 {
-    <ul>
+    <ul class="input-list">
         <li>Name: @Html.TextBoxFor(m => m.Name)</li>
         <li>Based in (city, state): @Html.TextBoxFor(c => c.CityState)</li>
     </ul>
@@ -20,7 +20,7 @@
 }
 
 <div>
-    <span>Existing Clubs:</span>
+    <div class="list-header">Existing Clubs:</div>
     <ul>
         @foreach (Club club in (IEnumerable<Club>)ViewBag.ExistingClubs)
         {

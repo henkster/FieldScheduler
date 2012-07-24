@@ -8,27 +8,29 @@
 
 <a href="@ViewBag.CancelUrl">Cancel</a>
 
-@using(Html.BeginForm())
+@using (Html.BeginForm())
 {
-    <ul>
-        <li>Game type: @Model.Activity</li>
-        <li>Field size: @Model.Size</li>
-        <li>Date: @Model.DateFormatted</li>
-        <li>Description: @Model.Description</li>
+    <ul class="summary-list">
+        <li>Game type: <span class="mode-indicator">@Model.Activity</span></li>
+        <li>Field size: <span class="mode-indicator">@Model.Size</span></li>
+        <li>Date: <span class="mode-indicator">@Model.DateFormatted</span></li>
+        <li>Description: <span class="mode-indicator">@Model.Description</span></li>
+    </ul>
+    <ul class="input-list">
         <li>
             @Html.DropDownListFor(m => m.Division1Id, Model.Division1List, new { onchange = "GetTeams1()" })
             @Html.DropDownListFor(m => m.Team1Id, Model.Team1List)
             @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
         </li>
         <li>
-            @Html.DropDownListFor(m => m.Division2Id, Model.Division2List, new { onchange = "GetTeams2()"})
+            @Html.DropDownListFor(m => m.Division2Id, Model.Division2List, new { onchange = "GetTeams2()" })
             @Html.DropDownListFor(m => m.Team2Id, Model.Team2List)
             @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
         </li>
         <li>
-            @if(Model.AreRefereesRequired)
+            @if (Model.AreRefereesRequired)
             {
-                <span>Referees are required.</span>
+                <span class="refs-required">Referees are required.</span>
             }
             else
             {

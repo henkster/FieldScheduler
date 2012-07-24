@@ -6,11 +6,11 @@
 
 <h2>Schedule Game - Field Size</h2>
 
-<ul>
-    <li>Game type: @Model.Activity @Html.ActionLink("Change", "Activity", "Game")</li>
+<ul class="summary-list">
+    <li>Game type: <span class="mode-indicator">@Model.Activity</span> @Html.ActionLink("Change", "Activity", "Game")</li>
 </ul>
 
-<div>
+<div class="buttons">
     @Html.ActionLink("11 v 11", "Date", "Game", new { activity = Model.Activity, size = "11v11" }, null)
     @Html.ActionLink("8 v 8", "Date", "Game", new { activity = Model.Activity, size = "8v8" }, null)
     @Html.ActionLink("6 v 6", "Date", "Game", new { activity = Model.Activity, size = "6v6" }, null)

@@ -6,12 +6,12 @@
 
 <h2>Schedule Game - Dates</h2>
 
-<ul>
-    <li>Game type: @Model.Activity @Html.ActionLink("Change", "Activity", "Game")</li>
-    <li>Field size: @Model.Size @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
+<ul class="summary-list">
+    <li>Game type: <span class="mode-indicator">@Model.Activity</span> @Html.ActionLink("Change", "Activity", "Game")</li>
+    <li>Field size: <span class="mode-indicator">@Model.Size</span> @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
 </ul>
 
-<ul>
+<ul class="buttons">
     @foreach (DateTime slotDate in Model.SlotDates)
     {
         <li>

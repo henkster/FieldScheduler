@@ -162,10 +162,12 @@
     <Content Include="Global.asax" />
     <Content Include="Images\cross_15.png" />
     <Content Include="Images\deleteRedX.jpg" />
+    <Content Include="Images\field-scheduler-header.png" />
     <Content Include="Images\pencil_1.png" />
     <Content Include="Images\readme.txt" />
     <Content Include="Images\refno.jpg" />
     <Content Include="Images\refyes.jpg" />
+    <Content Include="Images\TSC_scheduler.png" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
@@ -314,6 +316,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Summary.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_NonMenuedLayout.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

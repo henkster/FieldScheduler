@@ -1,0 +1,25 @@
+﻿@model Web.Models.AccountModels.AccountSummaryViewModel
+
+@{
+    ViewBag.Title = "Account Summary";
+}
+
+<h2>Account Summary</h2>
+
+<ul>
+    <li>Name: @Model.Name</li>
+    <li>Email: @Model.EmailAddress</li>
+    <li>Phone: @Model.PhoneNumber</li>
+    <li>
+        <div class="list-header">Teams:</div>
+        <ul>
+            @foreach (string team in Model.Teams)
+            {
+                <li>@team</li>
+            }
+        </ul>
+    </li>
+</ul>
+<div class="buttons">
+    @Html.ActionLink("Change Password", "ChangePassword", "Account")
+</div>

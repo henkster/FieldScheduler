@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Email Account Info";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_NonMenuedLayout.cshtml";
 }
 
 <h2>Email Account Info</h2>
@@ -13,5 +13,7 @@
 {
     @Html.TextBox("email")
 
-    <input type="submit" value="Send"/>
+    <p>
+        <input type="submit" value="Send"/>
+    </p>
 }

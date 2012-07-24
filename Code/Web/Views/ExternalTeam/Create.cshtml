@@ -11,7 +11,7 @@
 
 @using (Html.BeginForm())
 {
-    <ul>
+    <ul class="input-list">
         <li>Club: @Html.DropDownListFor(m => m.ClubId, Model.ClubList, new { onchange = "GetTeams()"}) @Html.ActionLink("Add new", "Create", "Club", new {Model.ReturnTo}, null)</li>
         <li>Division: @Html.DropDownListFor(m => m.DivisionId, Model.DivisionList)</li>
         <li>Level: @Html.DropDownListFor(m => m.Level, new SelectList(Enum.GetValues(typeof(Level))))</li>
@@ -26,7 +26,7 @@
 }
 
 <div>
-    <span>Existing Teams:</span>
+    <div class="list-header">Existing Teams:</div>
     <ul id="teams">
         @foreach (string teamName in (IEnumerable<string>)ViewBag.TeamNames)
         {

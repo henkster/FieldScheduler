@@ -11,14 +11,23 @@
 @if(Html.IsTrue("show-admin"))
 {
     <div id="admin-menu">
-        <span>Manage:</span>
+        <span id="admin-menu-header">Manage:</span>
         <ul>
             <li>@Html.ActionLink("Users", "Index", "User")</li>
-            <li>@Html.ActionLink("TSC Teams", "Index", "ClubTeam")</li>
+            <li>@Html.ActionLink("TSC teams", "Index", "ClubTeam")</li>
             <li>@Html.ActionLink("Clubs", "Index", "Club")</li>
             <li>@Html.ActionLink("Fields", "Index", "Field")</li>
             <li>@Html.ActionLink("Slots", "Index", "Slot")</li>
-            <li>@Html.ActionLink("System Settings", "Index", "Setting")</li>
+            <li>@Html.ActionLink("System settings", "Index", "Setting")</li>
         </ul>
     </div>
 }
+
+<script type="text/javascript">
+    $("#left-menu li").hover(function () {
+        $(this).addClass("left-menu-highlight");
+    },
+    function () {
+        $(this).removeClass("left-menu-highlight");
+    });
+</script>

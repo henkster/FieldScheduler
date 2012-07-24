@@ -7,14 +7,14 @@
 
 <h2>Schedule Game - Field/Time</h2>
 
-<ul>
-    <li>Game type: @Model.Activity @Html.ActionLink("Change", "Activity", "Game")</li>
-    <li>Field size: @Model.Size @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
-    <li>Date: @Model.Date @Html.ActionLink("Change", "Date", "Game", new { activity = Model.Activity, size = Model.Size }, null)</li>
+<ul class="summary-list">
+    <li>Game type: <span class="mode-indicator">@Model.Activity</span> @Html.ActionLink("Change", "Activity", "Game")</li>
+    <li>Field size: <span class="mode-indicator">@Model.Size</span> @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
+    <li>Date: <span class="mode-indicator">@Model.DateFormatted</span> @Html.ActionLink("Change", "Date", "Game", new { activity = Model.Activity, size = Model.Size }, null)</li>
 </ul>
 
 <div>
-    <span>Available Slots</span>
+    <div class="list-header">Available Slots:</div>
     <ul>
         @foreach (SlotSummaryViewModel slot in Model.Slots.Where(s => s.IsAvailable))
         {
@@ -25,7 +25,7 @@
     </ul>
 </div>
 <div>
-    <span>Scheduled Slots</span>
+    <div class="list-header">Scheduled Slots:</div>
     <ul>
         @foreach (SlotSummaryViewModel slot in Model.Slots.Where(s => !s.IsAvailable))
         {

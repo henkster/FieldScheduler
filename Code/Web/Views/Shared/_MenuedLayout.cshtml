@@ -1,9 +1,13 @@
 ﻿@{
     Layout = "_Layout.cshtml";
 }
-<div id="left-menu">
-    @Html.Partial("_LeftMenu")
-</div>
-<div id="working">
-    @RenderBody()
-</div>
+<table id="the-big-table">
+    <tr>
+        <td id="left-menu">
+            @Html.Partial("_LeftMenu")
+        </td>
+        <td id="working">
+            @RenderBody()
+        </td>
+    </tr>
+</table>
