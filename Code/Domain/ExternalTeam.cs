@@ -12,5 +12,8 @@ namespace Domain
 
         [Required]
         public string ContactEmailAddress { get; set; }
+
+        [Required]
+        public string CityState { get; set; }
     }
 }

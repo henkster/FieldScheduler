@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Domain;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -33,7 +32,7 @@ namespace Web.Controllers
                 return View(vm);
             }
 
-            if (Context.ExternalTeams.Any(t => t.Name == vm.NewClubName && t.Club.Id == vm.ClubId))
+            if (Context.ExternalTeams.Any(t => t.Name == vm.NewTeamName && t.Club.Id == vm.ClubId))
             {
                 TempData["message"] = "That team already exists.";
                 return RedirectToAction("Select", "Game", new { vm.Activity, vm.Size, vm.Date, vm.SlotId });
@@ -58,7 +57,8 @@ namespace Web.Controllers
                            {
                                Club = club,
                                Division = division,
-                               Name = vm.NewClubName,
+                               Name = vm.NewTeamName,
+                               CityState = vm.CityState,
                                ContactName = vm.ContactName,
                                ContactPhoneNumber = vm.ContactPhoneNumber,
                                ContactEmailAddress = vm.ContactEmailAddress
@@ -69,55 +69,6 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             return RedirectToAction("Select", "Game", new { vm.Activity, vm.Size, vm.Date, vm.SlotId });
-        }
-    }
-
-    public class TeamCreateViewModel
-    {
-        public string Activity { get; set; }
-        public string Size { get; set; }
-        public string Date { get; set; }
-        public int SlotId { get; set; }
-        public int ClubId { get; set; }
-        public List<SelectListItem> ClubList { get; set; }
-        public int DivisionId { get; set; }
-        public List<SelectListItem> DivisionList { get; set; }
-
-        [Required]
-        public string NewClubName { get; set; }
-
-        [Required]
-        public string ContactName { get; set; }
-        
-        [Required]
-        public string ContactEmailAddress { get; set; }
-
-        [Required]
-        public string ContactPhoneNumber { get; set; }
-
-        public static TeamCreateViewModel LoadFromSelect(string activity, string size, string date, int slotId, List<Club> clubs, List<Division> divisions)
-        {
-            var vm = new TeamCreateViewModel
-                         {
-                             Activity = activity,
-                             Size = size,
-                             Date = date,
-                             SlotId = slotId,
-                             ClubList = new List<SelectListItem>(),
-                             DivisionList = new List<SelectListItem>()
-                         };
-
-            foreach (Club club in clubs)
-            {
-                vm.ClubList.Add(new SelectListItem {Text= club.Name, Value = club.Id.ToString()});
-            }
-
-            foreach (Division division in divisions)
-            {
-                vm.DivisionList.Add(new SelectListItem { Text = division.Name, Value = division.Id.ToString() });
-            }
-
-            return vm;
         }
     }
 }

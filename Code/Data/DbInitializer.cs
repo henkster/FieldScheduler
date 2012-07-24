@@ -34,7 +34,8 @@ namespace Data
 
             var club = new Club
                            {
-                               Name = "Harpeth Futbol Club"
+                               Name = "Harpeth Futbol Club",
+                               CityState = "Bellevue, TN"
                            };
 
             context.Clubs.Add(club);
@@ -45,6 +46,7 @@ namespace Data
                             {
                                 Club = club,
                                 Name = "HFC 01 Black",
+                                CityState = "Bellevue, TN",
                                 Division = division1,
                                 ContactName = "Joe Mama",
                                 ContactEmailAddress = "joemama@henkster.com",

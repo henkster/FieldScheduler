@@ -56,6 +56,18 @@ namespace Web
                 new { activity = "^friendly|training|state-league$", size = "^11v11|8v8|6v6$", date = @"\d{8}", slotId = @"\d+" });
 
             routes.MapRoute(
+                "Game Slot Select - Create Club",
+                "Club/Create/{activity}/{size}/{date}/{slotId}",
+                new {controller = "Club", action = "Create"},
+                new
+                    {
+                        activity = "^friendly|training|state-league$",
+                        size = "^11v11|8v8|6v6$",
+                        date = @"\d{8}",
+                        slotId = @"\d+"
+                    });
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
