@@ -6,6 +6,8 @@ namespace Web.Models.GameScheduleModels
 {
     public class SelectionViewModel
     {
+        private bool _areRefereesNeeded;
+        
         public SelectionViewModel(IList<Team> teams1, IList<Team> teams2, IList<Division> divisions, Team team1 = null, Team team2 = null, Division division1 = null, Division division2 = null)
         {
             Team1List = new SelectList(teams1, "Id", "FullName", team1 != null ? team1.Id.ToString() : string.Empty);
@@ -44,5 +46,18 @@ namespace Web.Models.GameScheduleModels
         public SelectList Team2List { get; set; }
 
         public string Notes { get; set; }
+
+        public bool AreRefereesNeeded
+        {
+            get
+            {
+                if (AreRefereesRequired && !_areRefereesNeeded) _areRefereesNeeded = true;
+
+                return _areRefereesNeeded;
+            }
+            set { _areRefereesNeeded = AreRefereesRequired || value; }
+        }
+
+        public bool AreRefereesRequired { get; set; }
     }
 }

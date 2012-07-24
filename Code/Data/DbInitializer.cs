@@ -135,7 +135,7 @@ namespace Data
             context.Games.Add(new Game
                                   {
                                       Activity = Activities.Friendly,
-                                      AreRefereesNeed = true,
+                                      AreRefereesNeeded = true,
                                       Notes = "Nothing special - just testing.",
                                       ScheduledBy = user,
                                       ScheduledOn = DateTime.Now,

@@ -70,12 +70,12 @@ namespace Web.Models
 
         public string Team1Name
         {
-            get { return Team1.Name; }
+            get { return Team1.FullName; }
         }
 
         public string Team2Name
         {
-            get { return Team2.Name; }
+            get { return Team2.FullName; }
         }
 
         public string Field

@@ -8,7 +8,7 @@
 
         public string FullName
         {
-            get { return string.Format("{0} - {1}", Club.Name, Name); }
+            get { return string.Format("{0} - {1}", Club == null ? "TSC" : Club.Name, Name); } // TODO Remnant of being our club
         }
     }
 }

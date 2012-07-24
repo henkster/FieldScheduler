@@ -88,7 +88,8 @@ namespace Web.Controllers
                                 Size = size,
                                 Date = date,
                                 SlotId = slotId,
-                                Description = SlotSummaryViewModel.CreateDescription(slot)
+                                Description = SlotSummaryViewModel.CreateDescription(slot),
+                                AreRefereesRequired = slot.Field.AreRefereesRequired
                             });
         }
 
@@ -110,6 +111,16 @@ namespace Web.Controllers
                 return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
             }
 
+            if (!ModelState.IsValid)
+            {
+                ViewBag.GameSelectionTitle = "Schedule Game - Details";
+                ViewBag.GameSelectionButton = "Schedule";
+                ViewBag.ReturnTo = Url.Action("Select", "Game", new {vm.Activity, vm.Size, vm.Date, vm.SlotId });
+                ViewBag.CancelUrl = Url.Action("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
+
+                return View(vm);
+            }
+
             var game = new Game
                            {
                                Activity = MapActivity(vm.Activity),
@@ -118,7 +129,8 @@ namespace Web.Controllers
                                Slot = slot,
                                Team1 = Context.ExternalTeams.Find(vm.Team1Id),
                                Team2 = Context.ExternalTeams.Find(vm.Team2Id),
-                               Notes = vm.Notes
+                               Notes = vm.Notes,
+                               AreRefereesNeeded = vm.AreRefereesNeeded
                            };
 
             Context.Games.Add(game);
@@ -183,7 +195,9 @@ namespace Web.Controllers
                 Team2Id = game.Team2.Id,
                 Division1Id = game.Team1.Division.Id,
                 Division2Id = game.Team2.Division.Id,
-                Notes = game.Notes
+                Notes = game.Notes,
+                AreRefereesRequired = game.Slot.Field.AreRefereesRequired,
+                AreRefereesNeeded = game.AreRefereesNeeded
             });
         }
 
@@ -204,6 +218,14 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Edit(SelectionViewModel vm)
         {
+            Game game = Context.Games.Include("Slot").SingleOrDefault(g => g.Id == vm.Id);
+
+            if (game == null)
+            {
+                TempData["message"] = "Game cannot be found.";
+                return RedirectToAction("Summary");
+            }
+
             if (!ModelState.IsValid)
             {
                 ViewBag.GameSelectionTitle = "Game Edit";
@@ -212,14 +234,6 @@ namespace Web.Controllers
                 ViewBag.CancelUrl = Url.Action("Summary");
 
                 return View("Select", vm);
-            }
-
-            Game game = Context.Games.Include("Slot").SingleOrDefault(g => g.Id == vm.Id);
-
-            if (game == null)
-            {
-                TempData["message"] = "Game cannot be found.";
-                return RedirectToAction("Summary");
             }
 
             Team team1 = Context.ExternalTeams.Find(vm.Team1Id);

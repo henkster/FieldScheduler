@@ -24,7 +24,16 @@
             @Html.DropDownListFor(m => m.Division2Id, Model.Division2List, new { onchange = "GetTeams2()"})
             @Html.DropDownListFor(m => m.Team2Id, Model.Team2List)
             @Html.ActionLink("Add new", "Create", "ExternalTeam", new { ViewBag.ReturnTo }, null)
-
+        </li>
+        <li>
+            @if(Model.AreRefereesRequired)
+            {
+                <span>Referees are required.</span>
+            }
+            else
+            {
+                @Html.CheckBoxFor(m => m.AreRefereesNeeded) @Html.LabelFor(m => m.AreRefereesNeeded, "Are referees needed?") 
+            }
         </li>
         <li>@Html.TextAreaFor(m => m.Notes, new { style = "width: 600px" })</li>
     </ul>
@@ -33,5 +42,6 @@
     @Html.HiddenFor(m => m.Date)
     @Html.HiddenFor(m => m.SlotId)
     @Html.HiddenFor(m => m.Description)
+    @Html.HiddenFor(m => m.AreRefereesRequired)
     <input type="submit" value="@ViewBag.GameSelectionButton" /> 
 }

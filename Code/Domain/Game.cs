@@ -12,9 +12,20 @@ namespace Domain
         public virtual Team Team1 { get; set; }
 
         public virtual Team Team2 { get; set; }
-        
+
+        private bool _areRefereesNeeded;
+
         [Required]
-        public bool AreRefereesNeed { get; set; }
+        public bool AreRefereesNeeded
+        {
+            get
+            {
+                if (Slot != null && Slot.Field.AreRefereesRequired && !_areRefereesNeeded) _areRefereesNeeded = true;
+
+                return _areRefereesNeeded;
+            }
+            set { _areRefereesNeeded = (Slot != null && Slot.Field.AreRefereesRequired) || value; } // TODO Crazy line for DbInitializer
+        }
 
         public bool AreRefereesConfirmed { get; set; }
         
