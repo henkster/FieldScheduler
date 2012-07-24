@@ -61,6 +61,8 @@ namespace Data
                                 Division = division1
                             };
 
+            team1.Managers.Add(user);
+
             context.ClubTeams.Add(team1);
 
             var field1 = new Field

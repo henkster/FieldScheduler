@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,6 +6,7 @@ using System.Web.Routing;
 using System.Web.Security;
 using Services;
 using Web.Models;
+using Web.Models.AccountModels;
 
 namespace Web.Controllers
 {
@@ -208,14 +208,20 @@ namespace Web.Controllers
             if (string.IsNullOrEmpty(email))
             {
                 ModelState.AddModelError("email", "Please provide a valid email address.");
-                return View(email);
+                return View("EmailAccountInfo", email);
             }
 
             // TODO Send email
 
-            TempData["message"] = "Account info successfully sent.";
+            TempData["message"] = string.Format("Account info successfully sent to {0}.", email);
 
-            return View();
+            return View("EmailAccountInfo", string.Empty);
+        }
+
+        [Authorize]
+        public ActionResult Summary()
+        {
+            return View(AccountSummaryViewModel.Load(LoggedInUser));
         }
     }
 }

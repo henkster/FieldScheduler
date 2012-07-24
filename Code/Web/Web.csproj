@@ -90,8 +90,10 @@
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\AccountModels\AccountSummaryViewModel.cs" />
     <Compile Include="Controllers\ApplicationController.cs" />
     <Compile Include="Controllers\ClubController.cs" />
+    <Compile Include="Models\AccountModels\ChangePasswordModel.cs" />
     <Compile Include="Models\ClubCreateViewModel.cs" />
     <Compile Include="Controllers\ExternalTeamController.cs" />
     <Compile Include="Controllers\FieldController.cs" />
@@ -116,7 +118,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExtensionMethods\HtmlExtensions.cs" />
-    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\AccountModels\RegisterModel.cs" />
     <Compile Include="Models\FieldViewModel.cs" />
     <Compile Include="Models\GameViewModel.cs" />
     <Compile Include="Models\LogOnModel.cs" />
@@ -309,6 +311,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\EmailAccountInfo.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Summary.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
