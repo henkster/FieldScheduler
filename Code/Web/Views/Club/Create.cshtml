@@ -1,0 +1,16 @@
+﻿@model Web.Models.ClubCreateViewModel
+
+@{
+    ViewBag.Title = "New Club";
+}
+
+<h2>New Club</h2>
+
+@using (Html.BeginForm())
+{
+    <ul>
+        <li>Name: @Html.TextBoxFor(m => m.Name)</li>
+        <li>Based in (city, state): @Html.TextBoxFor(c => c.CityState)</li>
+    </ul>
+    <input type="submit" value="Create" />
+}
