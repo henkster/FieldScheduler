@@ -50,7 +50,8 @@ namespace Data
                                 Division = division1,
                                 ContactName = "Joe Mama",
                                 ContactEmailAddress = "joemama@henkster.com",
-                                ContactPhoneNumber = "6155551212"
+                                ContactPhoneNumber = "6155551212",
+                                Level = Level.Academy
                             };
 
             context.ExternalTeams.Add(team2);
@@ -58,7 +59,8 @@ namespace Data
             var team1 = new ClubTeam
                             {
                                 Name = "01 Boys Premier South",
-                                Division = division1
+                                Division = division1,
+                                Level = Level.D1
                             };
 
             team1.Managers.Add(user);

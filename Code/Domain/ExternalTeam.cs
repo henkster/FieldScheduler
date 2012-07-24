@@ -15,5 +15,19 @@ namespace Domain
 
         [Required]
         public string CityState { get; set; }
+
+        public override string FullName
+        {
+            get
+            {
+                return string.Format("{0} - {1}{2}",
+                                     Club.Name,
+                                     Name,
+                                     Level != Level.Academy && Level != Level.Other
+                                         ? string.Format(" ({0})", Level)
+                                         : null);
+            }
+
+        }
     }
 }

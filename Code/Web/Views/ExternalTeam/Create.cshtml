@@ -1,4 +1,5 @@
-﻿@model Web.Models.TeamCreateViewModel
+﻿@using Domain
+@model Web.Models.TeamCreateViewModel
 
 @{
     ViewBag.Title = "New Team";
@@ -13,6 +14,7 @@
     <ul>
         <li>Club: @Html.DropDownListFor(m => m.ClubId, Model.ClubList, new { onchange = "GetTeams()"}) @Html.ActionLink("Add new", "Create", "Club", new {Model.ReturnTo}, null)</li>
         <li>Division: @Html.DropDownListFor(m => m.DivisionId, Model.DivisionList)</li>
+        <li>Level: @Html.DropDownListFor(m => m.Level, new SelectList(Enum.GetValues(typeof(Level))))</li>
         <li>Name: @Html.TextBoxFor(m => m.NewTeamName)</li>
         <li>Located (city, state): @Html.TextBoxFor(m => m.CityState)</li>
         <li>Contact name: @Html.TextBoxFor(m => m.ContactName)</li>

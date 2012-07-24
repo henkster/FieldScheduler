@@ -28,6 +28,9 @@ namespace Web.Models
         [Required]
         public string ContactPhoneNumber { get; set; }
 
+        [Required]
+        public Level Level { get; set; }
+
         public static TeamCreateViewModel LoadFromSelect(List<Club> clubs, List<Division> divisions)
         {
             var vm = new TeamCreateViewModel

@@ -6,9 +6,14 @@
         public virtual Club Club { get; set; }
         public virtual Division Division { get; set; }
 
-        public string FullName
+        public Level Level
         {
-            get { return string.Format("{0} - {1}", Club == null ? "TSC" : Club.Name, Name); } // TODO Remnant of being our club
+            get { return (Level) LevelAsInt; }
+            set { LevelAsInt = (int) value; }
         }
+
+        public int LevelAsInt { get; set; }
+
+        public abstract string FullName { get; }
     }
 }

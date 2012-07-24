@@ -64,7 +64,8 @@ namespace Web.Controllers
                                CityState = vm.CityState,
                                ContactName = vm.ContactName,
                                ContactPhoneNumber = vm.ContactPhoneNumber,
-                               ContactEmailAddress = vm.ContactEmailAddress
+                               ContactEmailAddress = vm.ContactEmailAddress,
+                               Level = vm.Level
                            };
 
             Context.ExternalTeams.Add(team);

@@ -9,5 +9,10 @@ namespace Domain
             Managers = new List<User>();
         }
         public virtual List<User> Managers { get; private set; }
+
+        public override string FullName
+        {
+            get { return string.Format("{0} - {1}", "TSC", Name); }
+        }
     }
 }

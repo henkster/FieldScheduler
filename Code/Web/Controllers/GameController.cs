@@ -123,14 +123,17 @@ namespace Web.Controllers
                 return View(vm);
             }
 
+            Team team1 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team1Id) ?? (Team)Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team1Id);
+            Team team2 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team2Id) ?? (Team)Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team2Id);
+
             var game = new Game
                            {
                                Activity = MapActivity(vm.Activity),
                                ScheduledBy = LoggedInUser,
                                ScheduledOn = DateTime.Now,
                                Slot = slot,
-                               Team1 = Context.ExternalTeams.Find(vm.Team1Id),
-                               Team2 = Context.ExternalTeams.Find(vm.Team2Id),
+                               Team1 = team1,
+                               Team2 = team2,
                                Notes = vm.Notes,
                                AreRefereesNeeded = vm.AreRefereesNeeded
                            };
