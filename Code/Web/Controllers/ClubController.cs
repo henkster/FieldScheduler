@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Domain;
 using Web.Helpers;
@@ -25,7 +26,14 @@ namespace Web.Controllers
                                             date,
                                             slotId);
 
+            ViewBag.ExistingClubs = FindExistingClubs();
+
             return View(vm);
+        }
+
+        private IEnumerable<Club> FindExistingClubs()
+        {
+            foreach (Club club in Context.Clubs.OrderBy(c => c.Name)) yield return club;
         }
 
         [HttpPost]
@@ -33,6 +41,7 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.ExistingClubs = FindExistingClubs();
                 return View(vm);
             }
 

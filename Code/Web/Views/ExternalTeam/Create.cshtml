@@ -19,3 +19,39 @@
     </ul>
     <input type="submit" value="Create" />
 }
+
+<div>
+    <span>Existing Teams:</span>
+    <ul id="teams">
+        @foreach (string teamName in (IEnumerable<string>)ViewBag.TeamNames)
+        {
+            <li>@teamName</li>
+        }   
+    </ul>
+</div>
+
+<script type="text/javascript">
+
+    function GetTeams() {
+
+        var ddlSource = $("#ClubId");
+        var ulTarget = $("#teams");
+
+        var success = function (results) {
+            $(ulTarget).html("");
+            var items = "";
+            for (var i = 0; i < results.length; i++) {
+                items += "<li>" + results[i] + "</li>";
+            }
+            $(ulTarget).html(items);
+        };
+
+        $.ajax({ url: '/Team/GetByClub',
+            type: 'POST',
+            data: { clubId: $(ddlSource).val() },
+            dataType: 'json',
+            success: success
+        });
+    }
+
+</script>

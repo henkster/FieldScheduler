@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 using Domain;
 using Web.Models;
@@ -21,6 +22,8 @@ namespace Web.Controllers
                                                         Context.Clubs.OrderBy(c => c.Name).ToList(),
                                                         Context.Divisions.OrderBy(d => d.Age).ToList());
 
+            ViewBag.TeamNames = FindTeamsByClub();
+
             return View(vm);
         }
 
@@ -29,6 +32,8 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ViewBag.TeamNames = FindTeamsByClub();
+
                 return View(vm);
             }
 
@@ -69,6 +74,16 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             return RedirectToAction("Select", "Game", new { vm.Activity, vm.Size, vm.Date, vm.SlotId });
+        }
+
+        private IEnumerable<string> FindTeamsByClub()
+        {
+            Club club = Context.Clubs.OrderBy(c => c.Name).Take(1).FirstOrDefault();
+
+            foreach (ExternalTeam team in Context.ExternalTeams.Where(t => t.Club.Id == club.Id).OrderBy(t => t.Name))
+            {
+                yield return team.Name;
+            }
         }
     }
 }

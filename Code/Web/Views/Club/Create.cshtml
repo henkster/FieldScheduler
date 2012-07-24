@@ -1,4 +1,6 @@
-﻿@model Web.Models.ClubCreateViewModel
+﻿@using System.Collections
+@using Domain
+@model Web.Models.ClubCreateViewModel
 
 @{
     ViewBag.Title = "New Club";
@@ -14,3 +16,13 @@
     </ul>
     <input type="submit" value="Create" />
 }
+
+<div>
+    <span>Existing Clubs:</span>
+    <ul>
+        @foreach (Club club in (IEnumerable<Club>)ViewBag.ExistingClubs)
+        {
+            <li>@club.Name</li>
+        }
+    </ul>
+</div>
