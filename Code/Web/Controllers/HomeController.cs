@@ -15,6 +15,10 @@ namespace Web.Controllers
 
         public ActionResult SetupMode()
         {
+            if (Context.Settings.Single(s => s.Key == "system-mode").Value != "setup")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Setting setting = Context.Settings.Single(s => s.Key == "setup-mode-message");
 
             return View((object)setting.Value);
@@ -22,6 +26,10 @@ namespace Web.Controllers
 
         public ActionResult MaintenanceMode()
         {
+            if (Context.Settings.Single(s => s.Key == "system-mode").Value != "maintenance")
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Setting setting = Context.Settings.Single(s => s.Key == "maintenance-mode-message");
 
             return View((object)setting.Value);
