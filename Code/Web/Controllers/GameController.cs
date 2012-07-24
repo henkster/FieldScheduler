@@ -112,8 +112,8 @@ namespace Web.Controllers
                                ScheduledBy = LoggedInUser,
                                ScheduledOn = DateTime.Now,
                                Slot = slot,
-                               Team1 = Context.ClubTeams.Find(2),
-                               Team2 = Context.ExternalTeams.Find(1)
+                               Team1 = Context.ExternalTeams.Find(vm.Team1),
+                               Team2 = Context.ExternalTeams.Find(vm.Team2)
                            };
 
             Context.Games.Add(game);

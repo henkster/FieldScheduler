@@ -157,7 +157,10 @@
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
     <Content Include="Global.asax" />
+    <Content Include="Images\cross_15.png" />
     <Content Include="Images\deleteRedX.jpg" />
+    <Content Include="Images\pencil_1.png" />
+    <Content Include="Images\readme.txt" />
     <Content Include="Images\refno.jpg" />
     <Content Include="Images\refyes.jpg" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />

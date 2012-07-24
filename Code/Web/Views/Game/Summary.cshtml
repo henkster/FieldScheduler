@@ -11,6 +11,7 @@
 <table>
     <tr>
         <th></th>
+        <th></th>
         <th>Date</th>
         <th>Field</th>
         <th>Time</th>
@@ -26,7 +27,8 @@
     @foreach (GameViewModel game in Model)
     {
         <tr>
-            <td>@Html.ImageLink("deleteRedX.jpg", "Delete", "Game", new {id = game.Id})</td>
+            <td>@Html.ImageLink("cross_15.png", "Delete", "Game", new { id = game.Id }, "Delete icon", "Delete game")</td>
+            <td>@Html.ImageLink("pencil_1.png", "Edit", "Game", new { id = game.Id }, "Edit icon", "Edit game")</td>
             <td>@game.FormattedDate</td>
             <td>@game.Field</td>
             <td>@game.FormattedTime</td>

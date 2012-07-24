@@ -18,7 +18,11 @@ namespace Web.Models
 
         public string Age
         {
-            get { return "??"; }
+            get
+            {
+                if (Team1.Division.Age == Team2.Division.Age) return string.Format("U{0}", Team1.Division.Age);
+                return string.Format("U{0}/U{1}", Team1.Division.Age, Team2.Division.Age);
+            }
         }
 
         [Display(Name = "Are Ref Needed?")]

@@ -4,7 +4,7 @@
     {
         public string Name { get; set; }
         public virtual Club Club { get; set; }
-        public Division Division { get; set; }
+        public virtual Division Division { get; set; }
 
         public string FullName
         {

@@ -38,6 +38,8 @@ namespace Web.Models.GameScheduleModels
                 Team2List.Add(new SelectListItem { Text = team.FullName, Value = team.Id.ToString() });
             }
         }
+        public SelectionViewModel() {}
+
         public int SlotId { get; set; }
 
         public string Activity { get; set; }
