@@ -37,6 +37,7 @@
                 @Html.CheckBoxFor(m => m.AreRefereesNeeded) @Html.LabelFor(m => m.AreRefereesNeeded, "Are referees needed?") 
             }
         </li>
+        Notes:
         <li>@Html.TextAreaFor(m => m.Notes, new { style = "width: 600px" })</li>
     </ul>
     @Html.HiddenFor(m => m.Activity)
