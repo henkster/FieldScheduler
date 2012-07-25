@@ -6,10 +6,13 @@ namespace Web.Models
 {
     public class FieldViewModel
     {
+        public int Id { get; set; }
         public string Description { get; set; }
         public bool AreRefereesRequired { get; set; }
         public bool HasLights { get; set; }
         public FieldSize Size { get; set; }
+        public string AllowedActivities { get; set; }
+        public bool CanBeDeleted { get; set; }
 
         public string SizeFormatted
         {
@@ -35,7 +38,11 @@ namespace Web.Models
 
         public static FieldViewModel Load(Field field)
         {
-            return Mapper.Map<Field, FieldViewModel>(field);
+            FieldViewModel vm =  Mapper.Map<Field, FieldViewModel>(field);
+
+            vm.CanBeDeleted = field.CanBeDeleted();
+
+            return vm;
         }
     }
 }

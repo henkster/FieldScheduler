@@ -1,4 +1,5 @@
-﻿@using Web.Models
+﻿@using Web.Helpers.ExtensionMethods
+@using Web.Models
 @model IEnumerable<FieldViewModel>
 
 @{
@@ -13,15 +14,24 @@
         <th>Size</th>
         <th>Lighted?</th>
         <th>Ref Required?</th>
+        <th>Allowed Activities</th>
+        <th></th>
     </tr>
     @foreach(FieldViewModel field in Model)
     {
         <tr>
             <td>@field.Description</td>
             <td>@field.SizeFormatted</td>
-            <td>@field.HasLights</td>
-            <td>@field.AreRefereesRequired</td>
+            <td>@Html.YesNo(field.HasLights)</td>
+            <td>@Html.YesNo(field.AreRefereesRequired)</td>
+            <td>@field.AllowedActivities</td>
+            <td>
+                @if (field.CanBeDeleted)
+                {
+                    @Html.ActionLink("Delete", "Delete", "Field", new { id = field.Id}, null)
+                }
+            </td>
         </tr>
     }
 </table>
-@Html.ActionLink("Add Slots", "Create", "Slot")
+@Html.ActionLink("Add Field", "Create", "Field")

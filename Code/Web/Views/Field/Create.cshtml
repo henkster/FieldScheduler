@@ -1,4 +1,5 @@
-﻿@model dynamic
+﻿@using Domain
+@model Web.Models.FieldCreateViewModel
 
 @{
     ViewBag.Title = "Add Field";
@@ -6,3 +7,16 @@
 
 <h2>Add Field</h2>
 
+@using (Html.BeginForm())
+{
+    <ul class="input-list">
+        <li>Description: @Html.TextBoxFor(m => m.Description)</li>
+        <li>Size: @Html.DropDownListFor(m => m.Size, new SelectList(Enum.GetValues(typeof(FieldSize))))</li>
+        <li>@Html.CheckBoxFor(m => m.AreRefereesRequired) @Html.LabelFor(m => m.AreRefereesRequired, "Ref required?")</li>
+        <li>@Html.CheckBoxFor(m => m.HasLights) @Html.LabelFor(m => m.HasLights, "Has lights?")</li>
+        <li>@Html.CheckBoxFor(m => m.AllowFriendly) @Html.LabelFor(m => m.AllowFriendly, "Allows friendly games?")</li>
+        <li>@Html.CheckBoxFor(m => m.AllowStateLeague) @Html.LabelFor(m => m.AllowStateLeague, "Allows State League games?")</li>
+        <li>@Html.CheckBoxFor(m => m.AllowTraining) @Html.LabelFor(m => m.AllowTraining, "Allows training?")</li>
+    </ul>
+    <input type="submit" value="Create" />
+}

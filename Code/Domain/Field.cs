@@ -1,10 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain
 {
     public class Field : DomainObject<int>
     {
+        public Field()
+        {
+            Slots = new List<Slot>();
+        }
         public string Description { get; set; }
 
         public FieldSize Size
@@ -24,5 +29,12 @@ namespace Domain
         }
 
         public int AllowedActivityAsInt { get; set; }
+
+        public List<Slot> Slots { get; set; }
+
+        public bool CanBeDeleted()
+        {
+            return !Slots.Any();
+        }
     }
 }

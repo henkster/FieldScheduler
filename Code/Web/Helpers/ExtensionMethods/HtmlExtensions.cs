@@ -25,5 +25,14 @@ namespace Web.Helpers.ExtensionMethods
             // Render tag
             return MvcHtmlString.Create(aBuilder.ToString(TagRenderMode.Normal));
         }
+        public static MvcHtmlString YesNo(this HtmlHelper helper, bool? test, string nullText = "--")
+        {
+            string result;
+
+            if (!test.HasValue) result = nullText;
+            else result = test.Value ? "Yes" : "No";
+
+            return MvcHtmlString.Create(result);
+        }
     }
 }

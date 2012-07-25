@@ -13,7 +13,7 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(SlotViewModel.LoadList(Context.Slots.OrderBy(s => s.StartDateTime).ToList()));
+            return View(SlotViewModel.LoadList(Context.Slots.Include("Games").OrderBy(s => s.StartDateTime).ToList()));
         }
 
         public ActionResult Create()
@@ -44,7 +44,7 @@ namespace Web.Controllers
                                             vm.EndTime.Value.TimeOfDay,
                                             (SlotDuration)vm.MinutesPerSlot);
 
-            @TempData["message"] = "Slots created.";
+            TempData["message"] = "Slots created.";
 
             return RedirectToAction("Index");
         }
