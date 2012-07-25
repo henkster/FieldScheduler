@@ -48,5 +48,27 @@ namespace Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            Slot slot = Context.Slots.SingleOrDefault(s => s.Id == id);
+
+            if (slot == null)
+            {
+                TempData["message"] = "That slot cannot be found any more.";
+                return RedirectToAction("Index");
+            }
+            if (slot.Games.Any(s => !s.IsCanceled))
+            {
+                TempData["message"] = "That slot cannot removed since there is a game .";
+                return RedirectToAction("Index");
+            }
+
+            Context.Slots.Remove(slot);
+
+            Context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Domain;
 
@@ -7,10 +8,13 @@ namespace Web.Models
 {
     public class SlotViewModel
     {
+        public int Id { get; set; }
         public DateTime StartDateTime { get; set; }
         public DateTime EndDateTime { get; set; }
         public SlotDuration Duration { get; set; }
         public Field Field { get; set; }
+        public bool CanBeDeleted { get; set; }
+        public string GameScheduledBy { get; set; }
 
         public string Date
         {
@@ -53,7 +57,15 @@ namespace Web.Models
 
         public static SlotViewModel Load(Slot slot)
         {
-            return Mapper.Map<Slot, SlotViewModel>(slot);
+            SlotViewModel vm = Mapper.Map<Slot, SlotViewModel>(slot);
+
+            Game game = slot.Games.SingleOrDefault(g => !g.IsCanceled);
+
+            vm.CanBeDeleted = game != null;
+
+            vm.GameScheduledBy = game != null ? game.ScheduledBy.Name : string.Empty;
+
+            return vm;
         }
     }
 }
