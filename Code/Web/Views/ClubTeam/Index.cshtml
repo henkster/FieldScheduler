@@ -8,10 +8,18 @@
 <h2>TSC Teams</h2>
 
 <table>
+    <tr>
+        <th>Name</th>
+        <th>Division</th>
+        <th>Level</th>
+    </tr>
     @foreach(ClubTeam team in Model)
     {
         <tr>
             <td>@team.Name</td>
+            <td>@team.Division.Name</td>
+            <td>@team.Level</td>
         </tr>
     }
 </table>
+@Html.ActionLink("Add new team", "Create", "ClubTeam")

@@ -12,7 +12,7 @@
     {
         <tr>
             <td>@club.Name</td>
-            <td>@Html.ActionLink("Edit", "Edit", "Club", new {id = club.Id}, null)</td>
+            @*<td>@Html.ActionLink("Edit", "Edit", "Club", new {id = club.Id}, null)</td>*@
             <td>@Html.ActionLink("Teams", "ByClub", "ExternalTeam", new {id = club.Id}, null)</td>
         </tr>
     }
