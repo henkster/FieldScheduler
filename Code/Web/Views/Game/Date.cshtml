@@ -11,7 +11,7 @@
     <li>Field size: <span class="mode-indicator">@Model.Size</span> @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
 </ul>
 
-<ul class="buttons">
+<ul class="buttons date-list">
     @foreach (DateTime slotDate in Model.SlotDates)
     {
         <li>

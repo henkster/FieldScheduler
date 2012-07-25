@@ -76,7 +76,7 @@ namespace Web.Controllers
             }
 
             var teams = new List<Team>();
-            foreach (var team in LoggedInUser.Teams.OrderBy(t => t.Division.Age).ThenBy(t => t.Division.Gender).ThenBy(t => t.Name)) teams.Add(team);
+            foreach (var team in Context.ClubTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(t => t.Name)) teams.Add(team);
             foreach (var team in Context.ExternalTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(t => t.Name)) teams.Add(team);
 
             ViewBag.GameSelectionTitle = "Schedule Game - Details";
@@ -178,11 +178,11 @@ namespace Web.Controllers
             }
 
             var teams1 = new List<Team>();
-            foreach (var team in LoggedInUser.Teams.OrderBy(t => t.Division.Age).ThenBy(t => t.Division.Gender).ThenBy(t => t.Name)) teams1.Add(team);
+            foreach (var team in Context.ClubTeams.Where(t => t.Division.Id == game.Team1.Division.Id).OrderBy(t => t.Name)) teams1.Add(team);
             foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id ==  game.Team1.Division.Id).OrderBy(t => t.Name)) teams1.Add(team);
 
             var teams2 = new List<Team>();
-            foreach (var team in LoggedInUser.Teams.OrderBy(t => t.Division.Age).ThenBy(t => t.Division.Gender).ThenBy(t => t.Name)) teams2.Add(team);
+            foreach (var team in Context.ClubTeams.Where(t => t.Division.Id == game.Team2.Division.Id).OrderBy(t => t.Name)) teams2.Add(team);
             foreach (var team in Context.ExternalTeams.Where(t => t.Division.Id == game.Team2.Division.Id).OrderBy(t => t.Name)) teams2.Add(team);
 
             ViewBag.GameSelectionTitle = "Game Edit";
