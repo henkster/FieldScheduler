@@ -8,6 +8,12 @@
 <h2>Fields</h2>
 
 <table>
+    <tr>
+        <th>Field</th>
+        <th>Size</th>
+        <th>Lighted?</th>
+        <th>Ref Required?</th>
+    </tr>
     @foreach(FieldViewModel field in Model)
     {
         <tr>
@@ -18,3 +24,4 @@
         </tr>
     }
 </table>
+@Html.ActionLink("Add Slots", "Create", "Slot")

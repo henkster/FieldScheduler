@@ -61,7 +61,7 @@ namespace Web.Models
 
             Game game = slot.Games.SingleOrDefault(g => !g.IsCanceled);
 
-            vm.CanBeDeleted = game != null;
+            vm.CanBeDeleted = game == null;
 
             vm.GameScheduledBy = game != null ? game.ScheduledBy.Name : string.Empty;
 
