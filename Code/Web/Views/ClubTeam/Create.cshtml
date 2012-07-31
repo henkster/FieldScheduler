@@ -1,0 +1,19 @@
+﻿@using Domain
+@model Web.Controllers.ClubTeamCreateViewModel
+
+@{
+    ViewBag.Title = "Add Club Team";
+}
+
+<h2>Add Club Team</h2>
+
+@using (Html.BeginForm())
+{
+    <ul class="input-list">
+        <li>@Html.TextBoxFor(m => m.Name)</li>
+        <li>@Html.DropDownListFor(m => m.DivisionId, Model.DivisionList)</li>
+        <li>@Html.DropDownListFor(m => m.Level, new SelectList(Enum.GetValues(typeof(Level))))</li>
+    </ul>
+
+    <input type="submit" value="Create" />
+}
