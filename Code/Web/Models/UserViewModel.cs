@@ -12,10 +12,8 @@ namespace Web.Models
         public bool IsAdmin { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-
-        public string Active { get { return IsActive ? "active" : "--"; } }
-        public string Admin { get { return IsAdmin ? "admin" : "--"; } }
-
+        public Roles Roles { get; set; }
+        
         public static IEnumerable<UserViewModel> LoadList(IEnumerable<User> users)
         {
             foreach (User user in users) yield return Load(user);

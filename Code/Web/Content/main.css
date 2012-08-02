@@ -213,6 +213,7 @@ input[type=submit]
     border: 1px solid lightcoral;
     font-weight: bold;
     cursor: pointer;
+    margin-top: 5px;
 }
 input[type=submit]:hover {
     background-color: lightgray;

@@ -1,4 +1,5 @@
-﻿@using Web.Models
+﻿@using Web.Helpers.ExtensionMethods
+@using Web.Models
 @model IEnumerable<UserViewModel>
 
 @{
@@ -8,12 +9,18 @@
 <h2>User Management - List</h2>
 
 <table>
+    <tr>
+        <th>Name</th>
+        <th>Active?</th>
+        <th>Roles</th>
+        <th></th>
+    </tr>
     @foreach(UserViewModel user in Model)
     {
         <tr>
             <td>@user.Name</td>
-            <td>@user.Active</td>
-            <td>@user.Admin</td>
+            <td>@Html.YesNo(user.IsActive)</td>
+            <td>@user.Roles</td>
             <td>@Html.ActionLink("Edit", "Edit", "User", new {id = user.Id}, null)</td>
         </tr>
     }

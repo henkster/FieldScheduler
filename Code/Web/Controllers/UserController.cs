@@ -38,6 +38,12 @@ namespace Web.Controllers
 
             User user = Mapper.Map<UserEditViewModel, User>(vm);
 
+            user.Roles = Roles.None;
+            if (vm.Admin) user.Roles += (int)Roles.Admin;
+            if (vm.Manager) user.Roles += (int)Roles.Manager;
+            if (vm.Referee) user.Roles += (int)Roles.Referee;
+            if (vm.Reader) user.Roles += (int)Roles.Reader;
+
             Context.Users.Add(user);
             Context.SaveChanges();
 
@@ -50,7 +56,14 @@ namespace Web.Controllers
 
             if (user == null) return Oops<User>(id);
 
-            return View(UserEditViewModel.Load(user));
+            var vm = UserEditViewModel.Load(user);
+
+            vm.Admin = user.IsIn(Roles.Admin);
+            vm.Manager = user.IsIn(Roles.Manager);
+            vm.Referee = user.IsIn(Roles.Referee);
+            vm.Reader = user.IsIn(Roles.Reader);
+
+            return View(vm);
         }
 
         [HttpPost]
@@ -64,6 +77,12 @@ namespace Web.Controllers
             User user = Context.Users.Find(vm.Id);
 
             Mapper.Map(vm, user);
+
+            user.Roles = Roles.None;
+            if (vm.Admin) user.Roles += (int)Roles.Admin;
+            if (vm.Manager) user.Roles += (int)Roles.Manager;
+            if (vm.Referee) user.Roles += (int)Roles.Referee;
+            if (vm.Reader) user.Roles += (int)Roles.Reader;
 
             Context.SaveChanges();
 
