@@ -62,6 +62,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Content Include="DatabaseScripts\20120802_1_FieldConflicts.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

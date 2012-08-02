@@ -18,16 +18,16 @@ namespace Services
             int row = 2;
             foreach (Game game in games)
             {
-                ws.Cells[row, 1].Value = game.Id.ToString("en-us");
+                ws.Cells[row, 1].Value = game.Id.ToString();
                 ws.Cells[row, 2].Value = game.Slot.StartDateTime.ToString("MM/dd/yyyy");
                 ws.Cells[row, 3].Value = game.Slot.StartDateTime.ToString("hh:mm tt");
-                ws.Cells[row, 4].Value = game.Age;
+                ws.Cells[row, 4].Value = string.Format("U{0}", game.Age);
                 ws.Cells[row, 5].Value = game.Level.ToString();
                 ws.Cells[row, 6].Value = game.Gender;
                 ws.Cells[row, 7].Value = game.Slot.Field.Description;
                 ws.Cells[row, 8].Value = game.Team1 != null ? game.Team1.FullName : string.Empty;
                 ws.Cells[row, 9].Value = game.Team2 != null ? game.Team2.FullName : string.Empty;
-                ws.Cells[row, 10].Value = string.Empty;
+                ws.Cells[row, 10].Value = game.Activity;
                 ws.Cells[row, 11].Value = 3;
                 ws.Cells[row, 12].Value = string.Empty;
                 ws.Cells[row, 13].Value = game.Notes;
