@@ -4,6 +4,7 @@ using System.Data.Objects;
 using System.Linq;
 using System.Web.Mvc;
 using Domain;
+using Services;
 using Web.Helpers;
 using Web.Models;
 using Web.Models.GameScheduleModels;
@@ -100,20 +101,6 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Schedule(SelectionViewModel vm)
         {
-            Slot slot = Context.Slots.Find(vm.SlotId);
-
-            if (slot == null)
-            {
-                TempData["message"] = "A system issue prevented that slot from being found.";
-                return RedirectToAction("Slot", "Game", new {vm.Activity, vm.Size, vm.Date});
-            }
-
-            if (!slot.IsAvailable)
-            {
-                TempData["message"] = "That slot is no longer available.";
-                return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
-            }
-
             if (!ModelState.IsValid)
             {
                 ViewBag.GameSelectionTitle = "Schedule Game - Details";
@@ -124,26 +111,19 @@ namespace Web.Controllers
                 return View(vm);
             }
 
-            Team team1 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team1Id) ?? (Team)Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team1Id);
-            Team team2 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team2Id) ?? (Team)Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team2Id);
+            GameCreationResult result = new GameCreator(Context, Server.MapPath("/bin")).Create(vm.SlotId,
+                                                                        vm.Team1Id,
+                                                                        vm.Team2Id,
+                                                                        MapActivity(vm.Activity),
+                                                                        vm.Notes,
+                                                                        vm.AreRefereesNeeded,
+                                                                        LoggedInUser);
 
-            var game = new Game
-                           {
-                               Activity = MapActivity(vm.Activity),
-                               ScheduledBy = LoggedInUser,
-                               ScheduledOn = DateTime.Now,
-                               Slot = slot,
-                               Team1 = team1,
-                               Team2 = team2,
-                               Notes = vm.Notes,
-                               AreRefereesNeeded = vm.AreRefereesNeeded
-                           };
-
-            Context.Games.Add(game);
-
-            //slot.Games.Add(game);
-            
-            Context.SaveChanges();
+            if (result == GameCreationResult.SlotNotAvailable)
+            {
+                TempData["message"] = "That slot is no longer available.";
+                return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });
+            }
 
             TempData["message"] = "Game scheduled!";
             return RedirectToAction("Slot", "Game", new { vm.Activity, vm.Size, vm.Date });

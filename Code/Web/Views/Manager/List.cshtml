@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Web.Models.ManagerViewModel>
+
+@{
+    ViewBag.Title = @ViewBag.ManagerListTitle;
+}
+
+<h2>@ViewBag.ManagerListTitle</h2>
+
+<div>
+    @Html.ActionLink((string)ViewBag.ManagerShowLabel, (string)ViewBag.ManagerAction, "Manager")
+</div>
+
+<table>
+    <tr>
+        <th>Age</th>
+        <th>Gender</th>
+        <th>Team</th>
+        <th>Name</th>
+        <th>Phone</th>
+        <th>Email</th>
+    </tr>
+    @foreach(var m in Model)
+    {
+        <tr>
+            <td>@m.Age</td>
+            <td>@m.Gender</td>
+            <td>@m.TeamName</td>
+            <td>@m.ManagerName</td>
+            <td>@m.PhoneNumber</td>
+            <td>@m.EmailAddress</td>
+        </tr>
+    }
+</table>

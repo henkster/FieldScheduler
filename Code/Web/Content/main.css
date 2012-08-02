@@ -234,3 +234,9 @@ input[type=submit]:hover {
 input.confirm-button {
     width: 80px;
 }
+#temp-message {
+    background-color: green;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+}

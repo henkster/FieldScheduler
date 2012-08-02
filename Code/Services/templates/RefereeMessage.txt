@@ -1,0 +1,13 @@
+﻿Status: {0}
+Game date: {1}
+Game time: {2}
+Field: {3}
+Team 1: {4}
+Team 2: {5}
+Age: {6}
+Gender: {7} 
+Level: {8}
+Activity: {9}
+Scheduled by: {10}
+Scheduled on: {11}
+Notes: {12}
