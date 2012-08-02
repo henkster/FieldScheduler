@@ -14,8 +14,20 @@ namespace Domain
         public string Username { get; set; }
         public string Password { get; set; }
         public bool IsActive { get; set; }
-        public bool IsAdmin { get; set; }
+
+        public Roles Roles
+        {
+            get { return (Roles) RolesAsInt; }
+            set { RolesAsInt = (int) value; }
+        }
+
+        public int RolesAsInt { get; set; }
 
         public virtual List<ClubTeam> Teams { get; private set; }
+
+        public bool IsIn(Roles role)
+        {
+            return (Roles & role) == role;
+        }
     }
 }

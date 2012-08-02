@@ -49,6 +49,7 @@
     <Compile Include="ExternalTeam.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Level.cs" />
+    <Compile Include="Roles.cs" />
     <Compile Include="Setting.cs" />
     <Compile Include="SlotDuration.cs" />
     <Compile Include="Field.cs" />

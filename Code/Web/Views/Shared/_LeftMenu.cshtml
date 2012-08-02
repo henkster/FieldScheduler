@@ -23,11 +23,17 @@
     </div>
 }
 
+
+    
 <script type="text/javascript">
-    $("#left-menu li").hover(function () {
-        $(this).addClass("left-menu-highlight");
-    },
-    function () {
-        $(this).removeClass("left-menu-highlight");
+    $("#left-menu li").click(function (e) {
+        var $target = $(e.target);
+        if (!$target.is("li")) { return; }
+
+        var launch = $('a', this);
+        if (launch.size() > 0) {
+            eval(launch[0].click());
+        }
+        //source: http://stackoverflow.com/questions/910850/jquery-assign-onclick-for-li-from-a-link
     });
 </script>

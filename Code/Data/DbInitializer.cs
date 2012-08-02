@@ -16,7 +16,7 @@ namespace Data
                 Password = "spring2012",
                 PhoneNumber = "615-522-2457",
                 Username = "shenke",
-                IsAdmin = true
+                Roles = Roles.Admin
             });
 
             var user = new User
@@ -27,7 +27,7 @@ namespace Data
                                Password = "password",
                                PhoneNumber = "615-522-2457",
                                Username = "shenke2",
-                               IsAdmin = false
+                               Roles = Roles.Manager
                            };
 
             context.Users.Add(user);

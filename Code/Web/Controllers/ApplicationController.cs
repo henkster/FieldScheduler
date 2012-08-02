@@ -4,6 +4,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using Data;
 using Domain;
+using Roles = Domain.Roles;
 
 namespace Web.Controllers
 {
@@ -41,7 +42,7 @@ namespace Web.Controllers
                 FormsAuthentication.SignOut();
                 return;
             }
-            ViewData["show-admin"] = LoggedInUser != null && LoggedInUser.IsAdmin;
+            ViewData["show-admin"] = LoggedInUser != null && LoggedInUser.IsIn(Roles.Admin);
 
             CheckMode(filterContext);
 
@@ -54,7 +55,7 @@ namespace Web.Controllers
 
             ViewData["system-mode"] = setting.Value;
 
-            if (setting.Value != "public" && LoggedInUser != null && !LoggedInUser.IsAdmin && !Request.Url.ToString().Contains("Mode") && !Request.Url.ToString().Contains("Account"))
+            if (setting.Value != "public" && LoggedInUser != null && !LoggedInUser.IsIn(Roles.Admin) && !Request.Url.ToString().Contains("Mode") && !Request.Url.ToString().Contains("Account"))
             {
                 filterContext.Result = RedirectToAction(setting.Value == "setup" ? "SetupMode" : "MaintenanceMode", "Home");
             }

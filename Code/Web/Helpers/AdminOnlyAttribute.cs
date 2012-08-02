@@ -1,4 +1,5 @@
 using System.Web.Mvc;
+using Domain;
 using Web.Controllers;
 
 namespace Web.Helpers
@@ -9,7 +10,7 @@ namespace Web.Helpers
         {
             var appController = filterContext.Controller as ApplicationController;
 
-            if (appController == null || appController.LoggedInUser == null || !appController.LoggedInUser.IsAdmin)
+            if (appController == null || appController.LoggedInUser == null || !appController.LoggedInUser.IsIn(Roles.Admin))
             {
                 filterContext.Result = new RedirectResult("/");
             }
