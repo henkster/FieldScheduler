@@ -9,6 +9,8 @@ namespace Domain
         public Field()
         {
             Slots = new List<Slot>();
+            FieldsProhibitingThis = new List<Field>();
+            FieldsProhibitedByThis = new List<Field>();
         }
         public string Description { get; set; }
 
@@ -30,11 +32,33 @@ namespace Domain
 
         public int AllowedActivityAsInt { get; set; }
 
-        public List<Slot> Slots { get; set; }
+        public virtual List<Slot> Slots { get; set; }
 
         public bool CanBeDeleted()
         {
             return !Slots.Any();
+        }
+
+        /// <summary>
+        /// Fields that cannot be used at the same time as this, often due to cross-lining.
+        /// </summary>
+        public virtual List<Field> FieldsProhibitingThis { get; private set; }
+
+        public virtual List<Field> FieldsProhibitedByThis { get; private set; }
+ 
+        public void AddConflict(Field conflictingField)
+        {
+            FieldsProhibitingThis.Add(conflictingField);
+            FieldsProhibitedByThis.Add(conflictingField);
+        }
+
+        public bool HasPossibleConflict
+        {
+            get
+            {
+                if (FieldsProhibitingThis.Count == 0) return false;
+                return FieldsProhibitingThis.Any(f => !f.CanBeDeleted());
+            }
         }
     }
 }

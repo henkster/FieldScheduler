@@ -21,9 +21,9 @@ namespace Services
 
             while (currentDay <= endDay)
             {
-                var currentTime = startTime;
+                TimeSpan currentTime = startTime;
                 
-                while (currentTime < endTime)
+                while (currentTime.Add(new TimeSpan(0, (int)duration, 0)) <= endTime)
                 {
                     if (currentDay.DayOfWeek == dayOfWeek && IsSlotOpen(field, currentDay, currentTime, duration))
                     {

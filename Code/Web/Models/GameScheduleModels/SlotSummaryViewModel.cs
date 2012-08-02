@@ -17,7 +17,14 @@ namespace Web.Models.GameScheduleModels
 
             bool isAvailable = slot.IsAvailable;
 
-            string scheduledByName = !isAvailable ? slot.Games.Single(g => !g.IsCanceled).ScheduledBy.Name : string.Empty;
+            string scheduledByName = string.Empty;
+
+            if (!isAvailable)
+            {
+                Game game = slot.Games.SingleOrDefault(g => !g.IsCanceled);
+
+                scheduledByName = game != null ? game.ScheduledBy.Name : "(Field used in different configuration)";
+            }
 
             var viewModel = new SlotSummaryViewModel
                                 {

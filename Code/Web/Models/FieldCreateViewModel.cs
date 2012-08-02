@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
+using System.Linq;
 using Domain;
 
 namespace Web.Models
@@ -18,6 +20,31 @@ namespace Web.Models
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             if (!AllowFriendly && !AllowStateLeague && !AllowTraining) yield return new ValidationResult("At least one activity must be selected.");
+        }
+
+        public List<FieldConflictViewModel> Conflicts { get; set; } 
+    }
+
+    public class FieldConflictViewModel
+    {
+        public int Id { get; set; }
+        public string Description { get; set; }
+        public bool IsConflict { get; set; }
+
+        public static List<FieldConflictViewModel> LoadList(DbSet<Field> fields)
+        {
+            var list = new List<FieldConflictViewModel>();
+
+            foreach (Field field in fields.OrderBy(f => f.Description))
+            {
+                list.Add(new FieldConflictViewModel
+                             {
+                                 Id = field.Id,
+                                 Description = field.Description
+                             });
+            }
+
+            return list;
         }
     }
 }

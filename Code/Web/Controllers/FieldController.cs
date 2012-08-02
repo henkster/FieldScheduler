@@ -17,7 +17,11 @@ namespace Web.Controllers
 
         public ActionResult Create()
         {
-            var vm = new FieldCreateViewModel();
+            var vm = new FieldCreateViewModel
+                         {
+                             Conflicts = FieldConflictViewModel.LoadList(Context.Fields)
+                         };
+
 
             return View(vm);
         }
@@ -38,6 +42,14 @@ namespace Web.Controllers
                                   HasLights = vm.HasLights,
                                   AllowedActivities = BuildAllowedActivities(vm)
                               };
+
+            foreach (FieldConflictViewModel possibleConflict in vm.Conflicts)
+            {
+                if (possibleConflict.IsConflict)
+                {
+                    field.AddConflict(Context.Fields.Find(possibleConflict.Id));
+                }
+            }
 
             Context.Fields.Add(field);
 

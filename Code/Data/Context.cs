@@ -18,6 +18,16 @@ namespace Data
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Field>().Ignore(f => f.Size);
+
+            modelBuilder.Entity<Field>()
+                .HasMany(f => f.FieldsProhibitingThis)
+                .WithMany(f => f.FieldsProhibitedByThis)
+                .Map(x =>
+                         {
+                             x.MapLeftKey("Field_Id");
+                             x.MapRightKey("Conflict_Field_Id");
+                             x.ToTable("FieldsConflictFields");
+                         });
             
             base.OnModelCreating(modelBuilder);
         }

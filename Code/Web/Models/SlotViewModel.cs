@@ -36,6 +36,23 @@ namespace Web.Models
             get { return Field.Description; }
         }
 
+        public string Size
+        {
+             get
+             {
+                 switch (Field.Size)
+                 {
+                     case FieldSize.SixVsSix:
+                         return "6v6";
+                     case FieldSize.EightVsEight:
+                         return "8v8";
+                     case FieldSize.ElevenVsEleven:
+                         return "11v11";
+                 }
+                 return "??";
+             }
+        }
+
         public DayOfWeek DayOfWeek
         {
             get { return StartDateTime.DayOfWeek; }

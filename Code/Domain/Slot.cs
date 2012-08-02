@@ -20,7 +20,26 @@ namespace Domain
 
         public bool IsAvailable
         {
-            get { return Games.Count == 0 || Games.All(g => g.IsCanceled); }
+            get
+            {
+                if (Field == null || (Games.Count > 0 && Games.Any(g => !g.IsCanceled))) return false;
+
+                foreach (Field field in Field.FieldsProhibitingThis)
+                {
+                    foreach (Slot slot in field.Slots)
+                    {
+                        if (
+                            slot.Games.Any(
+                                g =>
+                                !g.IsCanceled &&
+                                ((g.Slot.StartDateTime >= StartDateTime && g.Slot.StartDateTime < EndDateTime) ||
+                                 (g.Slot.EndDateTime > StartDateTime && g.Slot.EndDateTime <= EndDateTime) ||
+                                 (g.Slot.StartDateTime <= StartDateTime && g.Slot.EndDateTime >= EndDateTime))))
+                            return false;
+                    }
+                }
+                return true;
+            }
         }
     }
 }

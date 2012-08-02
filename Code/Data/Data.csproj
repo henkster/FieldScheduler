@@ -56,6 +56,10 @@
     <Compile Include="Migrations\201208020426592_UserRolesAsInt.Designer.cs">
       <DependentUpon>201208020426592_UserRolesAsInt.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201208020551596_FieldConflicts.cs" />
+    <Compile Include="Migrations\201208020551596_FieldConflicts.Designer.cs">
+      <DependentUpon>201208020551596_FieldConflicts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
