@@ -231,3 +231,6 @@ input[type=submit]:hover {
 #non-menued-working input[type=submit] {
     margin-right: 0;
 }
+input.confirm-button {
+    width: 80px;
+}

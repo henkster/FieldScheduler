@@ -4,6 +4,7 @@ using System.Data.Objects;
 using System.Linq;
 using System.Web.Mvc;
 using Domain;
+using Web.Helpers;
 using Web.Models;
 using Web.Models.GameScheduleModels;
 
@@ -262,6 +263,33 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             return RedirectToAction("Summary");
+        }
+
+        [AllowOnly(Roles.Referee)]
+        public ActionResult Confirm()
+        {
+            return View(GameViewModel.LoadList(Context.Games.Where(g => !g.CanceledOn.HasValue).OrderBy(g => g.Slot.StartDateTime)));
+        }
+
+        [AllowOnly(Roles.Referee)]
+        [HttpPut]
+        public ActionResult Confirm(int id)
+        {
+            Game game = Context.Games.Include("Team1").Include("Team2").Include("ScheduledBy").SingleOrDefault(g => g.Id == id);
+
+            if (game == null)
+            {
+                TempData["message"] = "Game could not be found.";
+                return RedirectToAction("Confirm");
+            }
+
+            game.AreRefereesConfirmed = true;
+
+            Context.SaveChanges();
+
+            TempData["message"] = "Game confirmed!";
+
+            return RedirectToAction("Confirm");
         }
 
         private Activities MapActivity(string activity)

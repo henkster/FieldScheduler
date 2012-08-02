@@ -31,5 +31,12 @@ namespace Domain
         {
             return (Roles & role) == role;
         }
+
+        public bool IsInAny(params Roles[] roles)
+        {
+            foreach (Roles role in roles) if (IsIn(role)) return true;
+
+            return false;
+        }
     }
 }

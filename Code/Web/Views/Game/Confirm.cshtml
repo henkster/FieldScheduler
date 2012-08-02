@@ -1,16 +1,15 @@
 ﻿@using Web.Helpers.ExtensionMethods
 @using Web.Models
-@model IEnumerable<GameViewModel>
+@model System.Collections.Generic.IEnumerable<Web.Models.GameViewModel>
 
 @{
-    ViewBag.Title = "My Games";
+    ViewBag.Title = "Confirm Games";
 }
 
-<h2>My Games</h2>
+<h2>Confirm Games</h2>
 
 <table>
     <tr>
-        <th></th>
         <th></th>
         <th>Date</th>
         <th>Field</th>
@@ -27,8 +26,23 @@
     @foreach (GameViewModel game in Model)
     {
         <tr>
-            <td>@Html.ImageLink("cross_15.png", "Delete", "Game", new { id = game.Id }, new { onclick = "return confirm('Are you sure?');" }, "Delete icon", "Delete game")</td>
-            <td>@Html.ImageLink("pencil_1.png", "Edit", "Game", new { id = game.Id }, null, "Edit icon", "Edit game")</td>
+            <td>@if(game.AreRefereesNeeded)
+                {
+                    if(game.AreRefereesConfirmed)
+                    {
+                        <span>Confirmed</span>
+                    }
+                    else
+                    {
+                         using(Html.BeginForm())
+                         {
+                             @Html.HttpMethodOverride(HttpVerbs.Put)
+                             @Html.Hidden("Id", game.Id)
+                             <input type="submit" value="Confirm" class="confirm-button" />
+                         }
+                    }
+                }
+            </td>
             <td>@game.FormattedDate</td>
             <td>@game.Field</td>
             <td>@game.FormattedTime</td>

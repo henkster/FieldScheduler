@@ -8,7 +8,7 @@ using Web.Models;
 
 namespace Web.Controllers
 {
-    [AdminOnly]
+    [AllowOnly(Roles.Admin)]
     [Authorize]
     public class UserController : ApplicationController
     {

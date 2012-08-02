@@ -43,6 +43,9 @@ namespace Web.Controllers
                 return;
             }
             ViewData["show-admin"] = LoggedInUser != null && LoggedInUser.IsIn(Roles.Admin);
+            ViewData["show-standard-menu"] = LoggedInUser != null && LoggedInUser.IsInAny(Roles.Admin, Roles.Manager);
+            ViewData["show-referee-menu"] = LoggedInUser != null && LoggedInUser.IsIn(Roles.Referee);
+            ViewData["show-reader-menu"] = LoggedInUser != null && LoggedInUser.IsIn(Roles.Reader);
 
             CheckMode(filterContext);
 

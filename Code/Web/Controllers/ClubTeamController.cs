@@ -6,7 +6,7 @@ using Web.Helpers;
 
 namespace Web.Controllers
 {
-    [AdminOnly]
+    [AllowOnly(Roles.Admin)]
     [Authorize]
     public class ClubTeamController : ApplicationController
     {
