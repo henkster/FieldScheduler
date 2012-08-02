@@ -228,3 +228,6 @@ input[type=submit]:hover {
 .ref-image {
     text-align: center;
 }
+#non-menued-working input[type=submit] {
+    margin-right: 0;
+}
