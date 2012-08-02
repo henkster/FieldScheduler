@@ -38,8 +38,13 @@
             <td>@game.Team2Name</td>
             <td>@game.Age</td>
             <td>@game.ScheduledByName</td>
-            <td><img src="@Url.Content(string.Format("~/Images/{0}", game.AreRefereesNeeded ? "refyes.jpg" : "refno.jpg"))" /></td>
-            <td><img src="@Url.Content(string.Format("~/Images/{0}", game.AreRefereesConfirmed ? "refyes.jpg" : "refno.jpg"))" /></td>
+            <td class="ref-image"><img src="@Url.Content(string.Format("~/Images/{0}", game.AreRefereesNeeded ? "refyes.jpg" : "refno_grey.jpg"))" alt="@(game.AreRefereesNeeded ? "ref needed" : "ref not needed")" /></td>
+            <td class="ref-image">
+                @if (game.AreRefereesNeeded)
+                {
+                    <img src="@Url.Content(string.Format("~/Images/{0}", game.AreRefereesConfirmed ? "refyes.jpg" : "refno.jpg"))" alt="@(game.AreRefereesNeeded ? "ref confirmed" : "ref not confirmed")" />
+                }
+            </td>
         </tr>
     }
 </table>
