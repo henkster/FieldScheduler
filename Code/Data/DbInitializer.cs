@@ -4,7 +4,7 @@ using Domain;
 
 namespace Data
 {
-    public class DbInitializer : DropCreateDatabaseIfModelChanges<Context>
+    public class DbInitializer : CreateDatabaseIfNotExists<Context> // DropCreateDatabaseIfModelChanges<Context>
     {
         protected override void Seed(Context context)
         {

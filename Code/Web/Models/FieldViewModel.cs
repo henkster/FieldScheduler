@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
 using Domain;
 
@@ -13,6 +14,7 @@ namespace Web.Models
         public FieldSize Size { get; set; }
         public string AllowedActivities { get; set; }
         public bool CanBeDeleted { get; set; }
+        public string SlotRange { get; set; }
 
         public string SizeFormatted
         {
@@ -42,7 +44,22 @@ namespace Web.Models
 
             vm.CanBeDeleted = field.CanBeDeleted();
 
+            vm.SlotRange = BuildSlotRange(field);
+
             return vm;
+        }
+
+        public static string BuildSlotRange(Field field)
+        {
+            if (field.Slots.Count == 0) return string.Empty;
+
+            if (field.Slots.All(s => s.StartDateTime.Date == s.EndDateTime.Date)) return field.Slots[0].StartDateTime.ToString("M/d/yy");
+
+            var sortedSlots = field.Slots.OrderBy(s => s.StartDateTime);
+
+            return string.Format("{0} - {1}",
+                                 sortedSlots.First().StartDateTime.ToString("M/d/yy"),
+                                 sortedSlots.Last().StartDateTime.ToString("M/d/yy"));
         }
     }
 }

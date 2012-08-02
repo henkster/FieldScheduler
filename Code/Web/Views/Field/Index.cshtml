@@ -30,6 +30,10 @@
                 {
                     @Html.ActionLink("Delete", "Delete", "Field", new { id = field.Id}, null)
                 }
+                else
+                {
+                    @field.SlotRange
+                }
             </td>
         </tr>
     }

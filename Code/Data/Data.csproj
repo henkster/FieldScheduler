@@ -46,7 +46,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
+    <Content Include="DatabaseScripts\20120801_2_UserRolesAsInt.sql" />
     <Compile Include="DbInitializer.cs" />
+    <Compile Include="Migrations\201208020412406_InitialCreate.cs" />
+    <Compile Include="Migrations\201208020412406_InitialCreate.Designer.cs">
+      <DependentUpon>201208020412406_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201208020426592_UserRolesAsInt.cs" />
+    <Compile Include="Migrations\201208020426592_UserRolesAsInt.Designer.cs">
+      <DependentUpon>201208020426592_UserRolesAsInt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -58,6 +68,10 @@
       <Project>{46491C02-510B-428C-A3F7-ED7282B8477C}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="DatabaseScripts\20120801_1_InitialCreate.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

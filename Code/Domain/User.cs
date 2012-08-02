@@ -15,12 +15,14 @@ namespace Domain
         public string Password { get; set; }
         public bool IsActive { get; set; }
 
+        //public Roles Roles { get; set; }
+
         public Roles Roles
         {
-            get { return (Roles) RolesAsInt; }
-            set { RolesAsInt = (int) value; }
+            get { return (Roles)RolesAsInt; }
+            set { RolesAsInt = (int)value; }
         }
-
+        
         public int RolesAsInt { get; set; }
 
         public virtual List<ClubTeam> Teams { get; private set; }

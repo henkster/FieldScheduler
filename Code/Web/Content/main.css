@@ -109,6 +109,7 @@ a:visited {
     width: 230px;
     color: #f5f5f5;
     padding: 26px 0;
+    border: none;
 }
 #left-menu li {
     padding: 3px 10px 3px 25px;
@@ -136,6 +137,7 @@ a:visited {
     padding: 15px;
     padding-left: 25px;
     background-color: white;
+    border: none;
 }
 #non-menued-working {
     margin-left: auto;
