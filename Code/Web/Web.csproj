@@ -106,6 +106,7 @@
     <Compile Include="Controllers\FieldController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Models\GameScheduleModels\GameEditViewModel.cs" />
+    <Compile Include="Models\SlotSummaryViewModel.cs" />
     <Compile Include="Models\TeamCreateViewModel.cs" />
     <Compile Include="Models\FieldCreateEditViewModel.cs" />
     <Compile Include="Models\GameScheduleModels\GameSlotSelectViewModel.cs" />

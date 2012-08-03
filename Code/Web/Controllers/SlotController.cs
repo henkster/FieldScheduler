@@ -13,7 +13,13 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(SlotViewModel.LoadList(Context.Slots.Include("Games").OrderBy(s => s.StartDateTime).ToList()));
+            var vm = new SlotListViewModel();
+            
+            vm.Slots = SlotViewModel.LoadList(Context.Slots.Include("Games").OrderBy(s => s.StartDateTime).ToList());
+
+            SlotListViewModel.InitializeList(vm, Context.Fields);
+
+            return View(vm);
         }
 
         public ActionResult Create()
@@ -69,6 +75,24 @@ namespace Web.Controllers
             Context.SaveChanges();
 
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult ForField(int fieldId)
+        {
+            var field = Context.Fields.SingleOrDefault(f => f.Id == fieldId);
+
+            if (field == null) return RedirectToAction("Index");
+
+            var vm = new SlotListViewModel();
+
+            vm.Slots = 
+                SlotViewModel.LoadList(
+                    Context.Slots.Include("Games").Where(s => s.Field.Id == field.Id).OrderBy(s => s.StartDateTime).ToList());
+
+            SlotListViewModel.InitializeList(vm, Context.Fields);
+
+            return View("Index", vm);
         }
     }
 }

@@ -1,11 +1,17 @@
 ﻿@using Web.Models
-@model IEnumerable<SlotViewModel>
+@model SlotListViewModel
 
 @{
     ViewBag.Title = "Slots";
 }
 
 <h2>Slots</h2>
+
+@using (Html.BeginForm("ForField", "Slot"))
+{
+    @Html.DropDownListFor(m => m.FieldId, Model.FieldList, new { onchange = "form.submit();" })
+}
+    
 
 <table>
     <tr>
@@ -18,7 +24,7 @@
         <th>Allowed Activities</th>
         <th></th>
     </tr>
-    @foreach (SlotViewModel slot in Model)
+    @foreach (SlotViewModel slot in Model.Slots)
     {
         <tr>
             <td>@slot.Location</td>
@@ -41,4 +47,4 @@
         </tr>
     }
 </table>
-@Html.ActionLink("Add Slots", "Create", "Slot")
+@Html.Navigator("Add Slots", "Create", "Slot")

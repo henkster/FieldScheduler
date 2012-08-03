@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 using AutoMapper;
 using Domain;
 
@@ -15,6 +16,8 @@ namespace Web.Models
         public Field Field { get; set; }
         public bool CanBeDeleted { get; set; }
         public string GameScheduledBy { get; set; }
+
+        public SelectList FieldList { get; set; }
 
         public string Date
         {
@@ -65,6 +68,11 @@ namespace Web.Models
                 // TODO make this pleasant
                 return Field.AllowedActivities.ToString(); 
             }
+        }
+
+        public int FieldId
+        {
+            get { return Field.Id; }
         }
 
         public static IEnumerable<SlotViewModel> LoadList(IEnumerable<Slot> slots)
