@@ -11,11 +11,58 @@
     <li>Field size: <span class="mode-indicator">@Model.Size</span> @Html.ActionLink("Change", "Size", "Game", new { activity = Model.Activity }, null)</li>
 </ul>
 
-<ul class="buttons date-list">
+@*<ul class="buttons date-list">
     @foreach (DateTime slotDate in Model.SlotDates)
     {
         <li>
-            @Html.ActionLink(slotDate.ToShortDateString(), "Slot", "Game", new { activity = Model.Activity, size = Model.Size, date = slotDate.ToString("MMddyyyy")}, null)
+            @Html.ActionLink(slotDate.ToShortDateString(), "Slot", "Game", new { activity = Model.Activity, size = Model.Size, date = slotDate.ToString("MMddyyyy") }, null)
         </li>
     }
-</ul>
+</ul>*@
+
+<table>
+    <tr>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th>Saturday</th>
+        <th>Sunday</th>
+    </tr>
+    @{
+        if (@Model.SlotDates.Count == 0)
+        {
+            return;
+        }
+
+        DateTime first = @Model.SlotDates.First();
+        DateTime start = first.AddDays(first.DayOfWeek == DayOfWeek.Sunday ? -6 : -(int)first.DayOfWeek + 1);
+        DateTime current = start;
+        DateTime last = @Model.SlotDates.Last();
+        DateTime end = last.AddDays(first.DayOfWeek == DayOfWeek.Sunday ? 0 : 7 - (int)first.DayOfWeek);
+
+        while (current <= end)
+        {
+            <tr>
+                @{
+                    var stop = current.AddDays(6);
+                }
+                @while (current <= stop)
+                {
+                    <td class="buttons date-list" style="width: 130px; text-align: center; vertical-align: middle;">
+                        @if (Model.SlotDates.Contains(current))
+                        {
+                            @Html.ActionLink(current.ToString("M/d/yy"), "Slot", "Game", new {activity = Model.Activity, size = Model.Size, date = current.ToString("MMddyyyy")}, new { style = "margin-right: 0; margin-left: auto; margin-right: auto;"})
+                        }
+                        else
+                        {
+                            @current.ToString("M/d/yy")
+                        }
+                    </td>
+                    current = current.AddDays(1);
+                }
+            </tr>
+        }
+    }
+</table>

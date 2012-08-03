@@ -32,8 +32,9 @@ namespace Services.Infrastructure
             var client = new SmtpClient(_configurationFinder.Find("mail-host"));
             client.Credentials = new NetworkCredential(_configurationFinder.Find("mail-user"),
                                                        _configurationFinder.Find("mail-password"));
-            client.UseDefaultCredentials = false;
+            //client.UseDefaultCredentials = false;
             //client.EnableSsl = true;
+            
             
             foreach (string to in toList)
             {
@@ -51,7 +52,7 @@ namespace Services.Infrastructure
                 if (!string.IsNullOrWhiteSpace(htmlTemplate))
                 {
                     message.AlternateViews.Add(
-                        AlternateView.CreateAlternateViewFromString(GetEmailBody(textTemplate, args),
+                        AlternateView.CreateAlternateViewFromString(GetEmailBody(htmlTemplate, args),
                                                                     null,
                                                                     MediaTypeNames.Text.Html));
                 }
