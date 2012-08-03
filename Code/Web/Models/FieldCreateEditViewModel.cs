@@ -2,12 +2,16 @@
 using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Linq;
+using System.Web.Mvc;
 using Domain;
 
 namespace Web.Models
 {
-    public class FieldCreateViewModel : IValidatableObject
+    public class FieldCreateEditViewModel : IValidatableObject
     {
+        [HiddenInput(DisplayValue = false)]
+        public int Id { get; set; }
+
         [Required]
         public string Description { get; set; } // TODO finish this and make sure we figure out enums and dropdowns
         public bool HasLights { get; set; }
@@ -31,17 +35,20 @@ namespace Web.Models
         public string Description { get; set; }
         public bool IsConflict { get; set; }
 
-        public static List<FieldConflictViewModel> LoadList(DbSet<Field> fields)
+        public static List<FieldConflictViewModel> LoadList(DbSet<Field> fields, Field fieldInQuestion = null)
         {
             var list = new List<FieldConflictViewModel>();
 
             foreach (Field field in fields.OrderBy(f => f.Description))
             {
-                list.Add(new FieldConflictViewModel
-                             {
-                                 Id = field.Id,
-                                 Description = field.Description
-                             });
+                if (fieldInQuestion == null || fieldInQuestion != field)
+                {
+                    list.Add(new FieldConflictViewModel
+                                 {
+                                     Id = field.Id,
+                                     Description = field.Description
+                                 });
+                }
             }
 
             return list;

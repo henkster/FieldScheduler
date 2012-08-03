@@ -43,6 +43,8 @@ namespace Web.Controllers
 
             Context.SaveChanges();
 
+            TempData["message"] = "TSC team created.";
+
             return RedirectToAction("Index");
         }
 
@@ -70,6 +72,8 @@ namespace Web.Controllers
             team.Level = vm.Level;
 
             Context.SaveChanges();
+
+            TempData["message"] = "TSC team updated.";
 
             return RedirectToAction("Index");
         }

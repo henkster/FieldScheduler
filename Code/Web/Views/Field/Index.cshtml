@@ -15,6 +15,7 @@
         <th>Lighted?</th>
         <th>Ref Required?</th>
         <th>Allowed Activities</th>
+        <th style="width:3em;"></th>
         <th></th>
     </tr>
     @foreach(FieldViewModel field in Model)
@@ -25,6 +26,7 @@
             <td>@Html.YesNo(field.HasLights)</td>
             <td>@Html.YesNo(field.AreRefereesRequired)</td>
             <td>@field.AllowedActivities</td>
+            <td>@Html.ActionLink("Edit", "Edit", "Field", new { id = field.Id}, null)</td>
             <td>
                 @if (field.CanBeDeleted)
                 {
@@ -38,4 +40,4 @@
         </tr>
     }
 </table>
-@Html.ActionLink("Add Field", "Create", "Field")
+@Html.Navigator("Add Field", "Create", "Field")

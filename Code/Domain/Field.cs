@@ -60,5 +60,11 @@ namespace Domain
                 return FieldsProhibitingThis.Any(f => !f.CanBeDeleted());
             }
         }
+
+        public void RemoveConflict(Field nonConflictingField)
+        {
+            FieldsProhibitingThis.Remove(nonConflictingField);
+            FieldsProhibitedByThis.Remove(nonConflictingField);
+        }
     }
 }

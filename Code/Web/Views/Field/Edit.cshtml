@@ -1,17 +1,18 @@
 ﻿@using Domain
-@using Web.Models
 @model Web.Models.FieldCreateEditViewModel
 
 @{
-    ViewBag.Title = "Add Field";
+    ViewBag.Title = "Edit Field";
 }
 
-<h2>Add Field</h2>
+<h2>Edit Field</h2>
 
 @Html.Navigator("Cancel", "Index", "Field")
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.Id)
+
     <ul class="input-list">
         <li>Description: @Html.TextBoxFor(m => m.Description)</li>
         <li>Size: @Html.DropDownListFor(m => m.Size, new SelectList(Enum.GetValues(typeof(FieldSize))))</li>
@@ -35,5 +36,5 @@
             </ul>
         </li>
     </ul>
-    <input type="submit" value="Create" />
+    <input type="submit" value="Update" />
 }

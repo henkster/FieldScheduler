@@ -17,7 +17,7 @@ namespace Web.Controllers
 
         public ActionResult Create()
         {
-            var vm = new FieldCreateViewModel
+            var vm = new FieldCreateEditViewModel
                          {
                              Conflicts = FieldConflictViewModel.LoadList(Context.Fields)
                          };
@@ -27,10 +27,12 @@ namespace Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(FieldCreateViewModel vm)
+        public ActionResult Create(FieldCreateEditViewModel vm)
         {
             if (!ModelState.IsValid)
             {
+                vm.Conflicts = FieldConflictViewModel.LoadList(Context.Fields);
+                
                 return View(vm);
             }
 
@@ -60,7 +62,7 @@ namespace Web.Controllers
             return RedirectToAction("Index");
         }
 
-        private Activities BuildAllowedActivities(FieldCreateViewModel vm)
+        private Activities BuildAllowedActivities(FieldCreateEditViewModel vm)
         {
             Activities activities = 0;
 
@@ -89,6 +91,64 @@ namespace Web.Controllers
             Context.Fields.Remove(field);
 
             Context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var field = Context.Fields.Find(id);
+
+            var vm = new FieldCreateEditViewModel
+                         {
+                             Id = field.Id,
+                             AllowFriendly = (field.AllowedActivities & Activities.Friendly) == Activities.Friendly,
+                             AllowStateLeague =
+                                 (field.AllowedActivities & Activities.StateLeague) == Activities.StateLeague,
+                             AllowTraining = (field.AllowedActivities & Activities.Training) == Activities.Training,
+                             AreRefereesRequired = field.AreRefereesRequired,
+                             Description = field.Description,
+                             HasLights = field.HasLights,
+                             Size = field.Size,
+                             Conflicts = FieldConflictViewModel.LoadList(Context.Fields, field)
+                         };
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(FieldCreateEditViewModel vm)
+        {
+            var field = Context.Fields.Find(vm.Id);
+
+            if (!ModelState.IsValid)
+            {
+                vm.Conflicts = FieldConflictViewModel.LoadList(Context.Fields, field);
+                
+                return View(vm);
+            }
+
+            field.AreRefereesRequired = vm.AreRefereesRequired;
+            field.Size = vm.Size;
+            field.Description = vm.Description;
+            field.HasLights = vm.HasLights;
+            field.AllowedActivities = BuildAllowedActivities(vm);
+
+            foreach (FieldConflictViewModel possibleConflict in vm.Conflicts)
+            {
+                if (possibleConflict.IsConflict && !field.FieldsProhibitingThis.Any(f => f.Id == possibleConflict.Id))
+                {
+                    field.AddConflict(Context.Fields.Find(possibleConflict.Id));
+                }
+                else if(!possibleConflict.IsConflict && field.FieldsProhibitingThis.Any(f => f.Id == possibleConflict.Id))
+                {
+                    field.RemoveConflict(Context.Fields.Find(possibleConflict.Id));
+                }
+            }
+
+            Context.SaveChanges();
+
+            TempData["message"] = "Field updated.";
 
             return RedirectToAction("Index");
         }

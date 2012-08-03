@@ -107,7 +107,7 @@
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Models\GameScheduleModels\GameEditViewModel.cs" />
     <Compile Include="Models\TeamCreateViewModel.cs" />
-    <Compile Include="Models\FieldCreateViewModel.cs" />
+    <Compile Include="Models\FieldCreateEditViewModel.cs" />
     <Compile Include="Models\GameScheduleModels\GameSlotSelectViewModel.cs" />
     <Compile Include="Models\GameScheduleModels\GameDateSelectViewModel.cs" />
     <Compile Include="Models\GameScheduleModels\GameSizeSelectViewModel.cs" />
@@ -600,6 +600,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\ClubTeam\Edit.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Field\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
