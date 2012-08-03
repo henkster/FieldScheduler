@@ -33,12 +33,14 @@ namespace Services.Infrastructure
             client.Credentials = new NetworkCredential(_configurationFinder.Find("mail-user"),
                                                        _configurationFinder.Find("mail-password"));
             //client.UseDefaultCredentials = false;
-            //client.EnableSsl = true;
+            client.EnableSsl = true;
             
             
             foreach (string to in toList)
             {
-                var message = new MailMessage(_configurationFinder.Find("mail-from"), to);
+                var message = new MailMessage(
+                    new MailAddress(_configurationFinder.Find("mail-from"), "TSC Scheduler"),
+                    new MailAddress(to));
 
                 message.Subject = subject;
 

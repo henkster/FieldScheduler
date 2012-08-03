@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace Domain
 {
@@ -8,14 +9,23 @@ namespace Domain
         {
             Teams = new List<ClubTeam>();
         }
-        public string Name { get; set; }
-        public string EmailAddress { get; set; }
-        public string PhoneNumber { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public bool IsActive { get; set; }
 
-        //public Roles Roles { get; set; }
+        [Required, StringLength(100)]
+        public string Name { get; set; }
+
+        [Required, StringLength(200)]
+        public string EmailAddress { get; set; }
+
+        [Required, StringLength(20)]
+        public string PhoneNumber { get; set; }
+
+        [Required, StringLength(50)]
+        public string Username { get; set; }
+
+        [Required, StringLength(100, MinimumLength = 6)]
+        public string Password { get; set; }
+        
+        public bool IsActive { get; set; }
 
         public Roles Roles
         {
