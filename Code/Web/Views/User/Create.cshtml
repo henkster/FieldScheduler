@@ -6,6 +6,8 @@
 
 <h2>New User</h2>
 
+@Html.Navigator("Cancel", "Index", "User")
+
 @using(Html.BeginForm())
 {
     @Html.EditorForModel()

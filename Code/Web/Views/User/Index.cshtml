@@ -1,5 +1,4 @@
-﻿@using Web.Helpers.ExtensionMethods
-@using Web.Models
+﻿@using Web.Models
 @model IEnumerable<UserViewModel>
 
 @{
@@ -13,7 +12,7 @@
         <th>Name</th>
         <th>Active?</th>
         <th>Roles</th>
-        <th></th>
+        <th style="width: 3em;"></th>
     </tr>
     @foreach(UserViewModel user in Model)
     {
@@ -26,4 +25,4 @@
     }
 </table>
 
-@Html.ActionLink("Create New", "Create", "User")
+@Html.Navigator("Create New", "Create", "User")

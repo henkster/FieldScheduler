@@ -2,18 +2,21 @@
 @model Web.Models.ClubTeamCreateEditViewModel
 
 @{
-    ViewBag.Title = "Add Club Team";
+    ViewBag.Title = "Edit Club Team";
 }
 
-<h2>Add Club Team</h2>
+<h2>Edit Club Team</h2>
+
+@Html.Navigator("Cancel", "Index", "ClubTeam")
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(m => m.Id)
     <ul class="input-list">
         <li>@Html.TextBoxFor(m => m.Name)</li>
         <li>@Html.DropDownListFor(m => m.DivisionId, Model.DivisionList)</li>
         <li>@Html.DropDownListFor(m => m.Level, new SelectList(Enum.GetValues(typeof(Level))))</li>
     </ul>
 
-    <input type="submit" value="Create" />
+    <input type="submit" value="Update" />
 }

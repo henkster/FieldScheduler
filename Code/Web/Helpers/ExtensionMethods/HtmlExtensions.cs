@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web.Mvc;
+using System.Web.Mvc.Html;
 using System.Web.Routing;
 
 namespace Web.Helpers.ExtensionMethods
@@ -33,6 +34,10 @@ namespace Web.Helpers.ExtensionMethods
             else result = test.Value ? "Yes" : "No";
 
             return MvcHtmlString.Create(result);
+        }
+        public static MvcHtmlString Navigator(this HtmlHelper helper, string linkText, string actionName, string controllerName)
+        {
+            return helper.ActionLink(linkText, actionName, controllerName, null, new { @class = "navigation"});
         }
     }
 }

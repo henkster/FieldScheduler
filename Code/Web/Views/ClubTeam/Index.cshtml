@@ -12,6 +12,7 @@
         <th>Name</th>
         <th>Division</th>
         <th>Level</th>
+        <th style="width:3em;"></th>
     </tr>
     @foreach(ClubTeam team in Model)
     {
@@ -19,7 +20,8 @@
             <td>@team.Name</td>
             <td>@team.Division.Name</td>
             <td>@team.Level</td>
+            <td>@Html.ActionLink("Edit", "Edit", "ClubTeam", new { id = team.Id}, null)</td>
         </tr>
     }
 </table>
-@Html.ActionLink("Add new team", "Create", "ClubTeam")
+@Html.Navigator("Add new team", "Create", "ClubTeam")

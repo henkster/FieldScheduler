@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using Domain;
 using Web.Helpers;
+using Web.Models;
 
 namespace Web.Controllers
 {
@@ -17,19 +17,19 @@ namespace Web.Controllers
 
         public ActionResult Create()
         {
-            var vm = new ClubTeamCreateViewModel();
+            var vm = new ClubTeamCreateEditViewModel();
 
-            ClubTeamCreateViewModel.InitializeList(vm, Context.Divisions.OrderBy(d => d.Age).ThenBy(d => d.Gender).ToList());
+            ClubTeamCreateEditViewModel.InitializeList(vm, Context.Divisions.OrderBy(d => d.Age).ThenBy(d => d.Gender).ToList());
 
             return View(vm);
         }
 
         [HttpPost]
-        public ActionResult Create(ClubTeamCreateViewModel vm)
+        public ActionResult Create(ClubTeamCreateEditViewModel vm)
         {
             if (!ModelState.IsValid)
             {
-                ClubTeamCreateViewModel.InitializeList(vm, Context.Divisions.OrderBy(d => d.Age).ThenBy(d => d.Gender).ToList());
+                ClubTeamCreateEditViewModel.InitializeList(vm, Context.Divisions.OrderBy(d => d.Age).ThenBy(d => d.Gender).ToList());
                 return View(vm);
             }
 
@@ -45,19 +45,33 @@ namespace Web.Controllers
 
             return RedirectToAction("Index");
         }
-    }
 
-    public class ClubTeamCreateViewModel
-    {
-        public string Name { get; set; }
-        public int DivisionId { get; set; }
-        public Level Level { get; set; }
-
-        public SelectList DivisionList { get; set; }
-
-        public static void InitializeList(ClubTeamCreateViewModel vm, IEnumerable<Division> clubTeams)
+        public ActionResult Edit(int id)
         {
-            vm.DivisionList = new SelectList(clubTeams, "Id", "Name");
+            var team = Context.ClubTeams.Find(id);
+
+            return View(ClubTeamCreateEditViewModel.Load(team, Context.Divisions));
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ClubTeamCreateEditViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                ClubTeamCreateEditViewModel.InitializeList(vm, Context.Divisions);
+
+                return View(vm);
+            }
+
+            var team = Context.ClubTeams.Find(vm.Id);
+
+            team.Name = vm.Name;
+            team.Division = Context.Divisions.Find(vm.DivisionId);
+            team.Level = vm.Level;
+
+            Context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
     }
 }
