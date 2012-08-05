@@ -38,7 +38,7 @@ namespace Web.Controllers
             var activityInt = (int)MapActivity(activity);
 
             var slotDates = (from slot in Context.Slots
-                             where slot.Field.SizeAsInt == fieldSize && ((slot.Field.AllowedActivityAsInt & activityInt) == activityInt )
+                             where slot.Field.SizeAsInt == fieldSize && ((slot.AllowedActivityAsInt & activityInt) == activityInt )
                             select EntityFunctions.TruncateTime(slot.StartDateTime).Value).Distinct();
 
             return View("Date", new GameDateSelectViewModel(activity, size, slotDates.ToList()));
