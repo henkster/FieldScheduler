@@ -18,6 +18,12 @@ namespace Web.Models
         [Required]
         public string Name { get; set; }
 
+        [Required, Display(Name = "Email Address")]
+        public string EmailAddress { get; set; }
+
+        [Display(Name = "Phone Number")]
+        public string PhoneNumber { get; set; }
+
         [Display(Name = "Active")]
         public bool IsActive { get; set; }
 
@@ -29,7 +35,7 @@ namespace Web.Models
         [Required]
         public string Username { get; set; }
 
-        [Required]
+        [Required, StringLength(100, MinimumLength = 6, ErrorMessage = "{0} must be at least 6 characters.")]
         public string Password { get; set; }
 
         public static UserEditViewModel Load(User user)
