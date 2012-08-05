@@ -11,7 +11,7 @@
 {
     @Html.DropDownListFor(m => m.FieldId, Model.FieldList, new { onchange = "form.submit();" })
 }
-    
+@Html.Navigator("Add Slots", "FieldSelect", "Slot")
 
 <table>
     <tr>
@@ -47,4 +47,4 @@
         </tr>
     }
 </table>
-@Html.Navigator("Add Slots", "Create", "Slot")
+@Html.Navigator("Add Slots", "FieldSelect", "Slot")

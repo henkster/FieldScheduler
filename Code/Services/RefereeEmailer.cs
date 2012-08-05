@@ -21,19 +21,19 @@ namespace Services
 
         public void EmailNew(Game game)
         {
-            if (OutsideLeadTime(game)) return;
+            if (OutsideLeadTime(game) || !AreRefereesNeeded(game)) return;
 
             SendRefereeMessage(game, "New Game");
         }
         public void EmailCanceled(Game game)
         {
-            if (OutsideLeadTime(game)) return;
+            if (OutsideLeadTime(game) || !AreRefereesNeeded(game)) return;
 
             SendRefereeMessage(game, "Modified Game");
         }
         public void EmailModified(Game game)
         {
-            if (OutsideLeadTime(game)) return;
+            if (OutsideLeadTime(game) || !AreRefereesNeeded(game)) return;
 
             SendRefereeMessage(game, "Canceled Game");
         }
@@ -65,6 +65,11 @@ namespace Services
         private bool OutsideLeadTime(Game game)
         {
             return game.Slot.StartDateTime.Date > DateTime.Now.Date.AddDays(10);
+        }
+
+        private bool AreRefereesNeeded(Game game)
+        {
+            return game.AreRefereesNeeded;
         }
     }
 }

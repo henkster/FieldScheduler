@@ -224,11 +224,11 @@ namespace Web.Controllers
                 return View("Select", vm);
             }
 
-            Team team1 = Context.ExternalTeams.Find(vm.Team1Id);
-            if (team1 == null) Context.ClubTeams.Find(vm.Team1Id);
+            Team team1 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team1Id) ??
+                         (Team) Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team1Id);
 
-            Team team2 = Context.ExternalTeams.Find(vm.Team2Id);
-            if (team2 == null) Context.ClubTeams.Find(vm.Team2Id);
+            Team team2 = Context.ExternalTeams.SingleOrDefault(t => t.Id == vm.Team2Id) ??
+                         (Team) Context.ClubTeams.SingleOrDefault(t => t.Id == vm.Team2Id);
 
             if (team1 == null || team2 == null)
             {

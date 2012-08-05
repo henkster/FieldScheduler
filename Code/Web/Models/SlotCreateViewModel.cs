@@ -8,8 +8,9 @@ namespace Web.Models
 {
     public class SlotCreateViewModel : IValidatableObject
     {
-        [Required]
         public int FieldId { get; set; }
+
+        public string FieldDescription { get; set; }
 
         [Required, Display(Name = "Day of Week"), RegularExpression("^Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday$", ErrorMessage = "{0} must be Monday, Tuesday, etc.")]
         public DayOfWeek? DayOfWeek { get; set; }
@@ -34,6 +35,15 @@ namespace Web.Models
 
         [Display(Name = "It Is An Error If Slots Already Exist In These Times")]
         public bool IsErrorIfExistingSlots { get; set; }
+
+        [Display(Name = "Allow Friendlies?")]
+        public bool AllowFriendlies { get; set; }
+
+        [Display(Name = "Allow State League?")]
+        public bool AllowStateLeague { get; set; }
+
+        [Display(Name = "Allow Training?")]
+        public bool AllowTraining { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {

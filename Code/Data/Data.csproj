@@ -46,7 +46,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Content Include="DatabaseScripts\20120801_2_UserRolesAsInt.sql" />
+    <Content Include="DatabaseScripts\20120805_1_SlotActivities.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120801_2_UserRolesAsInt.sql" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="Migrations\201208020412406_InitialCreate.cs" />
     <Compile Include="Migrations\201208020412406_InitialCreate.Designer.cs">
@@ -64,10 +65,19 @@
     <Compile Include="Migrations\201208030401212_UserChanges.Designer.cs">
       <DependentUpon>201208030401212_UserChanges.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201208032111322_PhoneReset.cs" />
+    <Compile Include="Migrations\201208032111322_PhoneReset.Designer.cs">
+      <DependentUpon>201208032111322_PhoneReset.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201208051736178_SlotActivities.cs" />
+    <Compile Include="Migrations\201208051736178_SlotActivities.Designer.cs">
+      <DependentUpon>201208051736178_SlotActivities.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Content Include="DatabaseScripts\20120802_1_FieldConflicts.sql" />
-    <Content Include="DatabaseScripts\20120803_1_UserChanges.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120802_1_FieldConflicts.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120803_1_UserChanges.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120803_2_PhoneReset.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -79,11 +89,9 @@
       <Name>Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <Folder Include="DatabaseScripts\Deployed\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="DatabaseScripts\20120801_1_InitialCreate.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120801_1_InitialCreate.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

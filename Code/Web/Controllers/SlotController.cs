@@ -22,9 +22,22 @@ namespace Web.Controllers
             return View(vm);
         }
 
-        public ActionResult Create()
+        public ActionResult FieldSelect()
         {
+            return View(Context.Fields.OrderBy(f => f.Description));
+        }
+
+        public ActionResult Create(int id)
+        {
+            var field = Context.Fields.Find(id);
+
             var vm = new SlotCreateViewModel();
+
+            vm.FieldId = field.Id;
+            vm.FieldDescription = field.Description;
+            vm.AllowFriendlies = (field.AllowedActivities & Activities.Friendly) == Activities.Friendly;
+            vm.AllowStateLeague = (field.AllowedActivities & Activities.StateLeague) == Activities.StateLeague;
+            vm.AllowTraining = (field.AllowedActivities & Activities.Training) == Activities.Training;
 
             SlotCreateViewModel.InitializeLists(vm, Context.Fields.OrderBy(f => f.Description));
 
@@ -48,7 +61,10 @@ namespace Web.Controllers
                                             vm.EndDate.Value.Date,
                                             vm.StartTime.Value.TimeOfDay,
                                             vm.EndTime.Value.TimeOfDay,
-                                            (SlotDuration)vm.MinutesPerSlot);
+                                            (SlotDuration)vm.MinutesPerSlot,
+                                            vm.AllowFriendlies,
+                                            vm.AllowStateLeague,
+                                            vm.AllowTraining);
 
             TempData["message"] = "Slots created.";
 

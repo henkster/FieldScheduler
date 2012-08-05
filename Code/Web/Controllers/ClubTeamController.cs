@@ -1,6 +1,9 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
 using Domain;
+using Services;
 using Web.Helpers;
 using Web.Models;
 
@@ -76,6 +79,33 @@ namespace Web.Controllers
             TempData["message"] = "TSC team updated.";
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Import()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Import(HttpPostedFileBase file)
+        {
+            // Verify that the user selected a file
+            if (file != null && file.ContentLength > 0)
+            {
+                //// extract only the fielname
+                //var fileName = Path.GetFileName(file.FileName);
+                //// store the file inside ~/App_Data/uploads folder
+                //var path = Path.Combine(Server.MapPath("~/App_Data/uploads"), fileName);
+                //file.SaveAs(path);
+
+                //StreamReader sr = new StreamReader(file.InputStream);
+
+                new ClubTeamImporter(Context).Import(file.InputStream);
+
+                TempData["message"] = "Upload successful.";
+            }
+            // redirect back to the index action to show the form once again
+            return RedirectToAction("Index");   
         }
     }
 }

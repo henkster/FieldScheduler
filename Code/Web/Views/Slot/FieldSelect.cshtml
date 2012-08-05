@@ -1,0 +1,15 @@
+﻿@using Domain
+@model IEnumerable<Field>
+
+@{
+    ViewBag.Title = "Slot Create - Select Field";
+}
+
+<h2>Slot Create - Select Field</h2>
+
+@foreach (Field field in Model)
+{
+    <ul>
+        <li>@Html.ActionLink(field.Description, "Create", new { id = field.Id }) - @field.AllowedActivities</li>
+    </ul>
+}

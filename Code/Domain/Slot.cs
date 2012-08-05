@@ -16,6 +16,14 @@ namespace Domain
 
         public virtual Field Field { get; set; }
 
+        public Activities AllowedActivities
+        {
+            get { return (Activities)Enum.ToObject(typeof(Activities), AllowedActivityAsInt); }
+            set { AllowedActivityAsInt = (int)value; }
+        }
+
+        public int AllowedActivityAsInt { get; set; }
+
         public virtual List<Game> Games { get; private set; }
 
         public bool IsAvailable

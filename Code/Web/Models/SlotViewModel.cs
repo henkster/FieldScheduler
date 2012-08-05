@@ -14,6 +14,7 @@ namespace Web.Models
         public DateTime EndDateTime { get; set; }
         public SlotDuration Duration { get; set; }
         public Field Field { get; set; }
+        public Activities AllowedActivities { get; set; }
         public bool CanBeDeleted { get; set; }
         public string GameScheduledBy { get; set; }
 
@@ -65,8 +66,13 @@ namespace Web.Models
         {
             get
             {
-                // TODO make this pleasant
-                return Field.AllowedActivities.ToString(); 
+                switch (AllowedActivities)
+                {
+                    case Activities.Friendly:
+                        return "Friendly";
+                    default:
+                        return AllowedActivities.ToString();
+                }
             }
         }
 

@@ -16,7 +16,7 @@ namespace Domain
         [Required, StringLength(200)]
         public string EmailAddress { get; set; }
 
-        [Required, StringLength(20)]
+        [StringLength(20)]
         public string PhoneNumber { get; set; }
 
         [Required, StringLength(50)]

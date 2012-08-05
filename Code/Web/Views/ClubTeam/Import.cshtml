@@ -1,0 +1,13 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Import TSC Teams";
+}
+
+<h2>Import TSC Teams</h2>
+
+@using (Html.BeginForm("Import", "ClubTeam", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <input type="file" name="file" />
+    <input type="submit" value="OK" />
+}
