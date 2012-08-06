@@ -56,11 +56,10 @@ namespace Web.Models
         public SelectList FieldList { get; set; }
         public SelectList MinutesList { get; set; }
 
-        public static void InitializeLists(SlotCreateViewModel vm, IEnumerable<Field> fields)
+        public static void InitializeLists(SlotCreateViewModel vm)
         {
-            vm.FieldList = new SelectList(fields, "Id", "Description");
-
             var minutes = new List<SelectListItem>();
+            
             foreach (var m in Enum.GetValues(typeof(SlotDuration)))
             {
                 minutes.Add(new SelectListItem { Text = ((int)m).ToString(), Value = ((int)m).ToString()});

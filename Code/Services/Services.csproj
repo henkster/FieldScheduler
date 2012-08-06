@@ -78,6 +78,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="templates\AccountInfo.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="templates\AccountInfo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="templates\RefereeMessage.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

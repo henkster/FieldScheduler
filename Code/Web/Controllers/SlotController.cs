@@ -33,13 +33,17 @@ namespace Web.Controllers
 
             var vm = new SlotCreateViewModel();
 
+            if (field.Size == FieldSize.SixVsSix) vm.MinutesPerSlot = (int)SlotDuration.SevetyFive;
+            if (field.Size == FieldSize.EightVsEight) vm.MinutesPerSlot = (int)SlotDuration.Ninety;
+            if (field.Size == FieldSize.ElevenVsEleven) vm.MinutesPerSlot = (int)SlotDuration.OneHundredTwenty;
+
             vm.FieldId = field.Id;
             vm.FieldDescription = field.Description;
             vm.AllowFriendlies = (field.AllowedActivities & Activities.Friendly) == Activities.Friendly;
             vm.AllowStateLeague = (field.AllowedActivities & Activities.StateLeague) == Activities.StateLeague;
             vm.AllowTraining = (field.AllowedActivities & Activities.Training) == Activities.Training;
 
-            SlotCreateViewModel.InitializeLists(vm, Context.Fields.OrderBy(f => f.Description));
+            SlotCreateViewModel.InitializeLists(vm);
 
             return View(vm);
         }
@@ -49,7 +53,7 @@ namespace Web.Controllers
         {
             if (!ModelState.IsValid)
             {
-                SlotCreateViewModel.InitializeLists(vm, Context.Fields.OrderBy(f => f.Description));
+                SlotCreateViewModel.InitializeLists(vm);
                 return View(vm);
             }
 

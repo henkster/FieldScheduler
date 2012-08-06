@@ -36,7 +36,7 @@ namespace Domain
         public int RolesAsInt { get; set; }
 
         public virtual List<ClubTeam> Teams { get; private set; }
-
+       
         public bool IsIn(Roles role)
         {
             return (Roles & role) == role;

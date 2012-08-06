@@ -4,7 +4,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using Domain;
 using Services;
+using Services.Infrastructure;
 using Web.Models;
 using Web.Models.AccountModels;
 
@@ -216,9 +218,16 @@ namespace Web.Controllers
                 return View("EmailAccountInfo", email);
             }
 
-            // TODO Send email
+            AccountLookupResult result = new Registration().SendAccountInfo(email, Server.MapPath("/bin"));
 
-            TempData["message"] = string.Format("Account info successfully sent to {0}.", email);
+            if (result == AccountLookupResult.Success)
+            {
+                TempData["message"] = string.Format("Account info successfully sent to {0}.", email);
+            }
+            else
+            {
+                TempData["message"] = string.Format("No account could be found by {0}.", email);
+            }
 
             return View("EmailAccountInfo", string.Empty);
         }
