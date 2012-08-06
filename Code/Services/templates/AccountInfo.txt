@@ -1,0 +1,3 @@
+﻿Your username is: {0}
+
+Your password is: {1}
