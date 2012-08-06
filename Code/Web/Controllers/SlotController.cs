@@ -1,4 +1,9 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
+using System.Data.Objects;
+using System.Data.Objects.SqlClient;
+using System.Linq;
 using System.Web.Mvc;
 using Domain;
 using Services;
@@ -114,5 +119,78 @@ namespace Web.Controllers
 
             return View("Index", vm);
         }
+
+        public ActionResult MultiDelete()
+        {
+            return View(SlotMultiDeleteViewModel.LoadList(Context.Fields.OrderBy(f => f.Description)));
+        }
+
+        [HttpDelete]
+        public ActionResult MultiDelete(SlotMultiDeleteViewModel vm)
+        {
+            foreach (SlotDeleteViewModel field in vm.Slots)
+            {
+                if (field.Monday) RemoveSlots(field.FieldId, DayOfWeek.Monday);
+                if (field.Tuesday) RemoveSlots(field.FieldId, DayOfWeek.Tuesday);
+                if (field.Wednesday) RemoveSlots(field.FieldId, DayOfWeek.Wednesday);
+                if (field.Thursday) RemoveSlots(field.FieldId, DayOfWeek.Thursday);
+                if (field.Friday) RemoveSlots(field.FieldId, DayOfWeek.Friday);
+                if (field.Saturday) RemoveSlots(field.FieldId, DayOfWeek.Saturday);
+                if (field.Sunday) RemoveSlots(field.FieldId, DayOfWeek.Sunday);
+            }
+
+            Context.SaveChanges();
+
+            TempData["message"] = "Deleted";
+
+            return RedirectToAction("Index");
+        }
+
+        private void RemoveSlots(int fieldId, DayOfWeek dayOfWeek)
+        {
+            var firstSunday = new DateTime(1753, 1, 7);
+
+            foreach (Slot slot in Context.Slots.Where(s => s.Field.Id == fieldId && EntityFunctions.DiffDays(firstSunday, s.StartDateTime) % 7 == (int)dayOfWeek))
+            {
+                Context.Slots.Remove(slot);
+            }
+        }
+    }
+
+    public class SlotMultiDeleteViewModel
+    {
+        public IList<SlotDeleteViewModel> Slots { get; set; }
+
+        public static SlotMultiDeleteViewModel LoadList(IEnumerable<Field> fields)
+        {
+            var vm = new SlotMultiDeleteViewModel();
+
+            vm.Slots = new List<SlotDeleteViewModel>();
+
+            foreach (Field field in fields)
+            {
+                vm.Slots.Add(new SlotDeleteViewModel
+                {
+                    FieldId = field.Id,
+                    FieldDescription = field.Description
+                });
+            }
+
+            return vm;
+        }
+
+    }
+
+    public class SlotDeleteViewModel
+    {
+        public int FieldId { get; set; }
+        public string FieldDescription { get; set; }
+        public bool Monday { get; set; }
+        public bool Tuesday { get; set; }
+        public bool Wednesday { get; set; }
+        public bool Thursday { get; set; }
+        public bool Friday { get; set; }
+        public bool Saturday { get; set; }
+        public bool Sunday { get; set; }
     }
 }

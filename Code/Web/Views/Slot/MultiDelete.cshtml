@@ -1,0 +1,51 @@
+﻿@using Web.Controllers
+@model SlotMultiDeleteViewModel
+
+@{
+    ViewBag.Title = "Multiple-Slot Delete";
+}
+
+<h2>Multiple-Slot Delete</h2>
+
+@using(Html.BeginForm())
+{
+    @Html.HttpMethodOverride(HttpVerbs.Delete)
+    <table>
+        <tr>
+            <th></th>
+            <th>Monday</th>
+            <th>Tuesday</th>
+            <th>Wednesday</th>
+            <th>Thursday</th>
+            <th>Friday</th>
+            <th>Saturday</th>
+            <th>Sunday</th>
+        </tr>
+        
+        @{
+            int i = 0;
+        }
+    
+        @foreach(SlotDeleteViewModel field in Model.Slots)
+        {
+            <tr>
+                <td>
+                    @field.FieldDescription
+                    @Html.Hidden(string.Format("Slots[{0}].FieldDescription", i), @field.FieldDescription)
+                    @Html.Hidden(string.Format("Slots[{0}].FieldId", i), @field.FieldId)
+                </td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Monday", i), @field.Monday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Tuesday", i), @field.Tuesday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Wednesday", i), @field.Wednesday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Thursday", i), @field.Thursday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Friday", i), @field.Friday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Saturday", i), @field.Saturday)</td>
+                <td>@Html.CheckBox(string.Format("Slots[{0}].Sunday", i), @field.Sunday)</td>
+            </tr>
+
+            i++;
+        }
+    </table>
+    
+    <input type="submit" value="Delete" onclick="return confirm('Are you sure?');"/>
+}
