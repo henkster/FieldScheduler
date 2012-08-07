@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Web.Mvc;
 using Domain;
-using Web.Helpers;
 using Web.Models;
 
 namespace Web.Controllers
@@ -12,7 +11,7 @@ namespace Web.Controllers
     {
         public ActionResult Index()
         {
-            return View(Context.Clubs.ToList());
+            return View(Context.Clubs.OrderBy(c => c.Name).ToList());
         }
 
         public ActionResult Edit(int id)

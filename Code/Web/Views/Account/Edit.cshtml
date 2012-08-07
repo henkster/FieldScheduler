@@ -1,0 +1,19 @@
+﻿@model Web.Models.AccountModels.AccountEditViewModel
+
+@{
+    ViewBag.Title = "Account Edit";
+}
+
+<h2>Account Edit</h2>
+
+@Html.Navigator("Cancel", "Summary", "User")
+
+@using(Html.BeginForm())
+{
+    <ul class="input-list">
+        <li>Name: @Html.TextBoxFor(m => m.Name)</li>
+        <li>Phone Number: @Html.TextBoxFor(m => m.PhoneNumber)</li>
+    </ul>
+    
+    <input type="submit" value="Update" />
+}

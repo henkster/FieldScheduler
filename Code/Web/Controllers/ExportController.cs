@@ -18,7 +18,9 @@ namespace Web.Controllers
             var games = Context.Games.Where(
                 g =>
                 !g.CanceledOn.HasValue &&
-                EntityFunctions.TruncateTime(g.Slot.StartDateTime) >= EntityFunctions.TruncateTime(DateTime.Now));
+                g.AreRefereesNeeded &&
+                EntityFunctions.TruncateTime(g.Slot.StartDateTime) >= EntityFunctions.TruncateTime(DateTime.Now)).
+                OrderBy(g => g.Slot.StartDateTime);
 
             byte[] workbook = new GamesToExcelMapper().Map(games);
 

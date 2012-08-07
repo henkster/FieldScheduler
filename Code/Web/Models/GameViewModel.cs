@@ -15,6 +15,9 @@ namespace Web.Models
         public Team Team1 { get; set; }
         public Team Team2 { get; set; }
         public User ScheduledBy { get; set; }
+        public DateTime ScheduledOn { get; set; }
+        public User CanceledBy { get; set; }
+        public DateTime? CanceledOn { get; set; }
 
         public string Age
         {

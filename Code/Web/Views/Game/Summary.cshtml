@@ -3,15 +3,18 @@
 @model IEnumerable<GameViewModel>
 
 @{
-    ViewBag.Title = "My Games";
+    ViewBag.Title = ViewData["game-summary-title"] ?? "My Games";
 }
 
-<h2>My Games</h2>
+<h2>@(ViewBag.Title = ViewData["game-summary-title"] ?? "My Games")</h2>
 
 <table>
     <tr>
-        <th></th>
-        <th></th>
+        @if (!Html.IsTrue("hide-game-change-buttons"))
+        {
+            <th></th>
+            <th></th>
+        }
         <th>Date</th>
         <th>Field</th>
         <th>Time</th>
@@ -21,14 +24,23 @@
         <th>Team&nbsp;2</th>
         <th>Age</th>
         <th>Scheduled By</th>
+        @if (Html.IsTrue("hide-game-change-buttons"))
+        {
+            <th>Scheduled On</th>
+            <th>Canceled By</th>
+            <th>Canceled On</th>
+        }
         <th>Ref Needed</th>
         <th>Ref Confirmed</th>
     </tr>
     @foreach (GameViewModel game in Model)
     {
         <tr>
-            <td>@Html.ImageLink("cross_15.png", "Delete", "Game", new { id = game.Id }, new { onclick = "return confirm('Are you sure?');" }, "Delete icon", "Delete game")</td>
-            <td>@Html.ImageLink("pencil_1.png", "Edit", "Game", new { id = game.Id }, null, "Edit icon", "Edit game")</td>
+            @if (!Html.IsTrue("hide-game-change-buttons"))
+            {
+                <td>@Html.ImageLink("cross_15.png", "Delete", "Game", new { id = game.Id }, new { onclick = "return confirm('Are you sure?');" }, "Delete icon", "Delete game")</td>
+                <td>@Html.ImageLink("pencil_1.png", "Edit", "Game", new { id = game.Id }, null, "Edit icon", "Edit game")</td>
+            }
             <td>@game.FormattedDate</td>
             <td>@game.Field</td>
             <td>@game.FormattedTime</td>
@@ -38,6 +50,12 @@
             <td>@game.Team2Name</td>
             <td>@game.Age</td>
             <td>@game.ScheduledByName</td>
+            @if (Html.IsTrue("hide-game-change-buttons"))
+            {
+                <td>@game.ScheduledOn.ToShortDateString()</td>
+                <td>@(game.CanceledBy != null ? game.CanceledBy.Name : "--")</td>
+                <td>@(game.CanceledOn != null ? game.CanceledOn.Value.ToShortDateString() : "--")</td>
+            }
             <td class="ref-image"><img src="@Url.Content(string.Format("~/Images/{0}", game.AreRefereesNeeded ? "refyes.jpg" : "refno_grey.jpg"))" alt="@(game.AreRefereesNeeded ? "ref needed" : "ref not needed")" /></td>
             <td class="ref-image">
                 @if (game.AreRefereesNeeded)

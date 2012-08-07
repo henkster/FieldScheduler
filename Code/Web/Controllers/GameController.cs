@@ -14,9 +14,25 @@ namespace Web.Controllers
     [Authorize]
     public class GameController : ApplicationController
     {
+        [AllowOnly(Roles.Admin)]
+        public ActionResult AllGames()
+        {
+            ViewData["hide-game-change-buttons"] = true;
+            ViewData["game-summary-title"] = "All Scheduled Games";
+
+            return View("Summary", GameViewModel.LoadList(Context.Games.Where(g => !g.CanceledOn.HasValue).OrderBy(g => g.Slot.StartDateTime)));
+        }
+        [AllowOnly(Roles.Admin)]
+        public ActionResult AllCanceledGames()
+        {
+            ViewData["hide-game-change-buttons"] = true;
+            ViewData["game-summary-title"] = "All Canceled Games";
+
+            return View("Summary", GameViewModel.LoadList(Context.Games.Where(g => g.CanceledOn.HasValue).OrderBy(g => g.Slot.StartDateTime)));
+        }
         public ActionResult Summary()
         {
-            return View(GameViewModel.LoadList(Context.Games.Where(g => g.ScheduledBy.Id == LoggedInUser.Id && !g.CanceledOn.HasValue)));
+            return View(GameViewModel.LoadList(Context.Games.Where(g => g.ScheduledBy.Id == LoggedInUser.Id && !g.CanceledOn.HasValue).OrderBy(g => g.Slot.StartDateTime)));
         }
 
         [ActionName("Activity")]
@@ -53,8 +69,10 @@ namespace Web.Controllers
 
             var fieldSize = (int)MapFieldSize(size);
 
+            var activityInt = (int)MapActivity(activity);
+
             var slots = from slot in Context.Slots
-                        where EntityFunctions.TruncateTime(slot.StartDateTime) == gameDate && slot.Field.SizeAsInt == fieldSize
+                        where EntityFunctions.TruncateTime(slot.StartDateTime) == gameDate && slot.Field.SizeAsInt == fieldSize && (slot.AllowedActivityAsInt & activityInt) == activityInt
                          select slot;
 
             return View("Slot", new GameSlotSelectViewModel(activity, size, date, slots.ToList()));
@@ -78,8 +96,31 @@ namespace Web.Controllers
             }
 
             var teams = new List<Team>();
-            foreach (var team in Context.ClubTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(t => t.Name)) teams.Add(team);
-            foreach (var team in Context.ExternalTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(t => t.Name)) teams.Add(team);
+
+            ClubTeam myTeam = LoggedInUser.Teams.Count > 0 ? LoggedInUser.Teams[0] : null;
+
+            if (myTeam != null)
+            {
+                foreach (
+                    var team in
+                        Context.ClubTeams.Where(t => t.Division.Age == myTeam.Division.Age && t.Division.Gender == myTeam.Division.Gender).OrderBy(
+                            t => t.Club.Name).ThenBy(t => t.Name)) teams.Add(team);
+                foreach (
+                    var team in
+                        Context.ExternalTeams.Where(t => t.Division.Age == myTeam.Division.Age && t.Division.Gender == myTeam.Division.Gender).OrderBy(
+                            t => t.Club.Name).ThenBy(t => t.Name)) teams.Add(team);
+            }
+            else
+            {
+                foreach (
+                    var team in
+                        Context.ClubTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(
+                            t => t.Club.Name).ThenBy(t => t.Name)) teams.Add(team);
+                foreach (
+                    var team in
+                        Context.ExternalTeams.Where(t => t.Division.Age == 8 && t.Division.Gender == "Boys").OrderBy(
+                            t => t.Club.Name).ThenBy(t => t.Name)) teams.Add(team);
+            }
 
             ViewBag.GameSelectionTitle = "Schedule Game - Details";
             ViewBag.GameSelectionButton = "Schedule";
@@ -93,7 +134,11 @@ namespace Web.Controllers
                                 Date = date,
                                 SlotId = slotId,
                                 Description = SlotSummaryViewModel.CreateDescription(slot),
-                                AreRefereesRequired = slot.Field.AreRefereesRequired
+                                AreRefereesRequired = slot.Field.AreRefereesRequired,
+                                Division1Id = myTeam != null ? myTeam.Division.Id : 0,
+                                Division2Id = myTeam != null ? myTeam.Division.Id : 0,
+                                Team1Id = myTeam != null ? myTeam.Id : 0,
+                                Team2Id = myTeam != null ? myTeam.Id : 0
                             });
         }
 
@@ -131,11 +176,11 @@ namespace Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            Game game = Context.Games.Include("Slot").Include("Team1").Include("Team2").SingleOrDefault(g => g.Id == id);
+            Game game = Context.Games.Include("Slot").Include("Team1").Include("Team2").SingleOrDefault(g => g.Id == id && g.ScheduledBy.Id == LoggedInUser.Id);
 
             if (game == null)
             {
-                TempData["message"] = "The system could not find that game.";
+                TempData["message"] = "The system could not find that game for your user account.";
                 return RedirectToAction("Summary");
             }
 
@@ -150,11 +195,11 @@ namespace Web.Controllers
 
         public ActionResult Edit(int id)
         {
-            Game game = Context.Games.Find(id);
+            Game game = Context.Games.SingleOrDefault(g => g.Id == id && g.ScheduledBy.Id == LoggedInUser.Id);
 
             if (game == null)
             {
-                TempData["message"] = "Game cannot be found.";
+                TempData["message"] = "Game cannot be found for your user account.";
                 return RedirectToAction("Summary");
             }
 
@@ -206,11 +251,11 @@ namespace Web.Controllers
         [HttpPost]
         public ActionResult Edit(SelectionViewModel vm)
         {
-            Game game = Context.Games.Include("Slot").SingleOrDefault(g => g.Id == vm.Id);
+            Game game = Context.Games.Include("Slot").SingleOrDefault(g => g.Id == vm.Id && g.ScheduledBy.Id == LoggedInUser.Id);
 
             if (game == null)
             {
-                TempData["message"] = "Game cannot be found.";
+                TempData["message"] = "Game cannot be found for your user account.";
                 return RedirectToAction("Summary");
             }
 

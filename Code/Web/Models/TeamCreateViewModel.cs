@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using DataAnnotationsExtensions;
 using Domain;
 
 namespace Web.Models
@@ -13,19 +14,19 @@ namespace Web.Models
         public List<SelectListItem> DivisionList { get; set; }
         public string ReturnTo { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Team Name")]
         public string NewTeamName { get; set; }
 
-        [Required]
+        [Required, Display(Name = "City, State")]
         public string CityState { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Contact Name")]
         public string ContactName { get; set; }
         
-        [Required]
+        [Required, Email, Display(Name = "Contact Email Address")]
         public string ContactEmailAddress { get; set; }
 
-        [Required]
+        [Required, Display(Name = "Contact Phone Number")]
         public string ContactPhoneNumber { get; set; }
 
         [Required]

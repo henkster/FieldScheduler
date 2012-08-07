@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using AutoMapper;
+using DataAnnotationsExtensions;
 using Domain;
 
 namespace Web.Models
@@ -19,6 +20,7 @@ namespace Web.Models
         public string Name { get; set; }
 
         [Required, Display(Name = "Email Address")]
+        [Email]
         public string EmailAddress { get; set; }
 
         [Display(Name = "Phone Number")]

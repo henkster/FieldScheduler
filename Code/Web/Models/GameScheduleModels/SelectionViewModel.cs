@@ -29,7 +29,7 @@ namespace Web.Models.GameScheduleModels
 
         public string DateFormatted
         {
-            get { return Date.Contains("/") ? Date : string.Format("{0}/{1}/{2}", Date.Substring(2, 2), Date.Substring(0, 2), Date.Substring(4, 4)); }
+            get { return Date.Contains("/") ? Date : string.Format("{1}/{0}/{2}", Date.Substring(2, 2), Date.Substring(0, 2), Date.Substring(6, 2)); }
         }
 
         public string Description { get; set; }

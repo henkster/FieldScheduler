@@ -36,9 +36,12 @@
             <div>
                 @Html.ValidationSummary()
             </div>
-            <div id="temp-message">
-                @TempData["message"]
-            </div>
+            @if (TempData["message"] != null)
+            {
+                <div id="temp-message">
+                    @TempData["message"]
+                </div>
+            }
             @RenderBody()
         </section>
         <footer>

@@ -28,8 +28,8 @@ namespace Services
                 ws.Cells[row, 8].Value = game.Team1 != null ? game.Team1.FullName : string.Empty;
                 ws.Cells[row, 9].Value = game.Team2 != null ? game.Team2.FullName : string.Empty;
                 ws.Cells[row, 10].Value = game.Activity;
-                ws.Cells[row, 11].Value = 3;
-                ws.Cells[row, 12].Value = string.Empty;
+                ws.Cells[row, 11].Value = string.Empty;
+                ws.Cells[row, 12].Value = string.Format("Refs needed: {0}", game.AreRefereesNeeded ? "Yes" : "No");
                 ws.Cells[row, 13].Value = game.Notes;
 
                 row++;

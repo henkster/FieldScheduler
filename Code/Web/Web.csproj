@@ -37,6 +37,12 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.1.267\lib\net40\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DataAnnotationsExtensions">
+      <HintPath>..\packages\DataAnnotationsExtensions.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DataAnnotationsExtensions.ClientValidation">
+      <HintPath>..\packages\DataAnnotationsExtensions.MVC3.1.1.0.0\lib\NETFramework40\DataAnnotationsExtensions.ClientValidation.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=4.3.1.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.4.3.1\lib\net40\EntityFramework.dll</HintPath>
@@ -92,7 +98,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\RegisterClientValidationExtensions.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Models\AccountModels\AccountEditViewModel.cs" />
     <Compile Include="Models\ClubTeamCreateEditViewModel.cs" />
     <Compile Include="Controllers\ExportController.cs" />
     <Compile Include="Controllers\ManagerController.cs" />
@@ -174,6 +182,7 @@
     <Content Include="Images\pencil_1.png" />
     <Content Include="Images\readme.txt" />
     <Content Include="Images\refno.jpg" />
+    <Content Include="Images\refno_grey.jpg" />
     <Content Include="Images\refyes.jpg" />
     <Content Include="Images\TSC_scheduler.png" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
@@ -613,6 +622,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Slot\MultiDelete.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Account\Edit.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

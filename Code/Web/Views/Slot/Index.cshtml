@@ -11,7 +11,14 @@
 {
     @Html.DropDownListFor(m => m.FieldId, Model.FieldList, new { onchange = "form.submit();" })
 }
-@Html.Navigator("Add Slots", "FieldSelect", "Slot")
+@if (Model.FieldId != 0)
+{
+    @Html.ActionLink("Add Slots", "Create", "Slot", new {id = Model.FieldId}, new {@class = "navigation"})
+}
+else
+{
+    @Html.Navigator("Add Slots", "FieldSelect", "Slot")   
+}
 
 <table>
     <tr>
@@ -37,7 +44,7 @@
             <td>
                 @if (slot.CanBeDeleted)
                 {
-                    @Html.ActionLink("Delete", "Delete", "Slot", new {slot.Id}, new {onclick = "return confirm('Are you sure?');"})
+                    @Html.ActionLink("Delete", "Delete", "Slot", new { slot.Id }, new { onclick = "return confirm('Are you sure?');" })
                 }
                 else
                 {
@@ -47,4 +54,12 @@
         </tr>
     }
 </table>
-@Html.Navigator("Add Slots", "FieldSelect", "Slot")
+
+@if (Model.FieldId != 0)
+{
+    @Html.ActionLink("Add Slots", "Create", "Slot", new {id = Model.FieldId}, new {@class = "navigation"})
+}
+else
+{
+    @Html.Navigator("Add Slots", "FieldSelect", "Slot")   
+}

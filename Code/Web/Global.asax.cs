@@ -3,6 +3,7 @@ using System.Web.Routing;
 using AutoMapper;
 using Domain;
 using Web.Models;
+using Web.Models.AccountModels;
 
 namespace Web
 {
@@ -86,6 +87,8 @@ namespace Web
             Mapper.CreateMap<Setting, SettingEditViewModel>();
             Mapper.CreateMap<SettingEditViewModel, Setting>();
             Mapper.CreateMap<Game, GameViewModel>();
+            Mapper.CreateMap<User, AccountEditViewModel>();
+            Mapper.CreateMap<AccountEditViewModel, User>();
         }
     }
 }

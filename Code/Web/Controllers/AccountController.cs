@@ -4,6 +4,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Security;
+using AutoMapper;
 using Domain;
 using Services;
 using Services.Infrastructure;
@@ -236,6 +237,29 @@ namespace Web.Controllers
         public ActionResult Summary()
         {
             return View(AccountSummaryViewModel.Load(LoggedInUser));
+        }
+
+        [Authorize]
+        public ActionResult Edit()
+        {
+            var vm = Mapper.Map<User, AccountEditViewModel>(LoggedInUser);
+
+            return View(vm);
+        }
+
+        [Authorize, HttpPost]
+        public ActionResult Edit(AccountEditViewModel vm)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(vm);
+            }
+
+            Mapper.Map(vm, LoggedInUser);
+
+            Context.SaveChanges();
+
+            return RedirectToAction("Summary");
         }
     }
 }

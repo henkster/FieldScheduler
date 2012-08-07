@@ -77,7 +77,7 @@ namespace Web.Controllers
 
             TempData["message"] = "Slots created.";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Create", new {id = field.Id});
         }
 
         public ActionResult Delete(int id)
@@ -114,6 +114,8 @@ namespace Web.Controllers
             vm.Slots = 
                 SlotViewModel.LoadList(
                     Context.Slots.Include("Games").Where(s => s.Field.Id == field.Id).OrderBy(s => s.StartDateTime).ToList());
+
+            vm.FieldId = fieldId;
 
             SlotListViewModel.InitializeList(vm, Context.Fields);
 
