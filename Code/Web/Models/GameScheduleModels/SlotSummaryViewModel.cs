@@ -11,6 +11,8 @@ namespace Web.Models.GameScheduleModels
         public bool IsAvailable { get; set; }
         public string ScheduledByName { get; set; }
 
+        public string Teams { get; set; }
+
         public static SlotSummaryViewModel Load(Slot slot)
         {
             string description = CreateDescription(slot);
@@ -18,12 +20,22 @@ namespace Web.Models.GameScheduleModels
             bool isAvailable = slot.IsAvailable;
 
             string scheduledByName = string.Empty;
+            string teams = string.Empty;
 
             if (!isAvailable)
             {
                 Game game = slot.Games.SingleOrDefault(g => !g.IsCanceled);
 
                 scheduledByName = game != null ? game.ScheduledBy.Name : "(Field used in different configuration)";
+
+                if (game != null && game.Activity == Activities.Training)
+                {
+                    teams = "(Training)";
+                }
+                else if (game != null)
+                {
+                    teams = string.Format("{0} vs. {1}", game.Team1.FullName, game.Team2.FullName);
+                }
             }
 
             var viewModel = new SlotSummaryViewModel
@@ -31,7 +43,8 @@ namespace Web.Models.GameScheduleModels
                                     Id = slot.Id,
                                     Description = description,
                                     IsAvailable = isAvailable,
-                                    ScheduledByName = scheduledByName
+                                    ScheduledByName = scheduledByName,
+                                    Teams = teams
                                 };
 
             return viewModel;

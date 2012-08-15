@@ -7,7 +7,7 @@ namespace Web.Models
         [Required]
         public string Name { get; set; }
 
-        [Required]
+        [Required, Display(Name = "City, State")]
         public string CityState { get; set; }
 
         public string ReturnTo { get; set; }

@@ -29,7 +29,7 @@
     <ul>
         @foreach (SlotSummaryViewModel slot in Model.Slots.Where(s => !s.IsAvailable))
         {
-            <li>
+            <li title="@slot.Teams">
                 @slot.Description - @slot.ScheduledByName
             </li>
         }

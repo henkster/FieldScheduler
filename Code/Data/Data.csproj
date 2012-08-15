@@ -46,7 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context.cs" />
-    <Content Include="DatabaseScripts\20120805_1_SlotActivities.sql" />
+    <Content Include="DatabaseScripts\Deployed\20120805_1_SlotActivities.sql" />
     <Content Include="DatabaseScripts\Deployed\20120801_2_UserRolesAsInt.sql" />
     <Compile Include="DbInitializer.cs" />
     <Compile Include="Migrations\201208020412406_InitialCreate.cs" />
@@ -73,11 +73,16 @@
     <Compile Include="Migrations\201208051736178_SlotActivities.Designer.cs">
       <DependentUpon>201208051736178_SlotActivities.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201208080339015_ExternalTeamValidation.cs" />
+    <Compile Include="Migrations\201208080339015_ExternalTeamValidation.Designer.cs">
+      <DependentUpon>201208080339015_ExternalTeamValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="DatabaseScripts\Deployed\20120802_1_FieldConflicts.sql" />
     <Content Include="DatabaseScripts\Deployed\20120803_1_UserChanges.sql" />
     <Content Include="DatabaseScripts\Deployed\20120803_2_PhoneReset.sql" />
+    <Content Include="DatabaseScripts\20120807_1_ExternalTeamValidation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

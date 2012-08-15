@@ -1,9 +1,14 @@
-﻿namespace Domain
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Domain
 {
     public abstract class Team : DomainObject<int>
     {
+        [Required]
         public string Name { get; set; }
+        
         public virtual Club Club { get; set; }
+        
         public virtual Division Division { get; set; }
 
         public Level Level

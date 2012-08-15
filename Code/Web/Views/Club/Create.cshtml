@@ -12,8 +12,8 @@
 @using (Html.BeginForm())
 {
     <ul class="input-list">
-        <li>Name: @Html.TextBoxFor(m => m.Name)</li>
-        <li>Based in (city, state): @Html.TextBoxFor(c => c.CityState)</li>
+        <li>Name: @Html.TextBoxFor(m => m.Name) @Html.ValidationMessageFor(m => m.Name)</li>
+        <li>Based in (city, state): @Html.TextBoxFor(c => c.CityState) @Html.ValidationMessageFor(m => m.CityState)</li>
     </ul>
     @Html.HiddenFor(c => c.ReturnTo)
     <input type="submit" value="Create" />

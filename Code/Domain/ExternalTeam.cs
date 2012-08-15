@@ -29,5 +29,12 @@ namespace Domain
             }
 
         }
+
+        public override System.Collections.Generic.IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            if (Club == null) yield return new ValidationResult("Club must be created/selected for this team.");
+
+            foreach (ValidationResult result in base.Validate(validationContext)) yield return result;
+        }
     }
 }

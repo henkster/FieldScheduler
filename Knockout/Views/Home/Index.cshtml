@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<h2>@ViewBag.Message</h2>
+<p>
+    To learn more about ASP.NET MVC visit <a href="http://asp.net/mvc" title="ASP.NET MVC Website">http://asp.net/mvc</a>.
+</p>
+
+<p>
+    @Html.Label("Test1", "Test 1:")
+    @Html.TextBox("Test1", "Hello", new Dictionary<string, object> { { "data-bind", "value:Texter" } })
+</p>
+<p>
+    @Html.Label("Test2", "Test 2:")
+    @Html.TextBox("Test2", "", new Dictionary<string, object> { { "data-bind", "value:Texter" } })
+</p>
+<script type="text/javascript">
+    var vm = function () {
+        this.Texter = ko.observable("Ahoy");
+    };
+    ko.applyBindings(new vm());
+</script>

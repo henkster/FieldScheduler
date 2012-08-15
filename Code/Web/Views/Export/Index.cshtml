@@ -6,4 +6,11 @@
 
 <h2>Game Export</h2>
 
-@Html.ActionLink("Click here to export", "Games", "Export")
+<ul>
+    <li>
+        @Html.ActionLink("For Referee Assignor", "ForRefereeAssignor", "Export")
+    </li>
+    <li>
+        @Html.ActionLink("For Full Report", "FullReport", "Export")
+    </li>
+</ul>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <publishData>
   <publishProfile publishUrl="C:\deployment\_personal\scheduler" deleteExistingFiles="True" ftpAnonymousLogin="False" ftpPassiveMode="True" msdeploySite="" msdeploySiteID="" msdeployRemoteSitePhysicalPath="" msdeployAllowUntrustedCertificate="False" msdeploySkipExtraFilesOnServer="True" msdeployMarkAsApp="False" profileName="Profile1" publishMethod="FileSystem" replaceMatchingFiles="False" userName="" savePWD="False" userPWD="" SelectedForPublish="True">
-    <file relUrl="bin/Domain.dll" publishTime="08/05/2012 17:23:16" />
+    <file relUrl="bin/Domain.dll" publishTime="08/07/2012 22:38:34" />
     <file relUrl="Images/cross_15.png" publishTime="07/23/2012 21:15:47" />
     <file relUrl="Scripts/tinymce/themes/advanced/img/flash.gif" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Scripts/tinymce/themes/simple/skins/o2k7/img/button_bg.png" publishTime="08/02/2012 22:48:06" />
@@ -23,7 +23,7 @@
     <file relUrl="Scripts/tinymce/themes/advanced/image.htm" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Scripts/tinymce/plugins/example/dialog.htm" publishTime="08/02/2012 22:48:18" />
     <file relUrl="Scripts/tinymce/themes/advanced/skins/o2k7/img/button_bg_silver.png" publishTime="08/02/2012 22:48:08" />
-    <file relUrl="bin/Data.dll" publishTime="08/05/2012 17:23:16" />
+    <file relUrl="bin/Data.dll" publishTime="08/07/2012 22:40:28" />
     <file relUrl="Scripts/tinymce/plugins/advlist/editor_plugin.js" publishTime="08/02/2012 22:48:20" />
     <file relUrl="Scripts/tinymce/themes/advanced/skins/o2k7/ui.css" publishTime="08/02/2012 22:48:08" />
     <file relUrl="Scripts/tinymce/plugins/emotions/editor_plugin_src.js" publishTime="08/02/2012 22:48:19" />
@@ -49,7 +49,7 @@
     <file relUrl="Scripts/tinymce/plugins/autoresize/editor_plugin.js" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Scripts/tinymce/themes/advanced/js/about.js" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Scripts/tinymce/plugins/autosave/editor_plugin.js" publishTime="08/02/2012 22:48:19" />
-    <file relUrl="bin/Web.pdb" publishTime="08/07/2012 11:16:00" />
+    <file relUrl="bin/Web.pdb" publishTime="08/08/2012 08:52:56" />
     <file relUrl="Scripts/MicrosoftAjax.debug.js" publishTime="07/20/2012 12:17:39" />
     <file relUrl="Scripts/tinymce/plugins/xhtmlxtras/attributes.htm" publishTime="08/02/2012 22:48:14" />
     <file relUrl="bin/templates/AccountInfo.html" publishTime="08/05/2012 17:26:32" />
@@ -131,7 +131,7 @@
     <file relUrl="Scripts/tinymce/plugins/directionality/editor_plugin.js" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Scripts/tinymce/themes/simple/skins/o2k7/ui.css" publishTime="08/02/2012 22:48:06" />
     <file relUrl="Views/Shared/Error.cshtml" publishTime="07/20/2012 12:17:39" />
-    <file relUrl="bin/Domain.pdb" publishTime="08/05/2012 17:23:16" />
+    <file relUrl="bin/Domain.pdb" publishTime="08/07/2012 22:38:34" />
     <file relUrl="Scripts/tinymce/plugins/autosave/editor_plugin_src.js" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Content/themes/base/images/ui-icons_454545_256x240.png" publishTime="07/20/2012 12:17:46" />
     <file relUrl="Scripts/tinymce/plugins/table/js/merge_cells.js" publishTime="08/02/2012 22:48:15" />
@@ -170,10 +170,10 @@
     <file relUrl="Scripts/tinymce/plugins/advimage/image.htm" publishTime="08/02/2012 22:48:20" />
     <file relUrl="Views/Account/EmailAccountInfo.cshtml" publishTime="07/24/2012 16:28:18" />
     <file relUrl="Views/Manager/List.cshtml" publishTime="08/02/2012 18:52:49" />
-    <file relUrl="bin/Services.dll" publishTime="08/05/2012 17:28:33" />
+    <file relUrl="bin/Services.dll" publishTime="08/08/2012 08:52:55" />
     <file relUrl="Scripts/tinymce/themes/advanced/about.htm" publishTime="08/02/2012 22:48:14" />
     <file relUrl="Scripts/tinymce/plugins/spellchecker/editor_plugin_src.js" publishTime="08/02/2012 22:48:15" />
-    <file relUrl="bin/Web.dll" publishTime="08/07/2012 11:16:00" />
+    <file relUrl="bin/Web.dll" publishTime="08/08/2012 08:52:56" />
     <file relUrl="Scripts/tinymce/plugins/emotions/img/smiley-wink.gif" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Scripts/scheduler.sugar.js" publishTime="07/24/2012 01:00:12" />
     <file relUrl="Scripts/tinymce/plugins/save/editor_plugin_src.js" publishTime="08/02/2012 22:48:16" />
@@ -184,9 +184,9 @@
     <file relUrl="bin/Glimpse.Mvc3.dll" publishTime="07/23/2012 18:59:00" />
     <file relUrl="Scripts/tinymce/plugins/xhtmlxtras/js/attributes.js" publishTime="08/02/2012 22:48:14" />
     <file relUrl="Scripts/jquery-ui-1.8.11.min.js" publishTime="07/20/2012 12:17:45" />
-    <file relUrl="Views/Shared/_LeftMenu.cshtml" publishTime="08/07/2012 10:21:23" />
+    <file relUrl="Views/Shared/_LeftMenu.cshtml" publishTime="08/08/2012 08:52:33" />
     <file relUrl="Scripts/tinymce/plugins/table/css/row.css" publishTime="08/02/2012 22:48:15" />
-    <file relUrl="Views/Club/Create.cshtml" publishTime="07/24/2012 16:19:06" />
+    <file relUrl="Views/Club/Create.cshtml" publishTime="08/07/2012 23:01:52" />
     <file relUrl="bin/Ninject.Web.Common.dll" publishTime="07/21/2012 11:11:01" />
     <file relUrl="App_Readme/glimpse.readme.txt" publishTime="07/23/2012 18:59:00" />
     <file relUrl="bin/CsvHelper.xml" publishTime="08/03/2012 15:26:52" />
@@ -212,7 +212,7 @@
     <file relUrl="Views/Shared/_NonMenuedLayout.cshtml" publishTime="07/24/2012 15:20:48" />
     <file relUrl="Scripts/tinymce/themes/advanced/skins/default/dialog.css" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Views/Shared/_Layout.cshtml" publishTime="08/06/2012 16:30:47" />
-    <file relUrl="Views/Game/Slot.cshtml" publishTime="07/24/2012 16:11:26" />
+    <file relUrl="Views/Game/Slot.cshtml" publishTime="08/07/2012 23:07:18" />
     <file relUrl="Scripts/tinymce/plugins/media/css/media.css" publishTime="08/02/2012 22:48:17" />
     <file relUrl="Scripts/tinymce/themes/advanced/img/icons.gif" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Scripts/tinymce/plugins/template/langs/en_dlg.js" publishTime="08/02/2012 22:48:14" />
@@ -289,12 +289,12 @@
     <file relUrl="Scripts/tinymce/plugins/emotions/img/smiley-foot-in-mouth.gif" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Images/readme.txt" publishTime="07/23/2012 21:17:36" />
     <file relUrl="Content/themes/base/jquery.ui.progressbar.css" publishTime="07/20/2012 12:17:46" />
-    <file relUrl="Views/Export/Index.cshtml" publishTime="07/31/2012 15:00:24" />
+    <file relUrl="Views/Export/Index.cshtml" publishTime="08/08/2012 08:52:33" />
     <file relUrl="Scripts/tinymce/themes/advanced/js/image.js" publishTime="08/02/2012 22:48:13" />
     <file relUrl="Scripts/tinymce/plugins/table/css/table.css" publishTime="08/02/2012 22:48:15" />
     <file relUrl="Images/pencil_1.png" publishTime="07/23/2012 21:15:47" />
     <file relUrl="Scripts/tinymce/plugins/xhtmlxtras/abbr.htm" publishTime="08/02/2012 22:48:14" />
-    <file relUrl="bin/Services.pdb" publishTime="08/05/2012 17:28:33" />
+    <file relUrl="bin/Services.pdb" publishTime="08/08/2012 08:52:55" />
     <file relUrl="Scripts/tinymce/plugins/contextmenu/editor_plugin_src.js" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Scripts/tinymce/plugins/emotions/img/smiley-cry.gif" publishTime="08/02/2012 22:48:19" />
     <file relUrl="Scripts/jquery.validate.unobtrusive.js" publishTime="07/20/2012 12:17:39" />
@@ -309,7 +309,7 @@
     <file relUrl="Views/Game/Summary.cshtml" publishTime="08/07/2012 11:06:27" />
     <file relUrl="Scripts/tinymce/plugins/xhtmlxtras/ins.htm" publishTime="08/02/2012 22:48:14" />
     <file relUrl="Content/themes/base/jquery.ui.accordion.css" publishTime="07/20/2012 12:17:46" />
-    <file relUrl="bin/Data.pdb" publishTime="08/05/2012 17:23:16" />
+    <file relUrl="bin/Data.pdb" publishTime="08/07/2012 22:40:28" />
     <file relUrl="Scripts/tinymce/plugins/advlist/editor_plugin_src.js" publishTime="08/02/2012 22:48:20" />
     <file relUrl="Views/Game/Edit.cshtml" publishTime="07/24/2012 00:35:45" />
     <file relUrl="Views/Field/Index.cshtml" publishTime="08/03/2012 14:33:23" />

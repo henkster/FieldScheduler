@@ -13,7 +13,7 @@ namespace Web.Controllers
             return View();
         }
 
-        public ActionResult Games()
+        public ActionResult ForRefereeAssignor()
         {
             var games = Context.Games.Where(
                 g =>
@@ -26,8 +26,23 @@ namespace Web.Controllers
 
             return new FileContentResult(workbook, "application/excel")
                        {
-                           FileDownloadName = "TSC_Games.xlsx"
+                           FileDownloadName = "TSC_Games_Referee.xlsx"
                        };
+        }
+
+        public ActionResult FullReport()
+        {
+            var games = Context.Games.Where(
+                g =>
+                !g.CanceledOn.HasValue).
+                OrderBy(g => g.Slot.StartDateTime);
+
+            byte[] workbook = new GamesToExcelMapper().Map(games);
+
+            return new FileContentResult(workbook, "application/excel")
+            {
+                FileDownloadName = "TSC_Games_Full.xlsx"
+            };
         }
     }
 }
