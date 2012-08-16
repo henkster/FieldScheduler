@@ -189,6 +189,8 @@ namespace Web.Controllers
 
             Context.SaveChanges();
 
+            new RefereeEmailer(Context, Server.MapPath("~/bin")).EmailCanceled(game);
+
             TempData["message"] = "Game successfully canceled!";
             return RedirectToAction("Summary");
         }
@@ -286,6 +288,8 @@ namespace Web.Controllers
             game.Notes = vm.Notes;
 
             Context.SaveChanges();
+
+            new RefereeEmailer(Context, Server.MapPath("~/bin")).EmailModified(game);
 
             return RedirectToAction("Summary");
         }

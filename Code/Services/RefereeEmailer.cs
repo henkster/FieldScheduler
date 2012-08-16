@@ -29,13 +29,13 @@ namespace Services
         {
             if (OutsideLeadTime(game) || !AreRefereesNeeded(game)) return;
 
-            SendRefereeMessage(game, "Modified Game");
+            SendRefereeMessage(game, "Canceled Game");
         }
         public void EmailModified(Game game)
         {
             if (OutsideLeadTime(game) || !AreRefereesNeeded(game)) return;
 
-            SendRefereeMessage(game, "Canceled Game");
+            SendRefereeMessage(game, "Modified Game");
         }
 
         private void SendRefereeMessage(Game game, string subject)
