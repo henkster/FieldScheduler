@@ -49,6 +49,7 @@
     <Compile Include="DomainObject.cs" />
     <Compile Include="ExternalTeam.cs" />
     <Compile Include="Game.cs" />
+    <Compile Include="GameChangeHistory.cs" />
     <Compile Include="Level.cs" />
     <Compile Include="Roles.cs" />
     <Compile Include="Setting.cs" />

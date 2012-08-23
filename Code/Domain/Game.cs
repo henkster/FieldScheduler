@@ -40,6 +40,10 @@ namespace Domain
         public virtual User CanceledBy { get; set; }
         public DateTime? CanceledOn { get; set; }
 
+        public virtual User GameOwner { get; set; }
+        public virtual User LastModifiedBy { get; set; }
+        public virtual DateTime LastModifiedOn { get; set; }
+
         public bool IsCanceled { get { return CanceledOn.HasValue; } }
 
         public Activities Activity

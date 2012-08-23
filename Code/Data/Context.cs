@@ -41,5 +41,6 @@ namespace Data
         public DbSet<ExternalTeam> ExternalTeams { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Division> Divisions { get; set; }
+        public DbSet<GameChangeHistory> GameChangeHistories { get; set; }
     }
 }
